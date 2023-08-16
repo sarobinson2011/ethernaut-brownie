@@ -1,7 +1,7 @@
 from scripts.helpful_scripts import get_account
 from brownie import accounts, config, interface, Attack
 
-# Level 3 - CoinFlip - instanced generated
+# Level 3 - CoinFlip - instance generated (for the level 3 'CoinFlip' contract)
 ETHERNAUT_INSTANCE = "0x1D45D0e574c470a0F759900D6450975d5C45bA1C"
 
 
@@ -18,7 +18,7 @@ def main():
     attack_coinflip = Attack.deploy(contract, {"from": player})
 
     print(f"Deployed - attack address is: {attack_coinflip.address}")
-    coinflip_interface = interface.Icoinflip(contract)
+    coinflip_interface = interface.ICoinFlip(contract)
 
     for i in range(10):
         attack_coinflip.hack(
