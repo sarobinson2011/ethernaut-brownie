@@ -18,6 +18,7 @@ def main():
     attack_coinflip = Attack.deploy(contract, {"from": player})
 
     print(f"Deployed - attack address is: {attack_coinflip.address}")
+
     coinflip_interface = interface.ICoinFlip(contract)
 
     for i in range(10):
