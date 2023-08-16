@@ -22,11 +22,10 @@ def main():
     coinflip_interface = interface.ICoinFlip(contract)
 
     for i in range(10):
-        attack_coinflip.hack(
+        attack_coinflip.flip(
             {"from": player, "gas_limit": 10000000, "allow_revert": True}
         )
         print("Consecutive wins: ", coinflip_interface.consecutiveWins())
 
 
 # 0.002316
-# check Incognito market
