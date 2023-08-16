@@ -1,10 +1,12 @@
-# Ethernaut Level Solutions (using the Brownie framework)
+# Ethernaut Level Solutions (using Brownie)
 
 ### Levels split into individual folders, under contracts...
 
+
 - 03-Coin Flip
-                --> SOLVED
+                -->     solved
 
 - 04-Telephone
-                --> TODO
-                
+                -->     #todo
+
+

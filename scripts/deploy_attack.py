@@ -2,15 +2,12 @@ from scripts.helpful_scripts import get_account
 from brownie import accounts, config, interface, Attack
 
 # Level 3 - CoinFlip - instance generated (for the level 3 'CoinFlip' contract)
-ETHERNAUT_INSTANCE = "0x1D45D0e574c470a0F759900D6450975d5C45bA1C"
+ETHERNAUT_INSTANCE = "0xdc06FD5A0D5aa673A123db5A6Fc041090E063D0A"
 
 
 def main():
     # Ethernaut Instance
     contract = ETHERNAUT_INSTANCE
-
-    # Player account
-    # player = accounts.add(config["wallets"]["from_key"])
     player = get_account()
 
     # To deploy the attacker contract: To interact with the coinflip contract (i.e. Acting as a proxy)
@@ -26,6 +23,3 @@ def main():
             {"from": player, "gas_limit": 10000000, "allow_revert": True}
         )
         print("Consecutive wins: ", coinflip_interface.consecutiveWins())
-
-
-# 0.002316
