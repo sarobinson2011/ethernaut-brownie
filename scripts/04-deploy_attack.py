@@ -12,11 +12,14 @@ def main():
     # Deploy the attacker (proxy) contract: to call the Telephone contract
     attack = Attack04.deploy(contract, {"from": player})
     # print(f"Deployed - attack address is: {attack.address}")
-    print(f"msg.sender = {player.address}")
+    print(f'f"msg.sender = {player.address}\nattack address = {attack.address}')
 
-    attack.changeOwner({"from": player, "gas_limit": 10000000, "allow_revert": True})
+    # # # # # # # # #   coinflip_interface = interface.ICoinFlip(contract)
 
-    #  ==>  Print attack.owner by referring to an instance of it ??
+    # tx = attack.changeOwner({"from": player})
+    # print("success")
+
+    #       ==>       Print attack.owner by referring to an instance of it ??
 
 
 #     coinflip_interface = interface.ICoinFlip(contract)
