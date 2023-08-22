@@ -11,5 +11,5 @@ def main():
 
     # Deploy the attacker (proxy) contract: to call the Telephone contract
     attack = Attack04.deploy(contract, {"from": player})
-    # print(f"Deployed - attack address is: {attack.address}")
-    print(f'f"msg.sender = {player.address}\nattack address = {attack.address}')
+
+    print(f"msg.sender = {player.address}\nattack address = {attack.address}")
