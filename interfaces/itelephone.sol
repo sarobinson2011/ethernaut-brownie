@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 interface ITelephone {
-    // function flip(bool _guess) external returns (bool);
-    // ToDo
+    function changeOwner(address _owner) external;
+
+    function owner() external view returns (address);
 }

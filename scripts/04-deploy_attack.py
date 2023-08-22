@@ -13,3 +13,5 @@ def main():
     attack = Attack04.deploy(contract, {"from": player})
 
     print(f"msg.sender = {player.address}\nattack address = {attack.address}")
+
+    # tx = attack.changeOwner()
