@@ -8,8 +8,11 @@ def main():
 
     player = get_account()
 
-    attacker_contract = Attack_Telephone.deploy(ETHERNAUT_INSTANCE, {"from": player})
-    attack_interface = interface.Iattack_telephone(attacker_contract.address)
+    attacker_contract = Attack_Telephone.deploy(
+        ETHERNAUT_INSTANCE, {"from": player}
+    )  # tick
+    attack_interface = interface.Iattack_telephone(attacker_contract.address)  #
+
     telphone_interface = interface.Itelephone(ETHERNAUT_INSTANCE)
 
     attacker_contract.change({"from": player})
