@@ -7,6 +7,10 @@
                 -->     solved
 
 - 04-Telephone
-                -->     #todo
+                -->     solved (with comments)
+
+- 05-Token
+                -->     #ToDo
+
 
 
