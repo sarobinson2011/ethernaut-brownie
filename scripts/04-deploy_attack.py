@@ -10,8 +10,8 @@ def main():
 
     attacker_contract = Attack04.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    print(f"attack contract deployed: {attacker_contract}")
+    # print(f"attack contract deployed: {attacker_contract}")
 
     attacker_contract.attack({"from": player})
 
-    print(f"attack undertaken :-)")
+    # print(f"attack undertaken :-)")
