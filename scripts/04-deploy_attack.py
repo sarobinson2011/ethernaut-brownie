@@ -10,16 +10,9 @@ def main():
 
     attacker_contract = Attack04.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    attack_interface = interface.Iattack_telephone(attacker_contract.address)
+    print(f"attack contract deployed: {attacker_contract}")
 
-    telphone_interface = interface.ITelephone(ETHERNAUT_INSTANCE)
-
-    print(f"attack interface: {attack_interface}")
-    print(f"telephone interface: {telphone_interface}")
-
-    attacker_contract.changeOwner({"from": player})
-
-    # attack_interface.change({"from": player})
+    attacker_contract.attack({"from": player})
 
     # owner = telphone_interface.owner()
 
