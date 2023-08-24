@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// import "interfaces/itelephone.sol";
 import "./04-telephone.sol";
 
 contract Attack04 {
-    // ITelephone private immutable target;
     Telephone telephoneContract;
 
     constructor(address _telephoneContract) {
