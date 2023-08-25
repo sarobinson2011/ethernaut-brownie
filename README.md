@@ -4,7 +4,7 @@
 
 
 - 03-Coin Flip
-                -->     solved
+                -->     SOLVED
 
 - 04-Telephone
                 -->     SOLVED

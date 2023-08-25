@@ -1,6 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
+/* 
+    You are given 20 tokens to start with and you will beat the 
+    level if you somehow manage to get your hands on any additional 
+    tokens. Preferably a very large amount of tokens.
+
+    SafeMath attack?
+*/
+
 contract Token {
     mapping(address => uint) balances;
     uint public totalSupply;
