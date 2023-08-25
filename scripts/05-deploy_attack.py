@@ -11,3 +11,5 @@ def main():
     attacker_contract = Attack05.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
     print(f"attacker contract: {attacker_contract}")
+
+    # your voice is different, and yet(!) it's arrogence is unchanged
