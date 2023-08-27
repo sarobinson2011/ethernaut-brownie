@@ -16,5 +16,5 @@ contract Attack05 {
     }
 
     // continue from here
-    //  ==>
+    //  ==> follow video
 }
