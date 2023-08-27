@@ -14,4 +14,7 @@ contract Attack05 {
         // allows Attack04 to interact with deployed Telephone contract
         tokenContract = Token(_tokenContract);
     }
+
+    // continue from here
+    //  ==>
 }
