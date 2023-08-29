@@ -16,5 +16,6 @@ contract Attack05 {
     }
 
     // continue from here
-    //  ==> follow video
+    //  ==> follow - Smart Contract Security - Ethernaut Challenge 05 - Token
+    // YouTube channel: "DeFi Developer Academy"
 }
