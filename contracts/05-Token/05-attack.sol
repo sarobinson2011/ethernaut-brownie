@@ -7,6 +7,7 @@ contract Attack05 {
     // state variable - stores an instance of Token
     // contract that we will interact with
     Token tokenContract;
+    uint256 public test_var;
 
     // constructor takes address of deployed instance
     // of the Telephone contract to attack
