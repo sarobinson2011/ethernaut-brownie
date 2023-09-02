@@ -12,6 +12,11 @@
 
 - 05-Token
                 -->     #ToDo
+                                Steps:
+                                --> check 'await contract.balanceOf(player)' == 20 (in browser)
+                                --> call transfer(_to, _value) as follows:
+                                    --> contract.transfer('another address', 20 + 1)
+                                --> check that call 'await contract.balanceOf(player)' == LOTS!
 
 
 
