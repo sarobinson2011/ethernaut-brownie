@@ -6,12 +6,7 @@ pragma solidity ^0.6.0;
     level if you somehow manage to get your hands on any additional 
     tokens. Preferably a very large amount of tokens.
 
-    SafeMath attack?
-
-    Notes:
-        1) require(balances[msg.sender] - _value >= 0);  <==  start here
-        2) ccc
-
+    SafeMath attack?    
 */
 
 contract Token {
