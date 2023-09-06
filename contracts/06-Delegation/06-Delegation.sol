@@ -29,3 +29,5 @@ contract Delegation {
         }
     }
 }
+
+// ask chat gpt "wtf are these 2 conracts"   <---
