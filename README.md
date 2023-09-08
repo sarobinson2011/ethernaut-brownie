@@ -24,7 +24,15 @@
                         Balance then gets sent to msg.sender (in the original contract).
 
 - 06-Delegation
-        -->     #ToDo
+        -->     SOLVED
+                        Solution uses the transfer method to interact with contract Delegate.
+                        The data passed to Delegate is the 'function selector' for the pwn() function.
+                        This is the first 5 bytes from keccak256 hash of "pwn()".
+                        Fallback is called, which uses delegatecall to effectively call the pwn() function.
+                        Thus ownership is transferred to 'msg.sender' from 'Delegation'.
+
+- 07-Force
+        -->     #Todo
                         ...
 
 
