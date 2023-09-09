@@ -4,7 +4,7 @@ from web3 import Web3
 
 # PLAYER address is "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 
-ETHERNAUT_INSTANCE = "0x6f50CaAf6E4AD72C66E0e60A61eEF58Db2018447"
+ETHERNAUT_INSTANCE = "0x05825eb9A72f957aD87cB4F121A6F8925166664a"
 BALANCE = web3.eth.getBalance(ETHERNAUT_INSTANCE)
 
 
@@ -19,5 +19,11 @@ def main():
 
     player.transfer(to=attack_contract, amount=1000000000000000)
 
+    # call attack (which calls selfdestruct(ETHERNAUT_INSTANCE)
     attack_contract.attack(ETHERNAUT_INSTANCE)
-    print(f"Balance of Force contract = {BALANCE}\n")
+
+    """ 
+    BALANCE still showed 0 because I didn't update it
+    Actual balance shows as 0.01 ether in ethernaut
+    """
+    # print(f"\nBalance of Force contract now = {BALANCE}\n")
