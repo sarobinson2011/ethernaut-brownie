@@ -32,7 +32,16 @@
                         Thus ownership is transferred to 'msg.sender' from 'Delegation'.
 
 - 07-Force
-        -->     #Todo
+        -->     SOLVED
+                        Solution uses the selfdestruct in-built function to 'force transfer' funds over.
+                        A proxy contract Attack07 is deployed with a payable constructor && the receive function.
+                        Attack07 can be loaded with funds using either the constructor or receive method.
+                        The function 'attack' calls selfdestruct, with the Force contract address an argument.
+                        Selfdestruct force-sends all funds in the contract to the Force contract address.
+                        Attack07 then destroys itself, as per the selfdestruct() functionality.
+                
+- 08-Vault
+        -->     #ToDo
                         ...
 
 
