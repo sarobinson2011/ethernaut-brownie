@@ -41,7 +41,15 @@
                         Attack07 then destroys itself, as per the selfdestruct() functionality.
                 
 - 08-Vault
-        -->     #ToDo
-                        Unlock the vault to pass the level
+        -->     SOLVED
+                        Solution exploits the inability of deterministic blockchains to store security sensitive date, such as passwords.
+                        Password is easily obtained via:
+                        
+                                - password = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 1).
+                        
+                                - Where ETHERNAUT_INSTANCE is the contract address
+                                - '1' is the memory storage slot - run this with 0, 1, 2 see what happens ;-0
+                        
+                        Then simply use the vault interface to interact and call unlock(password) to win.
 
 

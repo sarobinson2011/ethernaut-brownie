@@ -6,7 +6,9 @@ pragma solidity ^0.8.0;
 */
 
 contract Vault {
+    // storage memory slot 0
     bool public locked;
+    // storage memory slot 1 (memory storage)
     bytes32 private password;
 
     constructor(bytes32 _password) {
