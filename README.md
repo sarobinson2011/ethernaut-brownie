@@ -42,6 +42,6 @@
                 
 - 08-Vault
         -->     #ToDo
-                        ...
+                        Unlock the vault to pass the level
 
 
