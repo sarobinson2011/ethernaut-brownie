@@ -1,7 +1,7 @@
 from scripts.helpful_scripts import get_account
 from brownie import web3, interface, convert
 
-ETHERNAUT_INSTANCE = "0x6397B7130662EEa63eBfD9fAfE82Fd053C1a21Bb"
+ETHERNAUT_INSTANCE = "0x36A486BAe1988F4aCB1F9ab5e0606A7A9f635C4f"
 
 
 def main():
