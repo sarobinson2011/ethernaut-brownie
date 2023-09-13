@@ -59,6 +59,7 @@
                         When the transfer function encounters a revert in the recipient contract, it also reverts the entire transaction that called it, including the receive() function.
                         Assumption is that the developers assumed all "players" would be EOAs.
                         Soultion is to use the call() function, which does have the ability to handle reverts and errors.
+                        See "transaction diagram" (check naming convention) for more details.
 
 
 
