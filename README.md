@@ -61,5 +61,10 @@
                         Soultion is to use the call() function, which does have the ability to handle reverts and errors.
                         See "transaction diagram" (check naming convention) for more details.
 
+- 10-Re-entrancy
+        -->
+                #ToDo
+                        ...
+
 
 
