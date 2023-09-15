@@ -13,7 +13,7 @@
 
 - 04-Telephone
         -->     SOLVED
-                
+
         Solution creates an instance of the Attack04 contract.
         Passes the Telephone contract to it's Constructor.
         When you then call attack on the Attack04 contract, it triggers changeOwner.
@@ -22,7 +22,7 @@
 
 - 05-Token
         -->     SOLVED
-                
+
         Solution sets up an interface, in order to interact with the Token contract.
         Then calls transfer to a random address, for 21 tokens. 
         This causes the 0.6.0 solidity code to underflow a uint256.  
