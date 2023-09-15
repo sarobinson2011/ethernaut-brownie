@@ -6,10 +6,11 @@
 - 03-Coin Flip
         -->     SOLVED
         
-                Solution lies in the fact that a blockchain is a deterministic data structure, and as such there is no way of generating a random number with sufficient entropy, that cannot be gamed.
-                So, we simply copy and paste the code that creates the "random result" into an attack contract.
-                Run this (which happens concurrently with the original contract - it's a blockchain remember!), with a require "correct result" statement.
-                Then we simply keep flipping the coin until we have 10 wins.
+Solution lies in the fact that a blockchain is a deterministic data structure, and as such there is no way of generating a random number
+with sufficient entropy, that cannot be gamed.
+So, we simply copy and paste the code that creates the "random result" into an attack contract.
+Run this (which happens concurrently with the original contract - it's a blockchain remember!), with a require "correct result" statement.
+Then we simply keep flipping the coin until we have 10 wins.
 
 - 04-Telephone
         -->     SOLVED
