@@ -16,7 +16,7 @@
 
         Solution creates an instance of the Attack04 contract.
         Passes the Telephone contract to it's Constructor.
-        When you then call attack on the Attack04 contract, it triggers changeOwner.
+        When you then call attack on the Attack04 contract, it triggers changeOwner().
         This shows how you use a proxy contract to attack a deployed contract.
 
 
