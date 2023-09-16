@@ -48,7 +48,7 @@
         Attack07 then destroys itself, as per the selfdestruct() functionality.
                 
 - 08-Vault
-        -->     SOLVED
+        -->     SOLVED  
 
         Solution exploits the inability of deterministic blockchains to store security sensitive date, such as passwords.
         Password is easily obtained via:
