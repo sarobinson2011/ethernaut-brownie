@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.12;
 
+import "./10-re-entrancy.sol";
+
 contract Attack10 {
     // constructor sets the address of the Reentrancy contract to attack
     constructor(address _reEntrancyAddress) public payable {
@@ -14,3 +16,5 @@ contract Attack10 {
         // rinse repeat, until drained
     }
 }
+
+#
