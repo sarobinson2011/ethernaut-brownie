@@ -7,14 +7,11 @@ contract Attack10 {
     // constructor sets the address of the Reentrancy contract to attack
     constructor(address _reEntrancyAddress) public payable {
         // #ToDo
+        // need to fund Reentrance, by call donate upon deployment
     }
 
     receive() external payable {
-        // call withdraw(_amount) on Reentrance
-        // NEXT...
         // use ReentrantInterface to call withdraw() on Reentrance
-        // rinse repeat, until drained
+        // rinse repeat, until all funds drained
     }
 }
-
-#
