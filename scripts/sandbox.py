@@ -14,5 +14,5 @@
 #     # player = get_account()
 #     print(f"balance = {BALANCE}")
 
-num = [2, 3, 4, 5]
-print(sum(num, 100))
+var = input("Enter a word")
+print(f'\nYour word is "{var}"\n')

