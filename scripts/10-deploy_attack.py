@@ -19,10 +19,6 @@ def main():
     balance_ether = web3.fromWei(target.balance(), "ether")
     print(f"\nBalance of the attack contract = {balance_ether}\n")
 
-    amount = interface.ReentrantInterface.amount()
-    amount_ether = web3.fromWei(amount, "ether")
-    print(f"'Amount' set in main contract = {amount_ether}")
-
     # attack.attack({"from": player})
 
     # print(f"Final balance = {attack.balance()}")
