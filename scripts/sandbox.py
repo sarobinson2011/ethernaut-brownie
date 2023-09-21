@@ -14,5 +14,4 @@
 #     # player = get_account()
 #     print(f"balance = {BALANCE}")
 
-var = input("Enter a word")
-print(f'\nYour word is "{var}"\n')
+print("Hello!2@#World".istitle())
