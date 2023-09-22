@@ -72,9 +72,10 @@
 
 - 10-Re-entrancy
         -->
-                #ToDo
+                SOLVED
 
-        ...
+        Solution is simple to describe, but proved a little more tricky to implement in practice.
+        
 
 
 
