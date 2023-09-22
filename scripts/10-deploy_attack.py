@@ -29,6 +29,6 @@ def main():
     current_balance_target = target.balance()
     eth_balance = web3.fromWei(current_balance_target, "ether")
 
-    # ####  could print all of these values to a log file?
-
     print(f"\nCurrent balance of the target = {eth_balance} ether\n")
+
+    # ####  could print all of these values to a log file?
