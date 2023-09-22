@@ -17,6 +17,8 @@ def main():
     # deploy attack contract
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
 
+    # donate ether to the target contract
+    # ToDo
+
     # call the attack() function, on my attack contract
-    tx = attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
-    print(f"\n{tx}\n")
+    attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})

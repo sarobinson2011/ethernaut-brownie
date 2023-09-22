@@ -13,9 +13,6 @@ contract Attack10 {
         reentrance = ReentrantInterface(_reEntrancyAddress);
         owner = msg.sender;
         amount = _amount;
-
-        // call the donate() function, on the target contract
-        // # ToDo
     }
 
     function attack() public {
