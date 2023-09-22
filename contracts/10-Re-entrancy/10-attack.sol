@@ -13,6 +13,7 @@ contract Attack10 {
         reentrance = ReentrantInterface(_reEntrancyAddress);
         owner = msg.sender;
         amount = _amount;
+        // call the donate() function, on the target contract
     }
 
     // call attack() once, then receive() drains all funds
