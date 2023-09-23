@@ -14,4 +14,6 @@
 #     # player = get_account()
 #     print(f"balance = {BALANCE}")
 
-print("Hello!2@#World".istitle())
+a = 18.5
+b = int(a)
+print(b)

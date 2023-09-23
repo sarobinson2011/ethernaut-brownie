@@ -12,7 +12,9 @@ def main():
 
     # set target (interface address)
     target = interface.ReentrantInterface(ETHERNAUT_INSTANCE)
-    eth_balance_target = web3.fromWei(target.balance(), "ether")
+
+    eth_balance_instance = web3.fromWei(target.balance(), "ether")
+    print(f"Balance of ethernaut instance = {eth_balance_instance}")
 
     # deploy attack contract
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
