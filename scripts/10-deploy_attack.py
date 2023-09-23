@@ -14,7 +14,6 @@ def main():
 
     # set target (interface address)
     target = interface.ReentrantInterface(ETHERNAUT_INSTANCE)
-    print(f"Target address under attack = {target}")
 
     # deploy attack contract
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
