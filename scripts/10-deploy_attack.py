@@ -26,8 +26,11 @@ def main():
 
     #  check balance (in ether) of the target contract
     current_balance_target = target.balance()
-    eth_balance = web3.fromWei(current_balance_target, "ether")
+    current_balance_attack = attack.balance()
+    eth_balance_target = web3.fromWei(current_balance_target, "ether")
+    eth_balance_attack = web3.fromWei(current_balance_attack, "ether")
 
-    print(f"\nCurrent balance of the target = {eth_balance} ether\n")
+    print(f"\nBalance of the target contract = {eth_balance_target} ether")
+    print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
 
     # ####  could print all of these values to a log file?
