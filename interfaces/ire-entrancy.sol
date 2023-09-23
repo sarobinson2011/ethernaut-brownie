@@ -6,5 +6,5 @@ interface ReentrantInterface {
 
     function withdraw(uint _amount) external view;
 
-    function balanceOf(address _who) external view;
+    function balanceOf(address _who) external view returns (uint balance);
 }
