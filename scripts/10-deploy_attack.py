@@ -1,7 +1,7 @@
 from scripts.helpful_scripts import get_account
 from brownie import web3, Attack10, interface
 
-ETHERNAUT_INSTANCE = "0x58C7cdda21c43803DcFE82CE7E41926816df7bb9"
+ETHERNAUT_INSTANCE = "0x561Ca003B90617eeca74692FEF51BB20EcAaA19d"
 AMOUNT = "0.01 ether"
 GAS_LIMIT = 600000
 
@@ -22,7 +22,8 @@ def main():
     print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
 
     """donate ether to the target (which points at the Level contract) contract"""
-    target.donate(ETHERNAUT_INSTANCE, {"from": player, "value": AMOUNT})
+
+    # -------->>>>>  target.donate(ETHERNAUT_INSTANCE, {"from": player, "value": AMOUNT})
 
     balance_ETHERNAUT_INSTANCE = web3.eth.get_balance(ETHERNAUT_INSTANCE)
     balance_ETHERNAUT_INSTANCE_ether = web3.fromWei(balance_ETHERNAUT_INSTANCE, "ether")

