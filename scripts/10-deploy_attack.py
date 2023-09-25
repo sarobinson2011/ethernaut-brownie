@@ -13,11 +13,14 @@ def main():
     # set target (interface address)
     target = interface.ReentrantInterface(ETHERNAUT_INSTANCE)
 
+    # print balance
     eth_balance_instance = web3.fromWei(target.balance(), "ether")
     print(f"Balance of ethernaut instance = {eth_balance_instance}")
 
     # deploy attack contract
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
+
+    # print balance
     eth_balance_attack = web3.fromWei(attack.balance(), "ether")
     print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
 
@@ -25,6 +28,7 @@ def main():
 
     # -------->>>>>  target.donate(ETHERNAUT_INSTANCE, {"from": player, "value": AMOUNT})
 
+    # print balance
     balance_ETHERNAUT_INSTANCE = web3.eth.get_balance(ETHERNAUT_INSTANCE)
     balance_ETHERNAUT_INSTANCE_ether = web3.fromWei(balance_ETHERNAUT_INSTANCE, "ether")
     print(f"\nBalance of Ethernaut level = {balance_ETHERNAUT_INSTANCE_ether} ETH\n")
@@ -34,6 +38,7 @@ def main():
 
     # PROBLEM HERE - attack doesn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!   <------  LOOK
     attack.attack({"from": player})
+
     # attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
 
     print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
