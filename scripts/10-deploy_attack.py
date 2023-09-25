@@ -34,7 +34,7 @@ def main():
 
     #               PROBLEM HERE - attack doesn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!   <------  LOOK
 
-    attack.attack({"from": player, "value": AMOUNT})
+    attack.attack({"from": player})
     # attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
 
     print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
