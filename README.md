@@ -75,7 +75,21 @@
                 SOLVED
 
         Solution is simple to describe, but proved a little more tricky to implement in practice.
+        Fully working Solidity and Brownie (Python) code is publicly available in GitHub repo.
+
+        The security flaw in the lies in the withdraw(uint _amount) function, that transfers funds
+        BEFORE subtracting the transfer from the account balance. 
+        After checking that the account has funds to withdraw, a low-level call  is made to msg.sender, 
+        to transfer the funds.
         
+        I guess the code was written assuming calls from EOAs, but if the call is made from a proxy contract
+        we can then include a receive() function, receive() then simply calls withdraw(uint _amount) again.
+        In this way we can reduce the balance to zero before 'balances[msg.sender] -= _amount' gets 
+        executed.
+        
+        This level was designed to explain the re-entrancy attack that famously drained the Ethereum DAO, otherwise known colloquially as "The DAO Hack".
+
+
 
 
 
