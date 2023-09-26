@@ -19,7 +19,6 @@
         When you then call attack on the Attack04 contract, it triggers changeOwner().
         This shows how you use a proxy contract to attack a deployed contract.
 
-
 - 05-Token
         -->     SOLVED
 
@@ -77,19 +76,22 @@
         Solution is simple to describe, but proved a little more tricky to implement in practice.
         Fully working Solidity and Brownie (Python) code is publicly available in GitHub repo.
 
-        The security flaw in the lies in the withdraw(uint _amount) function, that transfers funds
-        BEFORE subtracting the transfer from the account balance. 
-        After checking that the account has funds to withdraw, a low-level call  is made to msg.sender, 
-        to transfer the funds.
+        The security flaw in the lies in the withdraw(uint _amount) function, that transfers funds BEFORE subtracting the transfer from the account balance. 
+        After checking that the account has funds to withdraw, a low-level call  is made to msg.sender, to transfer the funds.
         
-        I guess the code was written assuming calls from EOAs, but if the call is made from a proxy contract
-        we can then include a receive() function, receive() then simply calls withdraw(uint _amount) again.
-        In this way we can reduce the balance to zero before 'balances[msg.sender] -= _amount' gets 
-        executed.
+        I guess the code was written assuming calls from EOAs, but if the call is made from a proxy contract we can then include a receive() function, receive() then simply calls withdraw(uint _amount) again. In this way we can reduce the balance to zero before 'balances[msg.sender] -= _amount' gets executed.
         
         This level was designed to explain the re-entrancy attack that famously drained the Ethereum DAO, otherwise known colloquially as "The DAO Hack".
 
+        The official Solidity Language docs (link below) advise to use the standard 'Checks-Effects-Interactions' pattern when writing solidity functions, as follows:
 
+        1. First perform checks e.g. who called the function, did they send enough eth etc.
+        2. Second perform updates to state variables 
+        3. Third (and last) execute any interactions with other contracts (known or unknown)
 
+- 11-Elevator
+        -->
+                ToDo
 
+        .....
 
