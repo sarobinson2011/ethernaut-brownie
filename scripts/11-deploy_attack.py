@@ -7,3 +7,5 @@ ETHERNAUT_INSTANCE = "0x454145f33FD63Bbb1932B9006f125800f155C577"
 def main():
 
     player = get_account()
+
+    attack = Attack11.deploy({"from": player})
