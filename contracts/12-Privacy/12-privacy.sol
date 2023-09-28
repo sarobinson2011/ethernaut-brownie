@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
     The creator of this contract has protected the sensitive areas 
     of its storage.
 
-    Unlock this contract to beat the level.
+    Unlock this contract to beat the level (set locked = false)
 
     Things that might help:
         - Understanding how storage works
