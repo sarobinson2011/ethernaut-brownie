@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 interface IElevator {
-    function isLastFloor(uint) external returns (bool);
+    function goTo(uint) external returns (bool);
 }
 
 contract Attack11 {
