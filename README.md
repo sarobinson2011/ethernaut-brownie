@@ -95,5 +95,14 @@
 
         This problem was a little tricky to wrap my head around, until the penny finally dropped.
         In order to solve this level all you need to do is set the state variable top == true.
-        
+        The vulnerability in the code occurs in the function isLastFloor(uint), this function has
+        a visibility modifer external, and no modifier to limit ability to alter state variables.
+        Hence we can attack Elevator by writing malicious functionality into the isLastFloor()
+        function in our Attack11 contract.
+        The goTo(uint _floor) function makes a conditional check on the negated boolean return
+        value from isLastFloor(). Thus by returning a negated bool from Attack11 we can force 
+        top to equal true.
+        To mitigate this vulnerability, the isLastFloor() function should have the 'view' function
+        modifier.  This removes the ability to change state variables, thus you cannot win.
+
 
