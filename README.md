@@ -105,4 +105,8 @@
         To mitigate this vulnerability, the isLastFloor() function should have the 'view' function
         modifier.  This removes the ability to change state variables, thus you cannot win.
 
+- 11-Privacy
+        -->
+                ToDo
 
+        ....
