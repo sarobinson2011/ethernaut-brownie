@@ -4,13 +4,11 @@ from brownie import web3, interface
 
 ETHERNAUT_INSTANCE = "0xbf0cdE8daAdF37782fC6c250097a53900BfEEcaD"
 GAS_LIMIT = 6000000
-KEY = xx  # require(_key == bytes16(data[2]))
 
 
 def main():
 
     player = get_account()
-    privacy = interface.IPrivacy(KEY)
 
     # data is listed as the 6th state variable - need to find it
 
@@ -19,3 +17,9 @@ def main():
 
     store_1 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 1)
     print(store_1)
+
+    data = store_1  # or whichever slot itis in
+
+    key = bytes(data[:16])
+
+    interface.IPrivacy(key).unlock(key, {"from": player})
