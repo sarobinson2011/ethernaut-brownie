@@ -91,7 +91,9 @@
 
 - 11-Elevator
         -->
-                ToDo
+                SOLVED
 
-        .....
+        This problem was a little tricky to wrap my head around, until the penny finally dropped.
+        In order to solve this level all you need to do is set the state variable top == true.
+        
 

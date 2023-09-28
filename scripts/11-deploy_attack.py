@@ -2,7 +2,8 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, Attack11
 
 ETHERNAUT_INSTANCE = "0x454145f33FD63Bbb1932B9006f125800f155C577"
-FLOOR = 3
+FLOOR = 1
+GAS_LIMIT = 6000000
 
 
 def main():
@@ -11,4 +12,4 @@ def main():
 
     attack = Attack11.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    attack.attack(FLOOR, {"from": player})
+    attack.attack(FLOOR, {"from": player, "gas_limit": GAS_LIMIT})
