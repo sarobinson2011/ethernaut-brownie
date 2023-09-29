@@ -8,16 +8,20 @@ pragma solidity ^0.8.0;
 contract GatekeeperOne {
     address public entrant;
 
+    // Gate One - pass by using a proxy contract
     modifier gateOne() {
         require(msg.sender != tx.origin);
         _;
     }
 
+    // Gate Two - pass by ensuring gasleft() is an
+    // integer multiple of 8191
     modifier gateTwo() {
         require(gasleft() % 8191 == 0);
         _;
     }
 
+    // Gate Three - pass by correctly generating the key
     modifier gateThree(bytes8 _gateKey) {
         require(
             uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)),
