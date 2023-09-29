@@ -1,8 +1,8 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface
+from brownie import web3, interface, Attack13
 
 
-ETHERNAUT_INSTANCE = "0xbf0cdE8daAdF37782fC6c250097a53900BfEEcaD"
+ETHERNAUT_INSTANCE = ""
 GAS_LIMIT = 6000000
 
 

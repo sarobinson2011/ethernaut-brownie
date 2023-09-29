@@ -125,4 +125,10 @@
         Et voilà... contract successfully unlocked.
 
         Lesson learned: private variables are only private for the smart contract scope, meaning they can't be accessed or modified from other smart contracts. However, their values **can** be read freely outside the blockchain, by anyone, so they don't actually 'hide' data in that sense.
+
+- 13-Gatekeeper One
+        -->
+                ToDo
+
+        ...
  
