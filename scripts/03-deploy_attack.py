@@ -22,6 +22,3 @@ def main():
     for i in range(REQUIRED_NUMBER_OF_WINS):
         attack.flip({"from": player, "gas_limit": 10000000, "allow_revert": True})
         print("Consecutive wins: ", coinflip_interface.consecutiveWins())
-
-
-# what dies dot .deploy actually do? >

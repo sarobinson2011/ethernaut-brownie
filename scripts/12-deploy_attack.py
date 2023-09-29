@@ -9,23 +9,21 @@ GAS_LIMIT = 6000000
 def main():
 
     player = get_account()
+    target = interface.IPrivacy(ETHERNAUT_INSTANCE)
 
-    # data is listed as the 6th state variable - need to find it
+    # store_4 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 4)
+    # print(f"store 4 = {store_4}")
 
-    store_0 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 0)
-    print(store_0)
-    store_1 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 1)
-    print(store_1)
-    store_2 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 2)
-    print(store_2)
-    store_3 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 3)
-    print(store_3)
+    store_5 = web3.eth.get_storage_at(ETHERNAUT_INSTANCE, 5)
+    print(f"store 5 = {store_5}")
 
     # assign the key data
-    data = store_1  # OR whichever slot it is in    <----------  HERE
+    data = store_5
 
-    # assign the finalkey
-    key = bytes(data[:16])
+    # key = bytes(data[:16])
+    key = data[:16]
+    # print(key)
 
-    # unlock the Privacy contract
-    interface.IPrivacy(key).unlock(key, {"from": player})
+    print(f"\nLocked status: {target.locked()}\n")
+    target.unlock(key, {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True})
+    print(f"\nLocked status: {target.locked()}\n")
