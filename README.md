@@ -105,8 +105,24 @@
         To mitigate this vulnerability, the isLastFloor() function should have the 'view' function
         modifier.  This removes the ability to change state variables, thus you cannot win.
 
-- 11-Privacy
+- 12-Privacy
         -->
-                ToDo
+                SOLVED
 
-        ....
+        The solution to this level lies in the fact that data is **never** actually 'private' on-chain.
+        The challenge is simple - call unlock(_key) where the _key argument needs to equal the first
+        16 bytes of the bytes32[2] state variable 'data'. Data has the visibility specifier 'private'.
+        However, by using the web3.eth.get_storage_at() function, passing in the contract address, 
+        and the specific slot you want to view, the function returns the hex data stored at that slot. 
+        
+        - Note: storage slot numbering starts at index 0.
+        
+        There are 6 state variables (2 uint8 in a row - which could be packed together) so the data
+        variable will most likely be stored at slot 4 (if uint8's are packed) or slot 5 (if not packed).
+        I first printed all 6 slots to the console, and by looking at the bytes returned it was obvious that the 2 uint8 variables are not packed together. So the data variable is stored at slot 5.
+        From there I simply slice the data array and pass the first 16 bytes as the key to unlock().
+        
+        Et voilà... contract successfully unlocked.
+
+        Lesson learned: private variables are only private for the smart contract scope, meaning they can't be accessed or modified from other smart contracts. However, their values **can** be read freely outside the blockchain, by anyone, so they don't actually 'hide' data in that sense.
+ 
