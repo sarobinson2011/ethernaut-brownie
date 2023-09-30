@@ -18,6 +18,11 @@ def main():
     # check that we've won by confirming that 'entrant' = player
 
 
-# uint160 is the shortest unsigned integer which can hold 20 bytes of information
-# that Ethereum addresses are 20 bytes in hexadecimal format.
-# So you can convert an Ethereum address directly into uint160 and back.
+# bytes    unit
+#   1       8
+#   2       16
+#   4       32
+#   8       64
+#   16      128
+#   20      160   <-- Ethereum address length
+#   32      256
