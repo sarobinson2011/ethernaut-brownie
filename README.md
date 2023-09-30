@@ -2,6 +2,9 @@
 
 ### Levels split into individual folders, under contracts...
 
+### A more detailed write-up is viewable at my blog 
+### #DevDiary: https://highandhazardous.blogspot.com/
+
 
 - 03-Coin Flip
         -->     SOLVED

@@ -18,7 +18,7 @@ def main():
     # check that we've won by confirming that 'entrant' = player
 
 
-# bytes    unit
+# bytes    uint
 #   1       8
 #   2       16
 #   4       32
@@ -26,3 +26,22 @@ def main():
 #   16      128
 #   20      160   <-- Ethereum address length
 #   32      256
+
+
+# GateThree - part 1
+#
+# uint64(bytes8)          -> bytes8 is reprepresented by uint64
+# uint16(uint64)          -> returns first 2 of 8 bytes
+# uint32(uint64)          -> uint32 of uint64 returns first 4 of 8 bytes
+
+# GateThree - part 2
+#
+# uint64(bytes8)          -> reutrns bytes8 as a uint64
+# uint32(uint64(bytes8))  -> bytes8 is reprepresented by uint64
+#                         -> uint32 of uint64 returns first 4 of 8 bytes
+
+# GateThree - part 3
+#
+# uint16(unit160)         -> reutrns first 2 of 20 bytes
+# uint32(uint64(bytes8))  -> bytes8 is reprepresented by uint64
+#                         -> uint32 of uint64 returns first 4 of 8 bytes
