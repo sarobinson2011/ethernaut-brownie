@@ -8,11 +8,9 @@
 # key = original_bytes32[:16]
 # print(key)
 
-import os
 
-x = 2
-y = 16
-z = x**y
+# 58341
+GATE_HEX = "eE25"
 
-os.system("clear")
-print(x, z)
+gate_key = int(GATE_HEX, 16)
+print(gate_key)
