@@ -1,9 +1,18 @@
-original_bytes32 = b"12345678901234567890123456789012"  # A 32-byte value
+# original_bytes32 = b"12345678901234567890123456789012"  # A 32-byte value
 
-bytes16_casted = bytes(original_bytes32[:16])  # Typecast to bytes16
+# bytes16_casted = bytes(original_bytes32[:16])  # Typecast to bytes16
 
-print(bytes16_casted)
-print(len(bytes16_casted))
+# print(bytes16_casted)
+# print(len(bytes16_casted))
 
-key = original_bytes32[:16]
-print(key)
+# key = original_bytes32[:16]
+# print(key)
+
+import os
+
+x = 2
+y = 16
+z = x**y
+
+os.system("clear")
+print(x, z)

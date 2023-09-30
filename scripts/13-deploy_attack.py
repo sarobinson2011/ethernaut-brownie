@@ -12,3 +12,8 @@ def main():
     target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
 
     # check that we've won by confirming that 'entrant' = player
+
+
+# uint160 is the shortest unsigned integer which can hold 20 bytes of information
+# that Ethereum addresses are 20 bytes in hexadecimal format.
+# So you can convert an Ethereum address directly into uint160 and back.

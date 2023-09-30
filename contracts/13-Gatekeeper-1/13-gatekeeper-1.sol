@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 /*
-    Make it past the gatekeeper and register as an entrant to win.
+    Set entrant = to player.address... and you win  :-0
 */
 
 contract GatekeeperOne {
@@ -31,6 +31,11 @@ contract GatekeeperOne {
             uint32(uint64(_gateKey)) != uint64(_gateKey),
             "GatekeeperOne: invalid gateThree part two"
         );
+        //
+
+        // uint160 is the shortest unint which can hold 20 bytes of information.
+        // Ethereum addresses are 20 bytes long in hexadecimal format.
+        // So you can convert an Ethereum address directly into uint160 and back.
         require(
             uint32(uint64(_gateKey)) == uint16(uint160(tx.origin)),
             "GatekeeperOne: invalid gateThree part three"
