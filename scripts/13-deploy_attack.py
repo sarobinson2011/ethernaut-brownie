@@ -21,7 +21,7 @@ def main():
     gate_key = int(GATE_HEX, 16)
 
     attack.attack(
-        gate_key,
+        gate_key,""
         GAS_AMOUNT,
         {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
     )

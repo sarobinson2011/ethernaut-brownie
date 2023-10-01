@@ -14,4 +14,6 @@ GATE_HEX = "eE25"
 
 os.system("clear")
 gate_key = int(GATE_HEX, 16)
+# gate_key = 60965
 print(gate_key)
+
