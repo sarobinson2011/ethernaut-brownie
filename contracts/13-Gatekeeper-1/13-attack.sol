@@ -16,3 +16,11 @@ contract Attack13 {
         target.enter{gas: 8191 + _gasAmount}(_gateKey);
     }
 }
+
+// Gate Two - pass by ensuring gasleft() is an
+// integer multiple of 8191 - brute force attack this one
+
+// modifier gateTwo() {
+//     require(gasleft() % 8191 == 0);
+//     _;
+// }

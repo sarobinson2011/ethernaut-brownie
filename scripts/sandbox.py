@@ -8,9 +8,10 @@
 # key = original_bytes32[:16]
 # print(key)
 
+import os
 
-# 58341
 GATE_HEX = "eE25"
 
+os.system("clear")
 gate_key = int(GATE_HEX, 16)
 print(gate_key)
