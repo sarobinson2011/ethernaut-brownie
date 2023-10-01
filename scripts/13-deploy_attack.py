@@ -5,7 +5,6 @@ from brownie import web3, interface, Attack13
 ETHERNAUT_INSTANCE = "0x52D9172066F788070Ca1F74A26F3aD2902282c37"
 ORIGIN = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 GATE_HEX = "eE25"
-
 GAS_LIMIT = 6000000
 
 # need to figure out exact gas amount to leave -> gasleft() % 8191 == 0
@@ -20,14 +19,14 @@ def main():
     entrant = target.entrant({"from": player})
     print(f"Entrant is {entrant}")
 
-    gate_key = int(GATE_HEX, 16)  # gate_key = 60965
-    print(f"Gate Key = {gate_key}")
+    # gate_key = int(GATE_HEX, 16)  # gate_key = 60965
+    # print(f"Gate Key = {gate_key}")
 
-    attack.attack(
-        gate_key,
-        GAS_AMOUNT,
-        {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
-    )
+    # attack.attack(
+    #     gate_key,
+    #     GAS_AMOUNT,
+    #     {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
+    # )
 
     # # check that we've won by confirming that 'entrant' = player
     # print(f"Entrant is {target.entrant()}")
