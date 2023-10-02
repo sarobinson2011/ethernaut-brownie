@@ -15,13 +15,13 @@ contract GatekeeperOne {
     }
 
     // Gate Two - pass by ensuring gasleft() is an
-    // integer multiple of 8191 - brute force attack this one
+    // integer multiple of 8191 - see 'brute force attack'
     modifier gateTwo() {
         require(gasleft() % 8191 == 0);
         _;
     }
 
-    // Gate Three - pass by correctly generating the key
+    // Gate Three - pass by generating the key -> start at 'part three'...
     modifier gateThree(bytes8 _gateKey) {
         require(
             uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)),
