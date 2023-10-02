@@ -26,3 +26,9 @@ def main():
     print(f"\ntarget address = {target}\n")
     attack = Attack13.deploy(target, {"from": player})
     print(f"\nAttack12 deployed at address = {attack.address}\n")
+
+    gate_key = int(GATE_HEX, 16)  # gate_key = 60965
+    print(f"\nGate Key = {gate_key}\n")
+
+    for iteration in range(300):
+        attack.attack(gate_key, iteration)
