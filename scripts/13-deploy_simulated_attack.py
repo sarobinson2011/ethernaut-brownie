@@ -15,7 +15,7 @@ GATE_HEX = "eE25"
 GAS_LIMIT = 6000000
 
 # need to figure out exact gas amount to leave -> gasleft() % 8191 == 0
-GAS_AMOUNT = 0
+GAS_AMOUNT = 8191
 
 
 def main():
@@ -30,5 +30,6 @@ def main():
     gate_key = int(GATE_HEX, 16)  # gate_key = 60965
     print(f"\nGate Key = {gate_key}\n")
 
-    for iteration in range(300):
-        attack.attack(gate_key, iteration)
+    for i in range(300):
+        attack.attack(gate_key, GAS_AMOUNT + i)
+        # require returns true?
