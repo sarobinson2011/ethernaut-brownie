@@ -18,24 +18,12 @@ contract Attack13 {
 }
 
 /*
-    To pass Gate 3 find gateKey:
-
-    Solution --> First 20 digits of player EOA, with the following bitmask:
-
-    bytes8 first16 = "0x555FCDdD6035699deE25";
-    bytes8 gateKey = first16 & 0xFFFFFFFF0000FFFF;
+        for (uint256 i = 0; i < 8191; i++) {
+            
+            (bool result, ) = target.call{gas: 24000 + i}(abi.encodeWithSignature(("enter(bytes8)"), _gateKey));
+            
+            if (result) {
+                break;
+            }
+        }
 */
-
-// 'bit masking' operation:
-// where F is 'show'
-// where 0 is mask
-
-/*
-    0xFFFFFFFF0000FFFF
-    0xF8f8269488f73fab
-    ------------------
- =  0xF8f8269400003fab      <-- the gateKey  
-*/
-
-// MS-half: F8f8269488f73fab3935
-// LS-half: 555FCDdD6035699deE25
