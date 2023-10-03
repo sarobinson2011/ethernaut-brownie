@@ -20,13 +20,13 @@ contract Attack13 {
 /*
     To pass Gate 3 find gateKey:
 
-    Solution --> First 16 digits of player EOA, with the following bitmask:
+    Solution --> First 20 digits of player EOA, with the following bitmask:
 
-    bytes8 first16 = "0xF8f8269488f73fab";
+    bytes8 first16 = "0x555FCDdD6035699deE25";
     bytes8 gateKey = first16 & 0xFFFFFFFF0000FFFF;
 */
 
-// bit masking operation:
+// 'bit masking' operation:
 // where F is 'show'
 // where 0 is mask
 
@@ -36,3 +36,8 @@ contract Attack13 {
     ------------------
  =  0xF8f8269400003fab      <-- the gateKey  
 */
+
+//
+//
+// MS-half: F8f8269488f73fab3935
+// LS-half: 555FCDdD6035699deE25

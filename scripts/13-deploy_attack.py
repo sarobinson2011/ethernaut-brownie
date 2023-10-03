@@ -14,7 +14,8 @@ GAS_AMOUNT = 0
 
 def main():
 
-    # player = get_account()
+    player = get_account()
+
     # attack = Attack13.deploy(ETHERNAUT_INSTANCE, {"from": player})
     # target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
 
