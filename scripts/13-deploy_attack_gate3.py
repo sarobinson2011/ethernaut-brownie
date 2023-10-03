@@ -12,12 +12,10 @@ def main():
 
     player = get_account()
     CONTRACT = GatekeeperOne3.deploy({"from": player})
-    target = interface.IGatekeeperOne(CONTRACT)
-
-    print(f"Entrant = {target.entrant()}")
+    print(f"\nCONTRACT deployed at {CONTRACT}\n")
 
     attack = Attack13_gate3.deploy(CONTRACT, {"from": player})
-    print(attack)
-
     attack.attack(GATEKEY, {"from": player})
-    print(f"Entrant = {target.entrant()}")
+
+    target = interface.IGatekeeperOne(CONTRACT).entrant()
+    print(target)
