@@ -131,7 +131,8 @@
 
 - 13-Gatekeeper One
         -->
-                ToDo
+                SOLVED
 
-        ...
+        Gatekeeper One is the first '4 star' difficulty level, and to be honest looks scary to start with.  The challenge is simple to explain - simply call enter(bytes8_gateKey) , where the value of _gateKey must satisfy 3 separate function modifiers, namely gateOne, gateTwo, and gateThree.  If all 3 are satisfied the function returns true and we achieve entry:
+        
  

