@@ -30,7 +30,5 @@ def main():
     gate_key = int(GATE_HEX, 16)  # gate_key = 60965
     print(f"\nGate Key = {gate_key}\n")
 
-    for i in range(300):
-        attack.attack(gate_key, (GAS_AMOUNT * 3) + i)
-        if True:
-            print("something")
+    i = 1
+    attack.attack(gate_key, (GAS_AMOUNT * 3) + i)

@@ -3,7 +3,8 @@ from brownie import web3, interface, Attack13
 
 
 ETHERNAUT_INSTANCE = "0x52D9172066F788070Ca1F74A26F3aD2902282c37"
-ORIGIN = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
+PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
+
 GATE_HEX = "eE25"
 GAS_LIMIT = 6000000
 
@@ -13,13 +14,13 @@ GAS_AMOUNT = 0
 
 def main():
 
-    player = get_account()
-    attack = Attack13.deploy(ETHERNAUT_INSTANCE, {"from": player})
-    target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
-    entrant = target.entrant({"from": player})
-    print(f"Entrant is {entrant}")
+    # player = get_account()
+    # attack = Attack13.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    # target = interface.IGatekeeperOne(ETHERNAUT_INSTANCE)
 
-    # gate_key = int(GATE_HEX, 16)  # gate_key = 60965
+    # entrant = target.entrant({"from": player})
+
+    # gate_key = int(GATE_HEX, 16)
     # print(f"Gate Key = {gate_key}")
 
     # attack.attack(

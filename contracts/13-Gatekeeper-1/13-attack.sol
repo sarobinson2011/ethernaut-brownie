@@ -17,10 +17,22 @@ contract Attack13 {
     }
 }
 
-// Gate Two - pass by ensuring gasleft() is an
-// integer multiple of 8191 - brute force attack this one
+/*
+    To pass Gate 3 find gateKey:
 
-// modifier gateTwo() {
-//     require(gasleft() % 8191 == 0);
-//     _;
-// }
+    Solution --> First 16 digits of player EOA, with the following bitmask:
+
+    bytes8 first16 = "0xF8f8269488f73fab";
+    bytes8 gateKey = first16 & 0xFFFFFFFF0000FFFF;
+*/
+
+// bit masking operation:
+// where F is 'show'
+// where 0 is mask
+
+/*
+    0xFFFFFFFF0000FFFF
+    0xF8f8269488f73fab
+    ------------------
+ =  0xF8f8269400003fab      <-- the gateKey  
+*/
