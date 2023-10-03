@@ -10,30 +10,31 @@
 # TX_ORIGIN = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 
 # uint64(_gateKey) = gk
-
 # uint32(uint64(_gateKey)) == uint16(uint64(_gateKey))
 # uint32(uint64(_gateKey)) != uint64(_gateKey)
 # uint32(uint64(_gateKey)) == uint16(uint160(tx.origin))
 
 
-# PART-1
-# uint32(gk) == uint16(uint64(_gateKey)) == "0xeE25"
-# # uint32('0xeE25') == "0x0000eE25"
-# # uint32(gk) == "0x0000eE25"
+#            160  128  64   32   16
 
-# mask = "xxxxxxxx0000xxxx"
-
-# PART-2
-# uint32(uint64(_gateKey)) != uint64(_gateKey)
-# # so:
-# # "0x0000eE25"  != "xxxxxxxx0000eE25"
-# # so x's cannot be zeros, but they CAN be ANYTHING else!
-
-# mask = "FFFFFFFF0000FFFF"
+# mask = "0x---- ---- ---- ---- ----"
 
 
-# PART-3
-# uint32(uint64(_gateKey)) == uint16(uint160(tx.orign))
+# -> PART-1
+# uint32(gk) == uint16(gk)
 
-# bits 0 to 16 (first 2 bytes) need to be same as tx.origin
-# bits 16 to 32 need to be 0
+# # mask = "0x---- ---- ---- 0000 ----"
+
+# ->-> PART-2
+# uint32(gk) != gk
+
+# # mask = "0x---- ---- FFFF 0000 ----"
+
+
+# ->->-> PART-3
+# uint32(gk) == uint16(uint160(tx.orign))
+
+# # mask = "0x---- ---- FFFF 0000 eE25"
+
+# For bytes 13 to 20 we can simply pad with F:
+# # mask = "0xFFFF FFFF FFFF 0000 eE25"

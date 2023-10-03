@@ -37,7 +37,5 @@ contract Attack13 {
  =  0xF8f8269400003fab      <-- the gateKey  
 */
 
-//
-//
 // MS-half: F8f8269488f73fab3935
 // LS-half: 555FCDdD6035699deE25
