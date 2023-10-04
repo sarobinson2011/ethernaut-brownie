@@ -37,8 +37,8 @@ def main():
 
 
 #            160  128  64   32   16
-# mask = "0x---- ---- ---- ---- ----"
-# mask = "0xFFFF FFFF FFFF 0000 FFFF"
+# mask = "0x ---- ---- ---- ---- ----"
+# mask = "0x FFFF FFFF FFFF 0000 FFFF"
 
 
 # -> PART-1
@@ -59,4 +59,4 @@ def main():
 
 # For bytes 13 to 20 we can simply pad with F:
 
-# key = "0xFFFF FFFF FFFF 0000 eE25"
+# mask = "0xFFFF FFFF FFFF 0000 eE25"
