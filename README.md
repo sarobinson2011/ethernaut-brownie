@@ -163,4 +163,5 @@
         -->
                 ToDo
 
-        Gatekeeper Two is ...
+        Gatekeeper Two is essentially level 2 of the Gatekeeper challenge. The premise is the same, call enter(), passing all gate modifiers,with the correct gateKey to win.
+        
