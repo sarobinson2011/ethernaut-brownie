@@ -135,4 +135,32 @@
 
         Gatekeeper One is the first '4 star' difficulty level, and to be honest looks scary to start with.  The challenge is simple to explain - simply call enter(bytes8_gateKey) , where the value of _gateKey must satisfy 3 separate function modifiers, namely gateOne, gateTwo, and gateThree.  If all 3 are satisfied the function returns true and we achieve entry:
         
+        **Gate one:** 
+        
+        This is simple to beat, we need to call enter() from a proxy contract, such that:
+        - msg.sender (attack contract address) != tx.origin (player address)
  
+        **Gate Two:**
+
+        Gate two requires that the gas remaining i.e. gasleft() at this stage of the contract execution, is an integer multiple of 8191.
+        You *could* do this via the Remix debugger, adding up the gas for each individual op code.
+        But, the easier way of achieving this is via a brute for attack, in the form of a for loop.
+        Full explanation of this approach is available as comments in the blog link / GitHub repository (see top of page).        
+
+        **Gate Three:**
+
+        Gate three is a 3-part conditional expression, that is reasonably easy to solve using a 
+        bit mask patter, which is compared with the mask via a logical bit-wise AND '&' operation.
+        
+        Where:
+                mask = "FFFF FFFF FFFF 0000 FFFF"
+        giving:
+                gateKey = "CDdD60350000eE25"
+
+        Full explanation of this approach is available as comments in the blog link / GitHub repository (see top of page).
+
+- 13-Gatekeeper Two
+        -->
+                ToDo
+
+        Gatekeeper Two is ...

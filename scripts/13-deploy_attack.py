@@ -44,12 +44,12 @@ def main():
 # -> PART-1
 # uint32(gk) == uint16(gk)
 
-# so: key = "0x---- ---- ---- 0000 ----"
+# so: mask = "0x---- ---- ---- 0000 ----"
 
 # ->-> PART-2
 # uint32(gk) != gk
 
-# so: key = "0x---- ---- FFFF 0000 ----"
+# so: mask = "0x---- ---- FFFF 0000 ----"
 
 
 # ->->-> PART-3
