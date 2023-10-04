@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+/*
+    Again... Register as an entrant to pass this level.  
+*/
+
 contract GatekeeperTwo {
     address public entrant;
 
