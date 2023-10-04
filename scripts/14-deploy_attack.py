@@ -12,15 +12,17 @@ def main():
     player = get_account()
 
 
-# Gate One - deploy proxy contract (conflict with Gate Two) <-- LOOK
+# Gate One: deploy proxy contract (conflict with Gate Two) <-- LOOK
 
 
-# Gate Two - Require that the 'codesize' (in bytes) of the code at the call address
-#            is equal to zero.  So caller needs to be an EOA
+# Gate Two: Require that the 'codesize' (in bytes) of the code at the call address
+#           is equal to zero.  So caller needs to be an EOA (but not tx.origin - Gate One)
+#
+#           --> unless the call is made from the constructor of a smart contract!
 
 
 # Gate Three:
 #
-#   uint64(bytes8(keccak256(abi.encodePacked(msg.sender))))  XOR  uint64(_gateKey)
+# uint64(bytes8(keccak256(abi.encodePacked(msg.sender))))  XOR  uint64(_gateKey)
 #
-#       =  type(uint64).max
+#   =  type(uint64).max

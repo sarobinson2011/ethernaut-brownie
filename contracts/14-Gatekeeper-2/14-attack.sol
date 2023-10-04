@@ -9,6 +9,7 @@ contract GatekeeperThree {
 
     constructor(address _targetAddress) {
         target = GatekeeperTwo(_targetAddress);
+        // call attack() from here ??
     }
 
     function attack() external {}
