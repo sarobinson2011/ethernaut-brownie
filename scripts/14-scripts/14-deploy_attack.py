@@ -2,18 +2,21 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, interface, Attack14
 
 
-ETHERNAUT_INSTANCE = "0xeA2904659aC3415c0eEE5307a7734ca5Ee949EFf"
+ETHERNAUT_INSTANCE = "0xc47e9de2c5a85084f777f94C926585ea49490E1a"
 PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 GAS_LIMIT = 6000000
 
-GATEKEY = "0000000000000000"
+# GATEKEY = "0x 0000 0000 0000 0000"
+# GATEKEY = "1111111111111111"
+GATEKEY = "5a8e5bca4d4690cd"
 
 
 def main():
 
     player = get_account()
     Attack14.deploy(
-        ETHERNAUT_INSTANCE, GATEKEY, {"from": player, "gas_limit": GAS_LIMIT}
+        ETHERNAUT_INSTANCE,
+        {"from": player, "gas_limit": GAS_LIMIT, "allow_revert": True},
     )
 
 
