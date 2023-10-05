@@ -21,4 +21,17 @@ bytes8_value = hash_bytes[:8]
 print(f"\nbytes8 value: {bytes8_value.hex()}\n")
 # == "0x4b9f4adb5c5781dc"
 
-""" now calculate the XOR bit """
+""" 
+    XOR function
+    
+    A  |  B  |  Q
+    -------------
+    0  |  0  |  0
+    0  |  1  |  1
+    1  |  0  |  1  
+    1  |  1  |  0
+
+    There are no zeros in '0x4b9f4adb5c5781dc'
+    therefore GateKey ==  '0x0000000000000000' 
+
+"""
