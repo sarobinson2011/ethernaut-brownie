@@ -4,6 +4,9 @@ from web3 import Web3
 w3 = Web3(
     Web3.HTTPProvider("https://mainnet.infura.io/v3/3248eacd73a6414483cd73d32e31a3b4")
 )  # Replace with your Ethereum node URL
+
+# this will actually need to be the attack contract address !!
+# so we need to calculate the gatekey in the smart contract
 msg_sender_address = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 
 # Encode the address using web3.py
