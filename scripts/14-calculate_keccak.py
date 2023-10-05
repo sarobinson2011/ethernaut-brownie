@@ -19,6 +19,6 @@ hash_bytes = bytes.fromhex(
 bytes8_value = hash_bytes[:8]
 
 print(f"\nbytes8 value: {bytes8_value.hex()}\n")
-
+# == "0x4b9f4adb5c5781dc"
 
 """ now calculate the XOR bit """

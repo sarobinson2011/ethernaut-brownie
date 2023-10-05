@@ -19,3 +19,6 @@
 #
 # bytes8(keccak256(abi.encodePacked(msg.sender))) ^ gateKey == "FFFFFFFFFFFFFFFF"
 #
+# 0x4b9f4adb5c5781dc ^ gateKey == "FFFFFFFFFFFFFFFF"
+
+# gateKey = all zeros ???
