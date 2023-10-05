@@ -33,5 +33,8 @@ def main():
 #
 # uint64(bytes8(keccak256(abi.encodePacked(msg.sender))))  XOR  uint64(_gateKey)
 #   =  type(uint64).max
+
+
+# uint64 gateKey = uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ type(uint64).max
 #
-#   -->  see 14-calculate_keccak.py and 14-calculate_gatekey.py
+# where address(this) is the address of the attack contract that is "in the process" of being deployed
