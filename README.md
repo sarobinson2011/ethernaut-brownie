@@ -164,4 +164,15 @@
                 ToDo
 
         Gatekeeper Two is essentially level 2 of the Gatekeeper challenge. The premise is the same, call enter(), passing all gate modifiers,with the correct gateKey to win.
+        As per Gatekeeper One, if all 3 are satisfied the function returns true and we achieve entry:
+
+        **Gate one:** 
+        
+        This is simple to beat, we need to call enter() from a proxy contract, such that:
+        - msg.sender (attack contract address) != tx.origin (player address)
+ 
+        **Gate Two:**
+
+        Gate two requires
+        
         
