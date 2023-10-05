@@ -1,5 +1,5 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface, Attack13
+from brownie import web3, interface, Attack14
 
 
 ETHERNAUT_INSTANCE = "0xeA2904659aC3415c0eEE5307a7734ca5Ee949EFf"
@@ -16,7 +16,7 @@ def main():
 
 
 # Gate Two: Require that the 'codesize' (in bytes) of the code at the call address
-#           is equal to zero.  So caller needs to be an EOA (but not tx.origin - Gate One)
+#           is equal to zero.  So caller needs to have zero code size
 #
 #           --> unless the call is made from the constructor of a smart contract!
 

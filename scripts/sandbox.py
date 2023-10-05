@@ -10,33 +10,12 @@
 
 # TX_ORIGIN = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 
-# uint64(_gateKey) = gk
-# uint32(uint64(_gateKey)) == uint16(uint64(_gateKey))
-# uint32(uint64(_gateKey)) != uint64(_gateKey)
-# uint32(uint64(_gateKey)) == uint16(uint160(tx.origin))
-
-
-#            160  128  64   32   16
-# mask = "0x---- ---- ---- ---- ----"
-# mask = "0xFFFF FFFF FFFF 0000 FFFF"
-
-
-# -> PART-1
-# uint32(gk) == uint16(gk)
-
-# so: key = "0x---- ---- ---- 0000 ----"
-
-# ->-> PART-2
-# uint32(gk) != gk
-
-# so: key = "0x---- ---- FFFF 0000 ----"
-
-
-# ->->-> PART-3
-# uint32(gk) == uint16(uint160(tx.orign))
-
-# so: key = "0x---- ---- FFFF 0000 eE25"
-
-# For bytes 13 to 20 we can simply pad with F:
-
-# key = "0xFFFF FFFF FFFF 0000 eE25"
+# uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey) == type(uint64).max
+#
+# uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey)
+#       == type(uint64).max
+#       == 2^64 - 1
+#       == "FFFF FFFF FFFF FFFF" in (bytes8)
+#
+# bytes8(keccak256(abi.encodePacked(msg.sender))) ^ gateKey == "FFFFFFFFFFFFFFFF"
+#

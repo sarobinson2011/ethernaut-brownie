@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./14-gatekeeper-2.sol";
 
-contract GatekeeperThree {
+contract Attack14 {
     address public entrant;
     GatekeeperTwo public target;
 
