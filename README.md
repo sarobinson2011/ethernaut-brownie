@@ -159,20 +159,46 @@
 
         Full explanation of this approach is available as comments in the blog link / GitHub repository (see top of page).
 
-- 13-Gatekeeper Two
+- 14-Gatekeeper Two
         -->
-                ToDo
+                SOLVED
 
         Gatekeeper Two is essentially level 2 of the Gatekeeper challenge. The premise is the same, call enter(), passing all gate modifiers,with the correct gateKey to win.
         As per Gatekeeper One, if all 3 are satisfied the function returns true and we achieve entry:
 
-        **Gate one:** 
+        **Gate One:** 
         
         This is simple to beat, we need to call enter() from a proxy contract, such that:
         - msg.sender (attack contract address) != tx.origin (player address)
  
         **Gate Two:**
 
-        Gate two requires 
+        Gate Two requires that the 'codesize' (in bytes) of the code at the call address
+        be equal to zero. Typically an EOA has zero code size, whereas contracts have non-zero
+        code size. This is in direct opposition to Gate One requirement.
+        The solution to Gate One and Gate Two is to make a low-level call is from the constructor of the attack contract - whilst a contract is initialised, via the constructor, it hasn't been fully deployed yet, thus having a code size = zero.
+
+        **Gate Three:**
+
+        Gate Three is similar to the GateKeeper-One third gate - this time it's a conditional
+        comparison between the msg.sender address XOR'd with 64 bits of value '1'.
+        I initially tried to calculate this value outside of the smart contract, using Python.
+        Whilst the calculation is simple enough, I quickly realised that this is not possible since the value of msg.sender is the attack contract address - which is unknown until the contract is actually deployed - at which point we would now fail Gate Two.
+
+        The solution is to simply re-arrange the expression, and deploy directly from the constructor, using address(this) as msg.sender, as follows:
+
+        uint64 gateKey = uint64(bytes8(keccak256(abi.encodePacked(address(this)))));
+        gateKey = gateKey ^ type(uint64).max;
+
+        Level complete!
+
+        Full explanation of this approach is available as comments in the blog link / GitHub repository (see top of page).
+
+- 15-Naught Coin
+        -->
+                ToDo
+
+        ...
+
         
         
