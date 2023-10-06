@@ -10,3 +10,8 @@ GAS_LIMIT = 6000000
 def main():
 
     player = get_account()
+
+
+# try calling ERC20 transferFrom(), as opposed to transfer()
+#
+# transferFrom() is not modified with the lockToken modifier

@@ -198,7 +198,12 @@
         -->
                 ToDo
 
-        ...
+        We need to beat the timelock modifier:
 
+        if (msg.sender == player) {
+                require(block.timestamp > timeLock);
+                _;
+        }
         
+        Before calling transfer() in order to drain the token balance to zero.
         

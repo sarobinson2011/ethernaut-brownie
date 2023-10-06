@@ -3,6 +3,13 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+/*
+    Complete this level by getting your token balance to 0
+    So --> beat this modifier:
+    require(block.timestamp > timeLock);
+    ... then call transfer()
+*/
+
 contract NaughtCoin is ERC20 {
     // string public constant name = 'NaughtCoin';
     // string public constant symbol = '0x0';
@@ -20,6 +27,7 @@ contract NaughtCoin is ERC20 {
         emit Transfer(address(0), player, INITIAL_SUPPLY);
     }
 
+    /// @dev function adds the 'lockTokens' modifier to standard ERC20 transfer()
     function transfer(
         address _to,
         uint256 _value
