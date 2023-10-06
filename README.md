@@ -173,6 +173,6 @@
  
         **Gate Two:**
 
-        Gate two requires
+        Gate two requires 
         
         
