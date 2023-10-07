@@ -5,10 +5,9 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /*
     Complete this level by getting your token balance to 0
-    So --> beat this modifier:
-    require(block.timestamp > timeLock);
-    ... then call transfer()
 */
+
+/// @notice --> answer lies in the ERC20 token standard...
 
 contract NaughtCoin is ERC20 {
     // string public constant name = 'NaughtCoin';

