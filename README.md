@@ -196,7 +196,14 @@
 
 - 15-Naught Coin
         -->
+                SOLVED
+
+        The key lesson to learn from this level is that when a contract inherits from another contract, ensure that you are familiar with BOTH.  The lockTokens() modifier becomes irrelevant once you realise there is more than one method of transferring tokens from a contract, that inherits from ERC20.
+
+        The transfer() function is subject to the lockTokens() modifier, which isn't hackable.  However, the ERC20 standard defines a second function for transferring tokens, the transferFrom() function.  Critically this function is not subject to the lockTokens() modifier, thus we are able to deploy a proxy (attack) contract which (once the Naught Coin token-contract is approved) utilises the transferFrom() to empty the Naught Coin contract.
+        
+- 16-Preservation
+        -->
                 ToDo
 
         ....
-        
