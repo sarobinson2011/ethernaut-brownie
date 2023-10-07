@@ -2,8 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "./15-naught-coin.sol";
-
-// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Attack15 {
     // state variables
