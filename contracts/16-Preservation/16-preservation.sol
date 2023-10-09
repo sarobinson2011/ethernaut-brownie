@@ -7,7 +7,7 @@ pragma solidity ^0.8.0;
 
 1)  Look into Solidity's documentation on the delegatecall low level 
     function, how it works, how it can be used to delegate operations 
-    to on-chain. libraries, and what implications it has on execution scope.
+    to on-chain libraries, and what implications it has on execution scope.
     
 2)  Understand what it means for delegatecall to be context-preserving.
 
@@ -15,9 +15,9 @@ pragma solidity ^0.8.0;
 
 contract Preservation {
     // public library contracts
-    address public timeZone1Library;
-    address public timeZone2Library;
-    address public owner;
+    address public timeZone1Library; // storage slot 0
+    address public timeZone2Library; // storage slot 1
+    address public owner; //            storage slot 2  <-- THIS
     uint storedTime;
     // Sets the function signature for delegatecall
     bytes4 constant setTimeSignature = bytes4(keccak256("setTime(uint256)"));

@@ -1,4 +1,3 @@
-#
 # message call:
 #
 # A calls B, sends 100 wei
@@ -9,7 +8,6 @@
 #                   msg.value = 50 wei
 #                   execute code on C's state variables
 #                   use ETH in C
-
 #
 # delegatecall:
 #
@@ -21,3 +19,20 @@
 #                   msg.value = 100 wei
 #                   execute code on B's state variables
 #                   use ETH in B
+
+
+# function setFirstTime(uint _timeStamp) public {
+#         timeZone1Library.delegatecall(
+#             abi.encodePacked(setTimeSignature, _timeStamp)
+#         );
+#     }
+
+# contract LibraryContract {
+#     // stores a timestamp
+#     uint storedTime;
+
+# --->  vulnerability is here - function should have been a 'library'
+#     function setTime(uint _time) public {
+#         storedTime = _time;
+#     }
+# }
