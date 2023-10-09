@@ -12,3 +12,5 @@ def main():
 
     attack = Attack16.deploy({"from": player})
     attack.attack(ETHERNAUT_INSTANCE, {"from": player})
+
+    # using console to check owner
