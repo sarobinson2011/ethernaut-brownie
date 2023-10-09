@@ -1,24 +1,11 @@
-# // set the time for timezone 1
-#     function setFirstTime(uint _timeStamp) public {
-#         timeZone1Library.delegatecall(
-#             abi.encodePacked(setTimeSignature, _timeStamp)
-#         );
-#     }
-
-
-# contract LibraryContract {
-#     // stores a timestamp
-#     uint storedTime;
-
-#     function setTime(uint _time) public {
-#         storedTime = _time;
-#     }
-# }
-
-
 #
-# timeZone1Library.delegatecall(abi.encodePacked(setTimeSignature, _timeStamp)
+# delegatecall explanation
 #
-# delegateCall() ...
+# A calls B, sends 100 wei
+#                then:  B deleagatecall C
 #
-# --> HERE
+# A  --->  B  --->  C
+#                   msg.sender = A
+#                   msg.value = 100 wei
+#                   execute code on B's state variables
+#                   use ETH in B
