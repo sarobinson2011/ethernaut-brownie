@@ -8,9 +8,7 @@ pragma solidity ^0.8.0;
 1)  Look into Solidity's documentation on the delegatecall low level 
     function, how it works, how it can be used to delegate operations 
     to on-chain libraries, and what implications it has on execution scope.
-    
-2)  Understand what it means for delegatecall to be context-preserving.
-
+     
 */
 
 contract Preservation {
