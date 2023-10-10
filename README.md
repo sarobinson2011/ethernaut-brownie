@@ -208,4 +208,32 @@
 
         The goal of this level is simple, gain ownership of the Preservation contract instance.  In order to beat this level a thorough understanding of delegateCall() is required, specifically delegation to libraries.
 
+        The vulnerability lies in the setTime() function:
+
+                function setTime(uint _time) public {
+                        storedTime = _time;
+                }
+
+        The LibraryContract contract has it's own state, thus we can deploy an attack contract,
+        that contains:
+
+                - identical state variables (same order) that we want, as per the target
+                - a setTime(uint) function
         
+        First we call setFirstTime, to set timeZone1Library to address(this), of our Attack16 contract.  We then make a second call to setFirstTime, which this time runs our malicious setTime() function with msg.sender (Attack16) as the argument. Our setTime() function then updates owner = msg.sender
+        
+        It is the setTime(uint) function can them be used to take ownership of the target contract, due to the library contract having it's own state.  This in combination with the delegatecall() means we can update the public state variables in the target contract.
+
+             function setTime(uint256 _owner) external {
+                owner = address(uint160(_owner));
+             }  
+
+        Calling owner() on the contract instance, from Ethernaut now returns our player address.
+
+        Level complete!
+
+- 17-Recovery
+        -->
+                ToDo
+
+        ...

