@@ -230,6 +230,8 @@
 
         Calling owner() on the contract instance, from Ethernaut now returns our player address.
 
+        This example demonstrates why the 'library' keyword should be used for building libraries, as it prevents the libraries from storing and accessing state variables.
+
         Level complete!
 
 - 17-Recovery
