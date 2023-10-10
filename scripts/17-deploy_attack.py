@@ -11,4 +11,5 @@ def main():
     player = get_account()
     attack = Attack17.deploy(ETHERNAUT_INSTANCE, {"from": player})
 
-    interface.ISimpleToken.destroy(attack, {"from": player})
+
+#  watch the youtube (non-python) solutions !!

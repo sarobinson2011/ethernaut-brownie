@@ -12,7 +12,7 @@ contract Attack17 {
     }
 
     function attack(SimpleToken target) external payable {
-        // attack operations
+        //
     }
 
     receive() external payable {
