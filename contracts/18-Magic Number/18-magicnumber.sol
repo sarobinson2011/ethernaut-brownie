@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 /*
-    set solver = 42 to win
-
+    set solver = 42 to win    ¯\_(ツ)_/¯
+                        
     set this from a contract, using 10 opcodes at most
 */
 
@@ -20,6 +20,5 @@ contract MagicNum {
 // set and return bytes20(uint160(42)) using inline assembly ??
 
 // decimal 42 = hex 2a
-
 // PUSH20 0x000000000000000000000000000000000000000000000000000000000000002a
 // RETURN

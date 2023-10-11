@@ -268,5 +268,6 @@
         -->
                 ToDo
 
-        This challenge involves building a short contract directly using opcodes.
-        
+        This challenge involves building a short contract, directly using no more than 10 EVM opcodes.  In other words, we going to need to write some assembly code.
+
+
