@@ -268,4 +268,5 @@
         -->
                 ToDo
 
-        This challenge ...
+        This challenge involves building a short contract directly using opcodes.
+        
