@@ -239,3 +239,33 @@
                 SOLVED
 
         The main lesson to learn with this level is how ethererum contract addresses are calculated deterministically, and how we can use this fact to retreive a lost contract address, in certain circumstances.
+
+        Two methods to determine a smart contract address:
+
+
+        **1st method:**
+
+        - calculate it using the address of either the EOA or contract that created it, plus the nonce for the transaction, so (from the Ethereum yellow paper):
+
+                address = rightmost_20_bytes(keccak(RLP(sender_address, nonce)))
+
+        Where RLP stands for 'Recursive Length Prefix', which is the encoding method used to serialise objects in Ethereum's execution layer.
+
+        Note: the nonce value must be correct otherwise the output will be wrong.
+
+
+        **2nd method:**
+
+        We can also simply look the missing contract address up, on Etherscan, by viewiwing the ETHERNAUT_INSTANCE contract address, and looking at the internal transactions tab - which shows 2 internal transactions relating to 'Contract Creation' for the Recovery contract (nonce 0), and Contract Creation for the SimpleToken contract (nonce 1).
+
+        A simple comparison between the output from both methods shows that they both yield the correct answer for the SimpleToken contract address.
+
+        Once we have the SimpleToken contract address, we simply call destroy() passing in our player address.
+
+        Level complete!
+
+- 18-MagicNumber
+        -->
+                ToDo
+
+        .....
