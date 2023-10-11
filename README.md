@@ -236,6 +236,6 @@
 
 - 17-Recovery
         -->
-                ToDo
+                SOLVED
 
-        ...
+        The main lesson to learn with this level is how ethererum contract addresses are calculated deterministically, and how we can use this fact to retreive a lost contract address, in certain circumstances.
