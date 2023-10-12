@@ -266,8 +266,51 @@
 
 - 18-MagicNumber
         -->
+                SOLVED
+
+        This challenge involves building a short contract, directly using no more than 10 EVM opcodes.  In other words, we are going to need to write some assembly code.
+
+        I initially wrote a simple contract, using no assembly, that simply returns 42 (2a):
+
+        contract Attack18 {
+                function attack() external pure returns (uint) {
+                        return 42;
+                }
+        }
+
+        I deployed this contract using Remix and used the debugger to observe the opcodes used per operation (and corresponding the stack values).  The number of opcodes used well exceeded the 10 opcode limit prescribed by the challenge.
+
+        Having done some research, I found the following example code here:
+
+                https://solidity-by-example.org/app/simple-bytecode-contract/
+        
+        contract Factory {
+                event Log(address addr);
+
+                // Deploys a contract that always returns 42
+                function deploy() external {
+                        bytes memory bytecode = hex"69602a60005260206000f3600052600a6016f3";
+                        address addr;
+                        assembly {
+                        // create(value, offset, size)
+                        addr := create(0, add(bytecode, 0x20), 0x13)
+                        }
+                        require(addr != address(0));
+
+                        emit Log(addr);
+                }
+        }
+
+        My solution was to use the above code in order to create a smart contract, using bytecodes, that returns value 42-base10 (2a-base16). 
+
+        This code I deployed in the constructor of my Attack18 contract, since (until the contract is deployed) code executed from a constructor has extcodesize = 0.
+
+        This level was tricky in that the solution requires a good level of understanding of how the EVM operates, specifically the low-level operations.
+
+        Level complete!
+
+- 19-Alien Codex
+        -->
                 ToDo
 
-        This challenge involves building a short contract, directly using no more than 10 EVM opcodes.  In other words, we going to need to write some assembly code.
-
-
+        ...
