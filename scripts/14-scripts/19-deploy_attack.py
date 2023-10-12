@@ -9,3 +9,9 @@ GAS_LIMIT = 6000000
 def main():
 
     player = get_account()
+
+
+# https://solc-bin.ethereum.org/linux-amd64/solc-linux-amd64-v0.5.17+commit.d19bba13
+
+
+# "/home/oem/Documents/Coding/ethernaut/contracts/helpers/Ownable-05.sol" not found: File import callback not supported
