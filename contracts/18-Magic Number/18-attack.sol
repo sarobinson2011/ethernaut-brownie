@@ -9,7 +9,7 @@ import "./18-magicnumber.sol";
 //     }
 // }
 
-contract Attack18 {
+contract whatIsTheMeaningOfLife {
     function attack() public pure returns (uint8) {
         return 42;
     }

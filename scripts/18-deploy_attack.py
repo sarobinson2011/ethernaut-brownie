@@ -1,5 +1,5 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface, Attack18
+from brownie import web3, interface, whatIsTheMeaningOfLife
 
 
 ETHERNAUT_INSTANCE = "0x5d8dA349A621CC0131e1617034Af526ab56E23C4"
@@ -19,6 +19,6 @@ def main():
 
     """ update via attack contract """
     player = get_account()
-    attack = Attack18.deploy({"from": player})
+    attack = whatIsTheMeaningOfLife.deploy({"from": player})
 
     attack.attack(SOLVER, {"from": player})
