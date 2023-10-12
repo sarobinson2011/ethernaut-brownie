@@ -27,3 +27,9 @@ contract Attack18 {
         target.setSolver(addr);
     }
 }
+// create(value, offset, size)
+// -->
+//  --> is a low-level EVM opcode.
+// It creates a new contract with the bytecode specified starting from
+// the `offset` and of the given `size`. In this case, `value` is set
+// to 0 (meaning no Ether is sent along with the contract creation)
