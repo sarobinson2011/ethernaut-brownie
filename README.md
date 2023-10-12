@@ -2,8 +2,8 @@
 
 ### Levels split into individual folders, under contracts...
 
-### A more detailed write-up is viewable at my blog 
-### #DevDiary: https://highandhazardous.blogspot.com/
+### A more detailed write-up is viewable at my blog: 
+##### https://highandhazardous.blogspot.com/ (#DevDiary)
 
 
 - 03-Coin Flip
