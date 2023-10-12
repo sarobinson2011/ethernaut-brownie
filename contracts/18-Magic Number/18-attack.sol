@@ -33,3 +33,10 @@ contract Attack18 {
 // It creates a new contract with the bytecode specified starting from
 // the `offset` and of the given `size`. In this case, `value` is set
 // to 0 (meaning no Ether is sent along with the contract creation)
+
+// contract Attack18 {
+
+//     function attack() external pure returns (uint) {
+//         return 42;
+//     }
+// }
