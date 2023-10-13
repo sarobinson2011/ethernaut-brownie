@@ -313,4 +313,9 @@
         -->
                 ToDo
 
-        .....
+        This challenge is simple to explain - take ownership of AlienCodex to win!
+
+        I initially attempted to find a potential vulnerability in Ownable-05.sol, thinking
+        there could be a way to exploit it.  This proved unsuccessful, the Ownable contract 
+        is tight.
+        
