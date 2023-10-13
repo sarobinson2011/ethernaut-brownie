@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.5.0;
+pragma solidity ^0.5.0;
 
 // import "../helpers/Ownable-05.sol";
 import "/home/oem/Documents/Coding/ethernaut/contracts/helpers/Ownable-05.sol";
