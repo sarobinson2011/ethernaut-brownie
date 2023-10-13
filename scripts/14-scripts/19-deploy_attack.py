@@ -2,7 +2,7 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, interface, Attack19
 
 
-ETHERNAUT_INSTANCE = "0x92bd876d38765dC65CaDE80a674b0baDE72a00Ab"
+ETHERNAUT_INSTANCE = "0xa5827B90Fd50E8ccCDA14385aaB7966d2F66d5D9"
 GAS_LIMIT = 6000000
 
 
