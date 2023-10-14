@@ -323,10 +323,20 @@
 
         Alien Codex has 2 storage (state) variables: 
 
-        bool public contact;       <--    requires 1 byte of a 32 byte storage slot
-        bytes32[] public codex;    <--    requires a whole 32 byte storage slot, per entry
+        - bool public contact;      <--  1 byte of a 32 byte storage slot
+        - bytes32[] public codex;   <--  a whole 32 byte storage slot, per entry
 
-        
+        The AlienCodex contract inherits from the Ownable contract, therefore the state
+        varibables declared in Ownable are stored in the storage slots of AlienCodex. 
+        So Ownable has one storage variable:
+
+        - address private _owner;   <--  20 bytes of a whole 32 byte storage slot 
+
+        This is also stored in the AlienCodex storage, along with contact and codex.
+
+
+
+
 
 
 
