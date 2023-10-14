@@ -318,4 +318,15 @@
         I initially attempted to find a potential vulnerability in Ownable-05.sol, thinking
         there could be a way to exploit it.  This proved unsuccessful, the Ownable contract 
         is tight.
+
+        The key to beating the level lies in how array storage works in Ethereum.
+
+        Alien Codex has 2 storage (state) variables: 
+
+        bool public contact;       <--    requires 1 byte of a 32 byte storage slot
+        bytes32[] public codex;    <--    requires a whole 32 byte storage slot, per entry
+
         
+
+
+
