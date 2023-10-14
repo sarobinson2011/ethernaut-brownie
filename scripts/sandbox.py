@@ -53,8 +53,7 @@ Application Binary Interface (ABI) - standard interface for contract interaction
     https://docs.soliditylang.org/en/v0.8.21/abi-spec.html#design-criteria-for-the-encoding
 
 """
-
-
+# ````````````````````````````````````````````````````````````````````````````````````````````
 """  
 
                         *** AlienCodex contract storage slots ***
@@ -79,14 +78,16 @@ This equates to: bytes32[2^256-1] slots (all of them assigned).
 
 Thus codex[0] now points at storage slot 0, which contains the owner variable.
 
---> but slot 0 also contains the contact boolean.
+--> but slot 0 also contains the boolean variable contact.
+--> we need to know how this data is stored
+
+<-- Array elements are stored starting from the keccak-256 hash of the slot where the array
+<-- was declared.
 
 
 
 
-
-
-We can then call revise(0, ???) to overwrite owner with the player address
+Finally then call revise(0, ???) to overwrite owner with the player address
 
 -----
 
