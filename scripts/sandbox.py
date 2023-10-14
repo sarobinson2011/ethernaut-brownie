@@ -66,19 +66,29 @@ So, the storage is arranged as follows:
 
       slot |  contains
      ------|-----------       
-       0   |  address _owner    (inherited from Ownable)
-       1   |  bool contact
-       2   |  bytes32[] codex
+       0   |  address _owner (20 bytes) |  bool contact (1 byte)
+       1   |  bytes32[] codex
 
- 
+       
+{Note: in solidity version < 0.8.0,  the operation 'array.length--' caused an underflow}
+{this feature was subsequently fixed in solidity 0.8.0.................................}
+        
 Calling retract() causes an Underflow on codex[], which in turn assigns codex[] full storage.
 
-This equates to: bytes32[2^256] slots (all of them assigned).
+This equates to: bytes32[2^256-1] slots (all of them assigned).
 
 Thus codex[0] now points at storage slot 0, which contains the owner variable.
 
-We can then call revise(0, player_address) to overwrite owner with the player address
+--> but slot 0 also contains the contact boolean.
 
-Level complete!
+
+
+
+
+
+We can then call revise(0, ???) to overwrite owner with the player address
+
+-----
+
 
 """

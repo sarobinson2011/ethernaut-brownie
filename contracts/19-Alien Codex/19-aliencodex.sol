@@ -5,9 +5,9 @@ pragma solidity ^0.5.0;
 import "/home/oem/Documents/Coding/ethernaut/contracts/helpers/Ownable-05.sol";
 
 contract AlienCodex is Ownable {
-    //  address private owner;
-    bool public contact;
-    bytes32[] public codex;
+    //  address private owner;          // slot 0
+    bool public contact; // slot 1
+    bytes32[] public codex; // slot 2
 
     modifier contacted() {
         assert(contact);
@@ -30,3 +30,8 @@ contract AlienCodex is Ownable {
         codex[i] = _content;
     }
 }
+
+// in other words, calling retract() on the empty codex[] array causes
+// an underflow:  codex[] --> codex[2^256-1]
+// which effectively gives us write access to all of the storage slots
+// in the AlienCodex contract
