@@ -53,3 +53,32 @@ Application Binary Interface (ABI) - standard interface for contract interaction
     https://docs.soliditylang.org/en/v0.8.21/abi-spec.html#design-criteria-for-the-encoding
 
 """
+
+
+"""  
+
+                        *** AlienCodex contract storage slots ***
+
+AlienCodex inherits from Ownable, thus AlienCodex contains the state variables from Ownable,
+stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subsequent slots.
+
+So, the storage is arranged as follows:
+
+      slot |  contains
+     ------|-----------       
+       0   |  address _owner    (inherited from Ownable)
+       1   |  bool contact
+       2   |  bytes32[] codex
+
+ 
+Calling retract() causes an Underflow on codex[], which in turn assigns codex[] full storage.
+
+This equates to: bytes32[2^256] slots (all of them assigned).
+
+Thus codex[0] now points at storage slot 0, which contains the owner variable.
+
+We can then call revise(0, player_address) to overwrite owner with the player address
+
+Level complete!
+
+"""

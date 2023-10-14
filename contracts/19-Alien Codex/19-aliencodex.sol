@@ -5,6 +5,7 @@ pragma solidity ^0.5.0;
 import "/home/oem/Documents/Coding/ethernaut/contracts/helpers/Ownable-05.sol";
 
 contract AlienCodex is Ownable {
+    //  address private owner;
     bool public contact;
     bytes32[] public codex;
 

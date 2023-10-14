@@ -2,6 +2,8 @@
 pragma solidity ^0.5.0;
 
 contract Ownable {
+    // this is all we are interested in
+    // we need to change it to PLAYER address
     address private _owner;
 
     event OwnershipTransferred(

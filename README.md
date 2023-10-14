@@ -315,9 +315,7 @@
 
         This challenge is simple to explain - take ownership of AlienCodex to win!
 
-        I initially attempted to find a potential vulnerability in Ownable-05.sol, thinking
-        there could be a way to exploit it.  This proved unsuccessful, the Ownable contract 
-        is tight.
+        I initially attempted to find a potential vulnerability in Ownable-05.sol, thinking there could be a way to exploit it.  This proved unsuccessful, the Ownable contract is tight.
 
         The key to beating the level lies in how array storage works in Ethereum.
 
@@ -327,14 +325,18 @@
         - bytes32[] public codex;   <--  a whole 32 byte storage slot, per entry
 
         The AlienCodex contract inherits from the Ownable contract, therefore the state
-        varibables declared in Ownable are stored in the storage slots of AlienCodex. 
+        varibables declared in Ownable are also stored in the AlienCodex storage. 
         So Ownable has one storage variable:
 
         - address private _owner;   <--  20 bytes of a whole 32 byte storage slot 
 
         This is also stored in the AlienCodex storage, along with contact and codex.
 
+        In Solidity, when contract one inherits from contract two, the inherited state
+        variables (from the contract two) are stored at the beginning of contract one, occupying storage slots from 0 onward. Contract one's own state variables 
+        are stored after the inherited state variables.
 
+        
 
 
 
