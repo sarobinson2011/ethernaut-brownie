@@ -95,11 +95,10 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
             ...
             slot i+2^256-1  - codex[2^256-1] 
 
+                       
 
-            
-            
 
-        5:48   <--- video    (2^254 ? )
+        5:48   <--- video    (2^254 ? ) - index?
 
 
 
