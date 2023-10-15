@@ -83,11 +83,23 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
         <-- array elements are stored starting from the keccak-256 hash of the slot where the 
         <-- array was declared:
 
-        keccak256(1)
+        So the starting position, in storage memory, of the codex[] array element 'i' is:
 
-
+            i = keccak256(1)        <--  since codex starts at slot 1
         
-                5:48   <--- video    (2^254 ? )
+            slot i          - codex[0]
+            slot i+1        - codex[1]
+            slot i+2        - codex[2]
+            slot i+3        - codex[3]
+            ...
+            ...
+            slot i+2^256-1  - codex[2^256-1] 
+
+
+            
+            
+
+        5:48   <--- video    (2^254 ? )
 
 
 
