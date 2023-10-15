@@ -310,6 +310,7 @@
         Level complete!
 
 - 19-Alien Codex
+        
         -->
                 ToDo
 
@@ -332,11 +333,14 @@
 
         This is also stored in the AlienCodex storage, along with contact and codex.
 
-        In Solidity, when contract one inherits from contract two, the inherited state
-        variables (from the contract two) are stored at the beginning of contract one, occupying storage slots from 0 onward. Contract one's own state variables 
+        In Solidity, when contract #1 inherits from contract #2, the inherited state variables (from the contract two) are stored at the beginning of contract #1, occupying storage slots from 0 onward. Contract #1's own state variables 
         are stored after the inherited state variables.
 
-        
+        If the variable type is dynamic e.g. dynamic array, mapping, then the values are stored at addresses based on the keccak hash of the slot:
+
+        - keccak256(slot#) + (index * elementSize)  -->  for arrays
+        - keccak256(key, slot#)                     -->  for mappings
+
 
 
 

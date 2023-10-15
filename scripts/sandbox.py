@@ -55,41 +55,47 @@ Application Binary Interface (ABI) - standard interface for contract interaction
 """
 # ````````````````````````````````````````````````````````````````````````````````````````````
 """  
-
                         *** AlienCodex contract storage slots ***
 
 AlienCodex inherits from Ownable, thus AlienCodex contains the state variables from Ownable,
 stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subsequent slots.
 
-So, the storage is arranged as follows:
+    So, the storage is arranged as follows:
 
       slot |  contains
-     ------|-----------       
+     ------|----------------------------------------------------       
        0   |  address _owner (20 bytes) |  bool contact (1 byte)
        1   |  bytes32[] codex
 
-       
-{Note: in solidity version < 0.8.0,  the operation 'array.length--' caused an underflow}
-{this feature was subsequently fixed in solidity 0.8.0.................................}
         
-Calling retract() causes an Underflow on codex[], which in turn assigns codex[] full storage.
+    { Note: in solidity version < 0.8.0,  the operation 'array.length--' caused an underflow }
+    { this feature was subsequently fixed in solidity 0.8.0................................. }
+            
+    Calling retract() causes an Underflow on codex[], this assigns codex[] full storage, that wraps around????????????????
 
-This equates to: bytes32[2^256-1] slots (all of them assigned).
+    This equates to: bytes32[2^256-1] slots (all of them assigned).
 
-Thus codex[0] now points at storage slot 0, which contains the owner variable.
+    Thus codex[0] now points at storage slot 0, which contains the owner variable.
 
---> but slot 0 also contains the boolean variable contact.
---> we need to know how this data is stored
+        --> but slot 0 also contains the boolean variable contact.
+        --> we need to know how this data is stored
 
-<-- Array elements are stored starting from the keccak-256 hash of the slot where the array
-<-- was declared.
+        <-- array elements are stored starting from the keccak-256 hash of the slot where the 
+        <-- array was declared:
+
+        keccak256(1)
+
+
+        
+                5:48   <--- video    (2^254 ? )
 
 
 
 
-Finally then call revise(0, ???) to overwrite owner with the player address
+    Finally then call revise(0, ???) to overwrite owner with the player address
 
------
+    
+    -----
 
 
 """
