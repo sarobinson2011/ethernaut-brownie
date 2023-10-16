@@ -93,7 +93,7 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
             slot i+3        - codex[3]
             ................................
             ................................
-            slot i+2^256-1  - codex[2^256-1] 
+            slot i+(2^256)-1  - codex[(2^256)-1] 
 
                        
         We can exploit a flaw in the ABI specification, in that it doesn't validate that
