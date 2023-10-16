@@ -312,7 +312,7 @@
 - 19-Alien Codex
         
         -->
-                ToDo
+                SOLVED
 
         This challenge is simple to explain - take ownership of AlienCodex to win!
 
@@ -333,17 +333,67 @@
 
         This is also stored in the AlienCodex storage, along with contact and codex.
 
-        In Solidity, when contract #1 inherits from contract #2, the inherited state variables (from the contract two) are stored at the beginning of contract #1, occupying storage slots from 0 onward. Contract #1's own state variables 
-        are stored after the inherited state variables.
+        In Solidity, when contract #1 inherits from contract #2, the inherited state variables (from the contract two) are stored at the beginning of contract #1, occupying storage slots from 0 onward. Contract #1's own state variables are stored after the inherited state variables.
 
         If the variable type is dynamic e.g. dynamic array, mapping, then the values are stored at addresses based on the keccak hash of the slot:
 
         - keccak256(slot#) + (index * elementSize)  -->  for arrays
         - keccak256(key, slot#)                     -->  for mappings
 
+        So in order to attack this level and win, the following steps are needed:
+
+        # Process
+     
+        1. check (call) owner
+        2. call makeContact()
+        3. call retract()
+    
+        Note: calling retract() on the empty codex[] array causes
+              an underflow:  codex[] --> codex[2^256-1]
+              which effectively gives us write access to all of the storage
+              slots in the AlienCodex contract.
+    
+        4. calculate position 'i'  --> arguement passed to revise()
+        5. call revise(i, player_address)
+        6. check (call) owner
+    
+                the starting position of the codex[] array element 'i' is:
+    
+                i = keccak256(1)    <--  since codex starts at slot 1
+        
+                slot i            - codex[0]
+                slot i+1          - codex[1]
+                slot i+2          - codex[2]
+                slot i+3          - codex[3]
+                ................................
+                ................................
+                slot i+(2^256)-1  - codex[(2^256)-1]
+        
+                the one unknown in the process is now the value of 'i' (uint256)
+
+        First element of our array (which is storage slot 1) should be located at:
+                
+        -->     first_position = convert.to_uint(keccak(convert.to_bytes(1)))
+        
+        2 ** 256 max storage pointer for the dynamic array
+        
+        -->     zero_position = 2**256 - first_position
+
+        Finally, we call:
+
+        -->     target.revise(zero_position, player.address, {"from": player})
+
+        
+        Level complete!
 
 
+        This level exploits the fact that the EVM doesn't validate an array's ABI-encoded length vs its actual payload.
 
+        It aLso exploits the arithmetic underflow of array length, by expanding the array's bounds to the entire storage area of 2^256. The user is then able to modify all contract storage.
 
+- 20-Denial
+        
+        -->
+                ToDo
 
-
+        ....

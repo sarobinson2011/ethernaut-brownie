@@ -16,16 +16,16 @@ def main():
     # 2. call makeContact()
     # 3. call retract()
     #
-    # calling retract() on the empty codex[] array causes
-    # an underflow:  codex[] --> codex[2^256-1]
-    # which effectively gives us write access to all of the storage
-    # slots in the AlienCodex contract.
+    #     calling retract() on the empty codex[] array causes
+    #     an underflow:  codex[] --> codex[2^256-1]
+    #     which effectively gives us write access to all of the storage
+    #     slots in the AlienCodex contract.
     #
     # 4. calculate position 'i'  --> arguement passed to revise()
     # 5. call revise(i, player_address)
     # 6. check (call) owner
     #
-    # the starting position, in storage memory, of the codex[] array element 'i' is:
+    #     the starting position of the codex[] array element 'i' is:
     #
     #     i = keccak256(1)                    <--  since codex starts at slot 1
     #
@@ -49,7 +49,7 @@ def main():
     array_size = web3.eth.get_storage_at(target.address, 1).hex()
     print(f"\nStorage size: {convert.to_uint(array_size)}\n")
 
-    # First element of our array should be located at:
+    # First element of our array (which is storage slot 1) should be located at:
     first_position = convert.to_uint(keccak(convert.to_bytes(1)))
     # 2 ** 256 max storage pointer for the dynamic array
     zero_position = 2**256 - first_position

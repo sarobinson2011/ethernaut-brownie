@@ -1,0 +1,56 @@
+"""  
+                        *** AlienCodex contract storage slots ***
+
+AlienCodex inherits from Ownable, thus AlienCodex contains the state variables from Ownable,
+stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subsequent slots.
+
+    So, the storage is arranged as follows:
+
+      slot |  contains
+     ------|----------------------------------------------------       
+       0   |  address _owner (20 bytes) |  bool contact (1 byte)
+       1   |  bytes32[] codex
+
+        
+    { Note: in solidity version < 0.8.0,  the operation 'array.length--' caused an underflow }
+    { this feature was subsequently fixed in solidity 0.8.0................................. }
+            
+    Calling retract() causes an Underflow on codex[], this assigns codex[] full storage, that wraps around????????????????
+
+    This equates to: bytes32[2^256-1] slots (all of them assigned).
+
+    Thus codex[0] now points at storage slot 0, which contains the owner variable.
+
+        --> but slot 0 also contains the boolean variable contact.
+        --> we need to know how this data is stored
+
+        <-- array elements are stored starting from the keccak-256 hash of the slot where the 
+        <-- array was declared:
+
+        So the starting position, in storage memory, of the codex[] array element 'i' is:
+
+            i = keccak256(1)                    <--  since codex starts at slot 1
+        
+            slot i          - codex[0]
+            slot i+1        - codex[1]
+            slot i+2        - codex[2]
+            slot i+3        - codex[3]
+            ................................
+            ................................
+            slot i+(2^256)-1  - codex[(2^256)-1] 
+
+                       
+        We can exploit a flaw in the ABI specification, in that it doesn't validate that
+        the length of the array matches the length of the payload i.e. we can zero pad
+        the array to fill it.
+
+
+
+
+    Finally then call revise(0, ???) to overwrite owner with the player address
+
+    
+    -----
+
+
+"""

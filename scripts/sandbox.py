@@ -71,8 +71,9 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
     { Note: in solidity version < 0.8.0,  the operation 'array.length--' caused an underflow }
     { this feature was subsequently fixed in solidity 0.8.0................................. }
             
-    Calling retract() causes an Underflow on codex[], this assigns codex[] full storage, that wraps around????????????????
-
+    Calling retract() causes an Underflow on codex[], assigning codex[] full storage, effectively
+    giving full write access to the smart contract storage slots in the AlienCodex contract. 
+     
     This equates to: bytes32[2^256-1] slots (all of them assigned).
 
     Thus codex[0] now points at storage slot 0, which contains the owner variable.
@@ -99,14 +100,7 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
         We can exploit a flaw in the ABI specification, in that it doesn't validate that
         the length of the array matches the length of the payload i.e. we can zero pad
         the array to fill it.
-
-
-
-
-    Finally then call revise(0, ???) to overwrite owner with the player address
-
     
     -----
-
 
 """
