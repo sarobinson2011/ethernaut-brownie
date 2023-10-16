@@ -1,5 +1,5 @@
 {
     "python.analysis.typeCheckingMode": "off",
     "solidity.defaultCompiler": "remote",
-    "solidity.compileUsingRemoteVersion": "v0.5.0+commit.47a71e8f"
+    "solidity.compileUsingRemoteVersion": "v0.8.0"
 }
