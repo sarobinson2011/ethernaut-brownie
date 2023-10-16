@@ -6,7 +6,7 @@ interface IAlienCodex {
     function owner() view external returns(address);
     function makeContact() external;
     function retract() external;
-    function revise() external;
+    function revise(uint i, bytes32 _content) external;
 }
 
 // Proess
@@ -20,4 +20,6 @@ interface IAlienCodex {
 
 // (include the explanation about the slot storage - slot 0, slot 1)
 //        
-// the one unknown in the process is the value of 'i' (uint256)     
+// the one unknown in the process is the value of 'i' (uint256) 
+
+
