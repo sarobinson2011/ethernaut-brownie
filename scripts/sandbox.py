@@ -85,20 +85,20 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
 
         So the starting position, in storage memory, of the codex[] array element 'i' is:
 
-            i = keccak256(1)        <--  since codex starts at slot 1
+            i = keccak256(1)                    <--  since codex starts at slot 1
         
             slot i          - codex[0]
             slot i+1        - codex[1]
             slot i+2        - codex[2]
             slot i+3        - codex[3]
-            ...
-            ...
+            ................................
+            ................................
             slot i+2^256-1  - codex[2^256-1] 
 
                        
-
-
-        5:48   <--- video    (2^254 ? ) - index?
+        We can exploit a flaw in the ABI specification, in that it doesn't validate that
+        the length of the array matches the length of the payload i.e. we can zero pad
+        the array to fill it.
 
 
 

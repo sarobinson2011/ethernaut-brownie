@@ -22,6 +22,7 @@ contract AlienCodex is Ownable {
         codex.push(_content);
     }
 
+    // breaks the check, effect, interact rule (effectwith no check)
     function retract() public contacted {
         codex.length--;
     }
