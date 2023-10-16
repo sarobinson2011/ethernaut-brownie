@@ -32,7 +32,7 @@ contract AlienCodex is Ownable {
     }
 }
 
-// in other words, calling retract() on the empty codex[] array causes
+// calling retract() on the empty codex[] array causes
 // an underflow:  codex[] --> codex[2^256-1]
-// which effectively gives us write access to all of the storage slots
-// in the AlienCodex contract.
+// which effectively gives us write access to all of the storage 
+// slots in the AlienCodex contract.
