@@ -348,11 +348,15 @@
         2. call makeContact()
         3. call retract()
     
-        Note: calling retract() on the empty codex[] array causes
-              an underflow:  codex[] --> codex[2^256-1]
-              which effectively gives us write access to all of the storage
-              slots in the AlienCodex contract.
     
+        Note_1: calling retract() on the empty codex[] array causes
+                an underflow:  codex[] --> codex[2^256-1]
+                which effectively gives us write access to all of the storage
+                slots in the AlienCodex contract.
+    
+        Note_2: the retract function breaks the "Checks, Effects, Interactions" rule
+
+
         4. calculate position 'i'  --> arguement passed to revise()
         5. call revise(i, player_address)
         6. check (call) owner

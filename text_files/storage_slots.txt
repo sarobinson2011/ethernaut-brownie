@@ -44,13 +44,6 @@ stored from slot 0 onwards.  The AlienCodex state varibles then follow, in subse
         the length of the array matches the length of the payload i.e. we can zero pad
         the array to fill it.
 
-
-
-
-    Finally then call revise(0, ???) to overwrite owner with the player address
-
-    
     -----
-
 
 """
