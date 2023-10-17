@@ -14,4 +14,4 @@ def main():
 
     target = interface.IDenial(ETHERNAUT_INSTANCE)
     print(f"target = {target}")
-    print(f"balance = {target.contractBalance()}")
+    print(f"balance = {target.contractBalance()}\n")
