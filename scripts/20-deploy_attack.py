@@ -12,6 +12,8 @@ def main():
     player = get_account()
     target = interface.IDenial(ETHERNAUT_INSTANCE)
 
-    Attack20.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    balance = target.contractBalance({"from": player})
+    print(f"\nTarget balance = {balance}")
 
-    target.attack({"from": player})
+    attack = Attack20.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    attack.attack({"from": player})
