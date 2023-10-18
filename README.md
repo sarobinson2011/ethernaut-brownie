@@ -418,6 +418,10 @@
         Once becoming the partner by calling setWithdrawPartner() with the address
         of my attack contract, from within the constructor, the contract is able to exploit the use of the message call, from Denial.
 
+        The withdraw() function does not follow the 'checks-effects-interactions' 
+        pattern (in order to avoid reentrancy attacks), this is where the
+        vulnerability lie, specifically in the message call. 
+
         The receive payable fallback is trigged when the call is made with the 
         incoming ether, inside the receive() function we use a low level assembly
         function called invalid().  This triggers an "invalid instruction" exception to be thrown, and cause the current transaction to revert.
