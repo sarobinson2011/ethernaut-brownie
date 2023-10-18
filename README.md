@@ -417,3 +417,29 @@
 
         Once becoming the partner by calling setWithdrawPartner() with the address
         of my attack contract, from within the constructor, the contract is able to exploit the use of the message call, from Denial.
+
+        The receive payable fallback is trigged when the call is made with the 
+        incoming ether, inside the receive() function we use a low level assembly
+        function called invalid().  This triggers an "invalid instruction" exception to be thrown, and cause the current transaction to revert.
+        When this happens the "gas limit" is completely used up.  The Denial
+        contract uses the message call without specifiying a gas limit, thus the 
+        effective gas limit is maximum - which uses up all the gas, meaning the 
+        owner never gets any withdawls.  We win!
+
+        Mitigation against this vulnerability:
+
+        use the call boolean result to confirm a successful transaction:
+        
+        - (bool result, ) = partner.call{value:amountToSend}("");
+        - reuire(result);
+
+        this would have cause my attack to fail on revert.
+
+        Level complete!
+
+- 21-Shop
+        
+        -->
+                ToDo
+
+        .....
