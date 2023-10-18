@@ -435,7 +435,7 @@
         use the call boolean result to confirm a successful transaction:
         
         - (bool result, ) = partner.call{value:amountToSend}("");
-        - reuire(result);
+        - require(result);
 
         this would have cause my attack to fail on revert.
 
