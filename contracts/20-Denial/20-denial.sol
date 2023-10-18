@@ -10,7 +10,9 @@ pragma solidity ^0.8.0;
 contract Denial {
 
     address public partner; // withdrawal partner - pay the gas, split the withdraw
+
     address public constant owner = address(0xA9E);
+    
     uint timeLastWithdrawn;
     mapping(address => uint) withdrawPartnerBalances; // keep track of partners balances
 

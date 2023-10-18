@@ -398,6 +398,22 @@
 - 20-Denial
         
         -->
-                ToDo
+                SOLVED
 
-        ....
+        This level presents us with a contract called Denial, that has a constant public address storage variable, called owner:
+
+        - address public constant owner = address(0xA9E);
+    
+        If you can deny the owner from withdrawing funds when they call 
+        withdraw(), whilst the contract still has funds, and the transaction is of 1M gas or less... you will win this level.
+
+        Note 1:
+        The transaction limit of 1M gas or less" means we can't do anything gas intensive.
+
+        Note 2:
+        A re-entrancy attack won't work since the the withdraw amount is 1% of the current contract balance.  This means that you'd need infinite withdraws to get to zero:
+
+        - uint amountToSend = address(this).balance / 100;
+
+        Once becoming the partner by calling setWithdrawPartner() with the address
+        of my attack contract, from within the constructor, the contract is able to exploit the use of the message call, from Denial.
