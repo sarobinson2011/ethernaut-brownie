@@ -7,7 +7,7 @@ compiler:
     remappings:
       # - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.0'
       - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.3.2'
-     
+
 dotenv: .env
 networks:
   default: mainnet-fork

