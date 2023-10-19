@@ -11,7 +11,8 @@ contract Attack21 {
     }
 
     function price() external view returns (uint){
-        // 
+        // price = ???
+        // return price
     }
 
     function attack() public {

@@ -1,5 +1,5 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface, convert
+from brownie import web3, interface, convert, Attack21
 from eth_utils import keccak
 
 
@@ -10,7 +10,9 @@ GAS_LIMIT = 6000000
 def main():
 
     player = get_account()
-    target = interface.IShop(ETHERNAUT_INSTANCE)
+    # target = interface.IShop(ETHERNAUT_INSTANCE)
+    attack = Attack21.deploy({"from": player})
+    attack.attack({"from": player})
 
 
 """ 
