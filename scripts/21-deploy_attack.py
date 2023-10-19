@@ -10,3 +10,4 @@ GAS_LIMIT = 6000000
 def main():
 
     player = get_account()
+    target = interface.IShop(ETHERNAUT_INSTANCE)

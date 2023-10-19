@@ -1,17 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// import "interfaces/IShop.sol";  <- not sure yet
+import "./21-shop.sol";  
 
 contract Attack21 {
-    // state variables
+    Shop target;
 
-    constructor() {
-        // init stuff
+    constructor(address _targetAddress) {
+        target = Shop(_targetAddress);
+    }
+
+    function price() external view returns (uint){
+        // 
     }
 
     function attack() public {
-        // attack function
+        // attack function 
+        // this.price();
     }
 }
 
