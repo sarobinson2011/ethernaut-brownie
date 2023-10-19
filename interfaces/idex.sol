@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 interface IDex {
     function setTokens(address _token1, address _token2) external;
-    function addLiquidity(address token_address, uint amount) external;
+    function addLiquidity(address tokenAddress, uint amount) external;
     function swap(address from, address to, uint amount) external;
     function getSwapPrice(address from, address to, uint amount) 
         external view returns(uint);

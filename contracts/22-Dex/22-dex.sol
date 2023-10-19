@@ -5,10 +5,11 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-
 contract Dex is Ownable {
-  address public token1;
-  address public token2;
+  // address public owner       // slot 0  
+  address public token1;        // slot 1
+  address public token2;        // slot 2
+  
   constructor() {}
 
   function setTokens(address _token1, address _token2) public onlyOwner {
@@ -16,8 +17,8 @@ contract Dex is Ownable {
     token2 = _token2;
   }
   
-  function addLiquidity(address token_address, uint amount) public onlyOwner {
-    IERC20(token_address).transferFrom(msg.sender, address(this), amount);
+  function addLiquidity(address tokenAddress, uint amount) public onlyOwner {
+    IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
   }
   
   function swap(address from, address to, uint amount) public {
@@ -44,6 +45,7 @@ contract Dex is Ownable {
 }
 
 contract SwappableToken is ERC20 {
+  // can find address and storage slot if needed
   address private _dex;
   constructor(address dexInstance, string memory name, string memory symbol, uint256 initialSupply) ERC20(name, symbol) {
         _mint(msg.sender, initialSupply);
