@@ -11,3 +11,19 @@ def main():
 
     player = get_account()
     target = interface.IShop(ETHERNAUT_INSTANCE)
+
+
+""" 
+    Audit notes:
+
+    - Shop expects to be called from a Buyer
+        -- use the price() function to launch the attack?
+    
+    - make the following == True to win:
+        -- (_buyer.price() >= price && !isSold) 
+
+    - where _buyer.price() calls the price() function in Attack21
+
+    - issue: price() has the view modifier ???
+
+"""

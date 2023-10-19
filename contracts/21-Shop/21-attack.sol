@@ -15,8 +15,7 @@ contract Attack21 {
     }
 
     function attack() public {
-        // attack function 
-        // this.price();
+        target.buy();
     }
 }
 

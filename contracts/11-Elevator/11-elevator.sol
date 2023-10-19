@@ -9,9 +9,7 @@ interface Building {
 }
 
 contract Elevator {
-    // false
     bool public top;
-    // 0
     uint public floor;
 
     function goTo(uint _floor) public {
