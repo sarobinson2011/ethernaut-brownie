@@ -444,6 +444,65 @@
 - 21-Shop
         
         -->
+                SOLVED
+
+        This challenge is similar to level 11 'Elevator', which taught us to not trust the
+        logic of external contracts.
+
+        Since the Shop expects to be called from a Buyer:
+
+        interface Buyer {
+                function price() external view returns (uint);
+        }       
+        
+        We can deploy an attack contract that contains the price() function, returning a 
+        uint value.  The price() function is modified as 'view' so we can't change any 
+        state variables, but we can employ conditional logic to vary our return value.
+
+        The attack is fairly simple, we have to exploit this code, to buy for < 100 :
+
+        if (_buyer.price() >= price && !isSold) {
+                isSold = true;
+                price = _buyer.price();
+        }
+        
+        By writing our own attack code within the price() function, as follows:
+
+        function price() external view returns (uint){
+                if (target.isSold()) {
+                // second iteration - we win!
+                return 0;
+                } 
+                // first iteration
+                return 100;
+        }
+
+        we can buy the item for 0 (or any uint value < 100). The attack is in 2 stages:
+
+        1a. call attack() first time
+        1b. at this stage isSold == false
+        1c. price() returns 100
+        1d. isSold == true, _buyer.price() is updated to == 100
+
+        2a. call attack() second time
+        2b. at this stage isSold == true, _buyer.price() == 100
+        2c. now --> _buyer.price() returns 0
+        2d. price is still == 100, so...
+        2e. isSold() is still == true
+        2f. price is updated to == 0
+
+        Hence on the 2nd iteration of our attack we are able to pay a price of 0.
+
+        Note: As with level 11 'Elevator', this challenge teaches us that:
+
+        1. Contracts can manipulate data seen by other contracts in any way they want.
+        2. It's unsafe to change the state based on external & untrusted contracts logic.
+
+        Level complete!
+
+- 22-Dex
+        
+        -->
                 ToDo
 
-        .....
+        ....
