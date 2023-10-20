@@ -20,11 +20,11 @@ def main():
     token_2 = target.token2({"from": player})
     print(f"\ntoken_1 {token_1}, token_2 {token_2}\n")
 
-    # attack = attack.deploy(ETHERNAUT_INSTANCE, {"from": player})
-
     balance_1 = target.balanceOf(TOKEN1, ETHERNAUT_INSTANCE)
     balance_2 = target.balanceOf(TOKEN2, ETHERNAUT_INSTANCE)
     print(
         f"\nbalance of token_1 = {balance_1}\
             \nbalance of token_2 = {balance_2}\n"
     )
+
+    # attack = attack.deploy(ETHERNAUT_INSTANCE, {"from": player})
