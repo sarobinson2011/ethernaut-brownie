@@ -5,6 +5,18 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+/*
+    The goal of this level is for you to hack the basic DEX contract below 
+    and steal the funds by price manipulation.
+
+    You will start with 10 tokens of token_1 and 10 of token_2. 
+    The DEX contract starts with 100 of each token.
+
+    You will be successful in this level if you manage to drain all of at 
+    least 1 of the 2 tokens from the contract, and allow the contract to 
+    report a "bad" price of the assets.
+*/
+
 contract Dex is Ownable {
   // address public owner       // slot 0  
   address public token1;        // slot 1
@@ -47,7 +59,8 @@ contract Dex is Ownable {
 contract SwappableToken is ERC20 {
   // can find address and storage slot if needed
   address private _dex;
-  constructor(address dexInstance, string memory name, string memory symbol, uint256 initialSupply) ERC20(name, symbol) {
+  constructor(address dexInstance, string memory name, string memory symbol,
+    uint256 initialSupply) ERC20(name, symbol) {
         _mint(msg.sender, initialSupply);
         _dex = dexInstance;
   }
