@@ -3,28 +3,26 @@
 
         1. Dex contract
             - storage slot 0, 1, 2 -> contain addresses
-
         2. SwappableToken contract
             - we can ignore this as the approve method is included
               in the Dex contract (for ease)
-
         3. Function swap() is where the token transfer happens
 
-        Q. How is the price of the token calculated?
-            - getSwapPrice() calculates the token price
-            - ...
-            - ...
         
-        Q. How does the swap method work?
+        4. Swap price calculation
+        
+            - (amount * 'to' price) / ('from' price)
+                so: swap price == amount * (token ratio)
     
+        5. Swap process ->
+
+            - xyz
+                - abc
+
+                
         Q. How do you approve a transaction of an ERC20?
-    
-        Q. What does "At Address" do?
-
-
-        address to, address from, amount uint
-
-        to.balanceOf(address(this))
+            
+            - approve the contract to spend your tokens
 
 
     """

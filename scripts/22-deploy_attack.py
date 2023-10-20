@@ -7,6 +7,7 @@ ETHERNAUT_INSTANCE = "0x54B33296970E87bde1504FB91E441008aB69347c"
 
 TOKEN1 = "0x0cDbf0cb813020505f2C2C57187a3CB1249C34ad"
 TOKEN2 = "0x3dE9BcAA4027ca200c22b159f70b683714Cd45F0"
+AMOUNT = 5
 
 GAS_LIMIT = 6000000
 
@@ -27,4 +28,5 @@ def main():
             \nbalance of token_2 = {balance_2}\n"
     )
 
-    # attack = attack.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    swap_price = target.getSwapPrice(TOKEN1, TOKEN2, AMOUNT)
+    print(f"\nSwap price (1 to 2) amount: {AMOUNT} = {swap_price}\n")
