@@ -24,17 +24,6 @@
             - approve the contract to spend your tokens
 
     """
-"""
-    uint swapAmount = getSwapPrice(from, to, amount);
-
-    function getSwapPrice(address from, address to, uint amount) public view returns(uint){
-        
-        swapAmount = (amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this))
-        
-        return(swapAmount);
-    }
-    
-"""
 
 # we want a swap_amount > 100
 
