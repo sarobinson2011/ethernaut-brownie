@@ -41,10 +41,17 @@
 
 def main():
 
-    TOKEN1_AMOUNT = 101
+    TOKEN1_AMOUNT = 10
     TOKEN2_AMOUNT = 10
-    AMOUNT = 0
+    AMOUNT = 10
 
     swap_amount = AMOUNT * TOKEN1_AMOUNT / TOKEN2_AMOUNT
 
     print(f"\nSwap amount = {swap_amount}\n")
+
+
+# toggle from
+# if from == token1:
+#     from = token2
+# else:
+#     from = token1
