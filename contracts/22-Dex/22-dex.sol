@@ -21,7 +21,7 @@ contract Dex is Ownable {
   // address public owner       // slot 0  
   address public token1;        // slot 1
   address public token2;        // slot 2
-  
+   
   constructor() {}
 
   function setTokens(address _token1, address _token2) public onlyOwner {

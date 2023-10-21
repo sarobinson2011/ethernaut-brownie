@@ -5,7 +5,7 @@ import "./22-dex.sol";
 
 contract Attack22 {
     Dex _target;
-
+    
     constructor(address _targetAddress) {
         _target = Dex(_targetAddress);
     }

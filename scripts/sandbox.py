@@ -41,9 +41,9 @@
 
 def main():
 
-    TOKEN1_AMOUNT = 10
+    TOKEN1_AMOUNT = 101
     TOKEN2_AMOUNT = 10
-    AMOUNT = 2
+    AMOUNT = 0
 
     swap_amount = AMOUNT * TOKEN1_AMOUNT / TOKEN2_AMOUNT
 
