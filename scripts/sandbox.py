@@ -30,16 +30,22 @@
 
 def main():
 
+    # Initialise variables
     ETH_pool_balance = 100
     WBTC_pool_balance = 100
     ETH_player = 10
     WBTC_player = 10
     amount_to_swap = 10
 
-    number = swap(ETH_player, WBTC_player, amount_to_swap)
-    ETH_pool_balance -= number
-    WBTC_pool_balance += number
+    # get the swap "price/amount"
+    _swap = swap(ETH_player, WBTC_player, amount_to_swap)
+    # update pool balances
+    ETH_pool_balance -= _swap
+    WBTC_pool_balance += _swap
+    ETH_player -= _swap
+    WBTC_player += _swap
     print_balances(ETH_pool_balance, WBTC_pool_balance, ETH_player, WBTC_player)
+    # amount_to_swap =
 
 
 def swap(balance_1, balance_2, amount):
