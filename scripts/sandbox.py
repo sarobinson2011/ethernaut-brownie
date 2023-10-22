@@ -37,25 +37,49 @@ def main():
     WBTC_player = 10
     amount_to_swap = 10
 
-    if ETH_player > WBTC_player:
-        A = ETH_player
-        B = WBTC_player
-    else:
-        A = WBTC_player
-        B = ETH_player
+    for i in range(2):
 
-    # get the swap "price/amount"
-    _swap = swap(A, B, amount_to_swap)
-    # update pool balances
-    ETH_pool_balance -= _swap
-    WBTC_pool_balance += _swap
-    ETH_player -= _swap
-    WBTC_player += _swap
-    print_balances(ETH_pool_balance, WBTC_pool_balance, ETH_player, WBTC_player)
-    # amount_to_swap =
+        """
+
+        you're swapping between:
+
+        a) the player account (which contains 2 different tokens) , and
+
+        b) the pool (which contains 2 different tokens)
+
+        you're not swapping between ETH_player and WBTC_player tokens, directly.
+
+        Yeah?!?!
+
+        SO... go fix it then        ---->   it's the values you're passing to swap() !!!!!!!!!
+
+        """
+
+        if ETH_player > WBTC_player:
+            A = ETH_player
+            B = WBTC_player
+        else:
+            A = WBTC_player
+            B = ETH_player
+
+        # get the swap "price/amount"
+        _swap = swap(A, B, amount_to_swap)  #  <-- here
+
+        # update pool balances
+        ETH_pool_balance -= _swap
+        WBTC_pool_balance += _swap
+        ETH_player -= _swap
+        WBTC_player += _swap
+
+        print_balances(ETH_pool_balance, WBTC_pool_balance, ETH_player, WBTC_player)
+
+        if ETH_player > WBTC_player:
+            amount_to_swap = ETH_player
+        else:
+            amount_to_swap = WBTC_player
 
 
-def swap(balance_1, balance_2, amount):
+def swap(balance_1, balance_2, amount):  # <-- update pool balances NOT player balances
     swap_amount = amount * balance_1 / balance_2
     return swap_amount
 
