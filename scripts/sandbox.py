@@ -37,8 +37,15 @@ def main():
     WBTC_player = 10
     amount_to_swap = 10
 
+    if ETH_player > WBTC_player:
+        A = ETH_player
+        B = WBTC_player
+    else:
+        A = WBTC_player
+        B = ETH_player
+
     # get the swap "price/amount"
-    _swap = swap(ETH_player, WBTC_player, amount_to_swap)
+    _swap = swap(A, B, amount_to_swap)
     # update pool balances
     ETH_pool_balance -= _swap
     WBTC_pool_balance += _swap
