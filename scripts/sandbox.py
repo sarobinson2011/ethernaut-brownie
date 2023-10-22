@@ -28,28 +28,29 @@
 # we want a swap_amount > 100
 
 
-def swap(_balance_1, _balance_2, _amount):
-    swap_amount = _amount * _balance_1 / _balance_2
-    return swap_amount
-
-
-def approve():
-    pass
-
-
 def main():
 
-    token1_balance = 10
-    token2_balance = 10
-    amount = 10
+    ETH_pool_balance = 100
+    WBTC_pool_balance = 100
 
-    # xxx
+    ETH_player = 10
+    WBTC_player = 10
 
-    # toggle from
-    # if from == token1:
-    #     from = token2
-    # else:
-    #     from = token1
+    amount_to_swap = 10
 
-    while token1_balance != 0 and token2_balance != 0:
-        pass
+    number = swap(ETH_player, WBTC_player, amount_to_swap)
+
+
+def swap(_balance_1, _balance_2, _amount):
+    swap_price = _amount * _balance_1 / _balance_2
+    return swap_price
+
+
+# toggle from
+# if from == token1:
+#     from = token2
+# else:
+#     from = token1
+
+# while token1_balance != 0 and token2_balance != 0:
+#     pass
