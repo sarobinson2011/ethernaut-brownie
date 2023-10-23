@@ -1,3 +1,5 @@
+""" Simuation of the Dex smart contract 'swap' process """
+
 # it takes 5 swaps to get to:
 #   ETH-pool balance: 43
 #   WBTC-pool balance: 156

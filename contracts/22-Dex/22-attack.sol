@@ -5,26 +5,20 @@ import "./22-dex.sol";
 
 contract Attack22 {
     Dex _target;
+    address public token1;
+    address public token2;
     
     constructor(address _targetAddress) {
         _target = Dex(_targetAddress);
+        _target.approve(address(_target), 2 ^ 256); // approve max amount
     }
 
     function attack() public {
-        // stuff
+        // 
     }
 
     receive() external payable {}
 }
 
-
-// <><><><><><><>       need to fuck with the swap price       <><><><><><><> 
-//
-// 
-// uint swapAmount = getSwapPrice(from, to, amount);
-// 
-// function getSwapPrice(address from, address to, uint amount) public view returns(uint){
-//    return((amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this)));
-// }
-// 
-// -->  fuck around with the token1 and token2 addresses (in the storage slots) ???
+// Remember:  we need to approve the tokens for swap
+// and THEN perform the swaps

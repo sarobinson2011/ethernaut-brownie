@@ -16,12 +16,3 @@ interface IDex {
     function token2() view external;//                                    token2 address (view)
 }
 
-// swap price is  -->  amount_to_swap * (token_amount_ratio)
-// 
-// approve address and amount, prior to swap
-// 
-// call --> swap(from, to, amount)
-//      --> return swap_amount
-// 
-//  
-// 
