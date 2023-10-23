@@ -29,3 +29,25 @@ def main():
 
     swap_price = target.getSwapPrice(TOKEN1, TOKEN2, AMOUNT)
     print(f"\nSwap price (1 to 2) amount: {AMOUNT} = {swap_price}\n")
+
+
+"""
+        Audit notes:
+
+        1. Dex contract
+            - storage slot 0, 1, 2 -> contain addresses
+        2. SwappableToken contract
+            - we can ignore this as the approve method is included
+              in the Dex contract (for ease)
+        3. Function swap() is where the token transfer happens
+       
+        4. Swap price calculation
+        
+            - (amount * 'to' price) / ('from' price)
+                so: swap price == amount * (token ratio)
+    
+        5. Swap process ->
+
+            - see 22-simulate_dex.py (this models the swap process)
+                       
+"""
