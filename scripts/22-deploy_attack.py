@@ -11,11 +11,20 @@ AMOUNT = 10
 GAS_LIMIT = 6000000
 
 
+def balances():
+    target = interface.IDex(ETHERNAUT_INSTANCE)
+    balance1 = target.balanceOf(TOKEN1, ETHERNAUT_INSTANCE)
+    balance2 = target.balanceOf(TOKEN2, ETHERNAUT_INSTANCE)
+    print(f"\nbalance 1 = {balance1}, balance 2 = {balance2}\n")
+
+
 def main():
 
     player = get_account()
-    target = interface.IDex(ETHERNAUT_INSTANCE)
     attack = Attack22.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    balances()
+    # attack.attack({"from": player})
+    # balances()
 
 
 """
@@ -36,5 +45,20 @@ def main():
         5. Swap process ->
 
             - see 22-simulate_dex.py (this models the swap process)
-                       
+    ___________________________________________________________________                   
+    ___________________________________________________________________
+
+        Script steps:
+        
+        1) set player account
+        2) define target interface (Dex contract)
+        3) define token1 and token2
+        4) approve token1 and token2
+        5) assign tokenTo and tokenFrom (so you can toggle them)
+        7) get swap_price
+
+        8) while swap_price < tokenTo.balanceOf(target)
+            8a. perform swap
+            8b. toggle to/from
+            8c. get swap_price
 """

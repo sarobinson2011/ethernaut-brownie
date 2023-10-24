@@ -39,7 +39,7 @@ def main():
         # get the swap "price/amount"
         swap_amount = swap(A, B, amount_to_swap)
 
-        # update pool balances
+        # swap tokens / update pool balances
         if toggle:
             ETH_pool_balance -= swap_amount
             WBTC_pool_balance += swap_amount

