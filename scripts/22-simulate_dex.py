@@ -26,7 +26,8 @@ def main():
         ETH_pool_balance, WBTC_pool_balance, ETH_player, WBTC_player, toggle, i
     )
 
-    for i in range(6):
+    # for i in range(6):
+    while swap_amount <= WBTC_pool_balance:
         if toggle:
             A = ETH_pool_balance
             B = WBTC_pool_balance

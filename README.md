@@ -515,8 +515,11 @@
         At first glance this contract was a little intimidating, but upon closer inspection
         the picture was fairly simple.  
         
-        The price calculation for the swap is a single-source integer calculation, this in 
+        The price calculation for the swap is a *single-source*, *integer* calculation, this in 
         combination with the low liquidity in the Dex contract means we can easily manipulate
         the swap price (and hence the number of tokens received) by swapping back and forth.
+
+        Solidity does not support floating point numbers, hence integer division can cause 
+        rounding errors.
 
         
