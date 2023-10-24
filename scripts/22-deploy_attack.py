@@ -45,8 +45,8 @@ def main():
         5. Swap process ->
 
             - see 22-simulate_dex.py (this models the swap process)
-    ___________________________________________________________________                   
-    ___________________________________________________________________
+                       
+    ===================================================================
 
         Script steps:
         
@@ -61,4 +61,7 @@ def main():
             8a. perform swap
             8b. toggle to/from
             8c. get swap_price
+
+        9) manually perform the final swap to drain the funds
+
 """
