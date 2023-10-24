@@ -503,6 +503,20 @@
 - 22-Dex
         
         -->
-                ToDo
+                SOLVED
 
-        ....
+        The goal of this level is to steal all of one of 2 different tokens, balance of
+        each is 100 to start, whilst the player balance of each token is 10 of each token.
+
+        The method of theft needs to be price manipulation, and we beat the level if we 
+        manage to drain all of at least 1 of the 2 tokens, thus allowing the contract to 
+        report a bad price.
+
+        At first glance this contract was a little intimidating, but upon closer inspection
+        the picture was fairly simple.  
+        
+        The price calculation for the swap is a single-source integer calculation, this in 
+        combination with the low liquidity in the Dex contract means we can easily manipulate
+        the swap price (and hence the number of tokens received) by swapping back and forth.
+
+        
