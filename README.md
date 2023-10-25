@@ -522,6 +522,35 @@
         Solidity does not support floating point numbers, hence integer division can cause 
         rounding errors.
 
-        By looking at the Dex contract
+        By evaluating the getSwapPrice() function in the Dex contract, it becomes obvious that 
+        we can manipulate the swap price calculation in order to unbalance the pool, and in 
+        turn drain the funds.
+
+        Essentially, what we need to do is start swapping backwards and forwards between the 2 
+        tokens.  Since the swap price calculation is inefficient we can drain all funds from a
+        pool in this way.
+
+        In  order to beat the challenge I first attempted a smart contract attack solution, but 
+        soon realised I could do it with Python (Brownie) alone.
+
+        See 22-simulate_dex.py and 22-deploy_attack for details.
+
+        Here's the Ethernaut 'level complete' spiel:
+
+        "The integer math portion aside, getting prices or any sort of data from any single source is a massive attack vector in smart contracts.
+        
+        You can clearly see from this example, that someone with a lot of capital could manipulate the price in one fell swoop, and cause any applications relying on it to use the the wrong price.
+        
+        The exchange itself is decentralized, but the price of the asset is centralized, since it comes from 1 dex. This is why we need oracles. Oracles are ways to get data into and out of smart contracts. We should be getting our data from multiple independent decentralized sources, otherwise we can run this risk."
+
+        Level complete!
+
+- 23-Dex Two
+        
+        -->
+                ToDo
+
+        ....      
+
 
         
