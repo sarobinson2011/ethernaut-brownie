@@ -522,4 +522,6 @@
         Solidity does not support floating point numbers, hence integer division can cause 
         rounding errors.
 
+        By looking at the Dex contract
+
         
