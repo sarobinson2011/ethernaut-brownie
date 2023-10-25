@@ -533,7 +533,8 @@
         In  order to beat the challenge I first attempted a smart contract attack solution, but 
         soon realised I could do it with Python (Brownie) alone.
 
-        See 22-simulate_dex.py and 22-deploy_attack for details.
+        See 22-simulate_dex.py (where I first simulate the Dex behaviour) and 22-deploy_attack 
+        for solution plus audit notes.
 
         Here's the Ethernaut 'level complete' spiel:
 
