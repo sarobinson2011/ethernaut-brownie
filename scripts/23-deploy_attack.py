@@ -19,13 +19,24 @@ def main():
 """ 
         Audit notes
 
-    1. function swap() has been modified, from Dex (one)
+    1. we need to drain token1 AND token2 this time!!    
+
+    2. function swap() has been modified, from Dex (one)
         
-    1a. the following require statement has been removed:
+    2a. the following require statement has been removed:
 
         require((from == token1 && to == token2) || (from == token2 && to == token1), "Invalid tokens");
 
-    2.  
+    3. player balances of each token = 10
+
+    4. DexTwo balances of each token = 100 
+
+    
+        Attack philosophy:
+
+    1. we are not restricted to swapping JUST between token1 and token2
+
+    2. maybe we can deploy an attack contract to act as a 3rd token pool ??
 
 
 """
