@@ -38,5 +38,7 @@ def main():
 
     2. maybe we can deploy an attack contract to act as a 3rd token pool ??
 
+    3. swap calculation in level-23 spreadsheet
+    
 
 """
