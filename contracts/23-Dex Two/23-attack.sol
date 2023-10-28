@@ -10,15 +10,19 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract Attack23 {
     DexTwo public target;
     address public token3;
+    uint256 public token3Player;
     uint256 public token3Pool; 
 
-    constructor(address _target, uint256 _amount) {
+    constructor(address _target, uint256 amountPool, uint256 amountPlayer) {
         target = DexTwo(_target);
-        token3Pool = _amount;
+        token3Pool = amountPool;     // 200 
+        token3Player = amountPlayer;
     }
 
     function attack() public {
-        // perform 5 swaps token1 / token2 1st ?
+        // swap 100 token3 --> 100 token1
+        // swap 100 token3 --> 100 token2
+         
         // target.swap(from, to, amount);
     }
 
