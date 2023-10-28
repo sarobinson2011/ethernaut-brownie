@@ -12,11 +12,18 @@ contract Attack23 {
     address public token3;
     uint256 public token3Player;
     uint256 public token3Pool; 
+    address public owner;
 
     constructor(address _target, uint256 amountPool, uint256 amountPlayer) {
+        owner = msg.sender;
         target = DexTwo(_target);
         token3Pool = amountPool;     // 0 
         token3Player = amountPlayer; // 200
+    }
+
+    modifier onlyOwner() {
+        require (msg.sender == owner, "Only the owner can withdraw");
+        _;
     }
 
     function attack() public {
@@ -27,5 +34,9 @@ contract Attack23 {
     }
 
     receive() external payable {}
+
+    function withdraw() onlyOwner public {
+         msg.sender.transfer(address(this).balance);
+     }
 }
 
