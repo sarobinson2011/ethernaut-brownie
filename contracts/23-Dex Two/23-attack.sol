@@ -15,14 +15,14 @@ contract Attack23 {
 
     constructor(address _target, uint256 amountPool, uint256 amountPlayer) {
         target = DexTwo(_target);
-        token3Pool = amountPool;     // 200 
-        token3Player = amountPlayer;
+        token3Pool = amountPool;     // 0 
+        token3Player = amountPlayer; // 200
     }
 
     function attack() public {
         // swap 100 token3 --> 100 token1
         // swap 100 token3 --> 100 token2
-         
+
         // target.swap(from, to, amount);
     }
 
