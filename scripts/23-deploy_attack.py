@@ -16,9 +16,9 @@ def main():
     target = interface.IDexTwo(ETHERNAUT_INSTANCE)
     attack = Attack23.deploy(ETHERNAUT_INSTANCE, 0, 200, {"from": player})
     print_balances(target)
-    attack.attack({"from": player})
     print_balances(target)
     target.approve(ETHERNAUT_INSTANCE, 1000)
+    attack.attack({"from": player})
 
 
 def print_balances(_target):
