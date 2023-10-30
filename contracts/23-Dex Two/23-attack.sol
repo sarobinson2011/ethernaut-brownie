@@ -31,6 +31,11 @@ contract Attack23 {
         token3Player = amountPlayer; // 200
     }
 
+
+    // function getSwapAmount(address from, address to, uint amount) public view returns(uint)
+    // function approve(address spender, uint amount) public
+
+
     function attack() public {
         // check GOHEESHENG
   
