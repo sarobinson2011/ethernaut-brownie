@@ -563,4 +563,10 @@
         in order to drain the balance of both token1 and token2 by swapping for our 3rd token.
 
 
+        -->  first we calculate the amount of ATK we will need to swap for token1/2 
+
+        function getSwapAmount(address from, address to, uint amount) public view returns(uint){
+                return((amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this)));
+        }
+
         
