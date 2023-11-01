@@ -551,7 +551,16 @@
         -->
                 ToDo
 
-        ....      
+        This level is similar to the previous one, but this time the swap function no longer requires the two tokens (token1 and token2) to be the two tokens that are allowed by the function swap(). 
+
+        This means we can effectively swap any token we want. Once again, we start with the same balances - the
+        dex has a supply of 100 for each token, and the player starts with with a balance of 10 of both token1 
+        and token2. 
+
+        In order to beat this level we need to drain the supply of both token1 and token2 from the DexTwo contract.
+
+        So, in other words we are free to generate a third ERC20 token of our own, with whatever balance we need,
+        in order to drain the balance of both token1 and token2 by swapping for our 3rd token.
 
 
         

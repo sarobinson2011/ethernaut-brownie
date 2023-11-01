@@ -10,13 +10,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Attack23 {
     DexTwo public target;
-    address public token3;
     address public owner;
+    address public token3;
+    uint256 public pool;
+    
 
-    constructor(address _target, uint256 amountPool, uint256 amountPlayer) {
+    constructor(address _target, uint256 _amount) {
         owner = msg.sender;
         target = DexTwo(_target);
-        // set amount of token 3 to 200  (new variable ?)  <-- here 
+        pool = _amount;      
     }
 
 
@@ -27,13 +29,14 @@ contract Attack23 {
 
     receive() external payable {}
 
-    // modifier onlyOwner() {
-    //     require (msg.sender == owner, "Only the owner can withdraw");
-    //     _;
-    // }
+     modifier onlyOwner() {
+         require (msg.sender == owner, "Only the owner can withdraw");
+         _;
+     }
 
-    // function withdraw() onlyOwner public {
-    //      msg.sender.transfer(address(this).balance);
-    //  }
+     function withdraw() onlyOwner public {
+          msg.sender.transfer(address(this).balance);
+      }
 }
+
 
