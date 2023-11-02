@@ -51,6 +51,4 @@ def print_balances(_target):
 
     2. swap calculation in level-23 spreadsheet
     
-    3. can do this in 2 swaps, starting with 200 of token3_player
-
 """

