@@ -559,14 +559,32 @@
 
         In order to beat this level we need to drain the supply of both token1 and token2 from the DexTwo contract.
 
-        So, in other words we are free to generate a third ERC20 token of our own, with whatever balance we need,
-        in order to drain the balance of both token1 and token2 by swapping for our 3rd token.
+        So, in other words we are free to generate a third ERC20 token of our own, with whatever balance we need, in order to drain the balance of both token1 and token2 by swapping for our token3.
 
 
         -->  first we calculate the amount of ATK we will need to swap for token1/2 
+
 
         function getSwapAmount(address from, address to, uint amount) public view returns(uint){
                 return((amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this)));
         }
 
+        we want to return 100 of token1, so by re-arranging we need:
+
+                amount / IERC20(from).balanceOf(address(this)) == 1
         
+        Consequently, DexTwo will calculate a swap ratio of 1 token3 = 100 token1, thus we are able to call
+        swap() and effectivley drain token1 by swapping 1 for 100.
+        
+        The DexTwo contract now contains x2 token3 (since we already had to transfer 1 token3 to the contract
+        when we approved token3). Thus, we now need to swap 2 of token3 for 100 of token2, which drains the
+        token2 pool.
+
+        Level complete!
+
+- 24-Puzzle Wallet
+        
+        -->
+                ToDo
+
+        ...

