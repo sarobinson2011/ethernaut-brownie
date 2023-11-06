@@ -5,7 +5,7 @@ pragma experimental ABIEncoderV2;
 import "./24-puzzlewallet.sol";
 
 contract Attack24 {
-    // variables
+    //
 
     constructor() {
         // init

@@ -14,8 +14,9 @@ import "../helpers/UpgradeableProxy-08.sol";
 
 
 contract PuzzleProxy is UpgradeableProxy {
-    address public pendingAdmin;
-    address public admin;
+    address public pendingAdmin;//          slot 0
+    address public admin;//                 slot 1
+                         //                 slot 2 - contains the address of the current implementation
 
     constructor(address _admin, address _implementation, bytes memory _initData) UpgradeableProxy(_implementation, _initData) {
         admin = _admin;
@@ -41,10 +42,10 @@ contract PuzzleProxy is UpgradeableProxy {
 }
 
 contract PuzzleWallet {
-    address public owner;
-    uint256 public maxBalance;
-    mapping(address => bool) public whitelisted;
-    mapping(address => uint256) public balances;
+    address public owner;//                         slot 0 - pendingAdmin
+    uint256 public maxBalance;//                    slot 1 - admin
+    mapping(address => bool) public whitelisted;//  slot 2 
+    mapping(address => uint256) public balances;//  slot 3 
 
     function init(uint256 _maxBalance) public {
         require(maxBalance == 0, "Already initialized");
@@ -97,3 +98,10 @@ contract PuzzleWallet {
         }
     }
 }
+
+
+// (bool success, ) = address(this).delegatecall(data[i]);
+//                  =       |                   |
+//                          V                   V
+//                    target contract       
+//  
