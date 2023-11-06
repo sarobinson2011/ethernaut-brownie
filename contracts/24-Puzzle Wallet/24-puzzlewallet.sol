@@ -42,10 +42,10 @@ contract PuzzleProxy is UpgradeableProxy {
 }
 
 contract PuzzleWallet {
-    address public owner;//                         slot 0 - pendingAdmin
-    uint256 public maxBalance;//                    slot 1 - admin
-    mapping(address => bool) public whitelisted;//  slot 2 
-    mapping(address => uint256) public balances;//  slot 3 
+    address public owner;//                         slot 0  - pendingAdmin
+    uint256 public maxBalance;//                    slot 1  - admin
+    mapping(address => bool) public whitelisted;//  slot 2+ 
+    mapping(address => uint256) public balances;//  slot 3+ 
 
     function init(uint256 _maxBalance) public {
         require(maxBalance == 0, "Already initialized");

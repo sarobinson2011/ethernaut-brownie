@@ -35,9 +35,10 @@ def main():
 
     4. player is now 'white listed'
 
-    5.  --> next we need to empty the contract balance to zero 
+    5.  --> next we need to empty the contract balance to zero  <--- HARD bit !! 
 
-    6. 
+    6. set maxBalance {admin} to player address --> uint256(address(player))
+
 
 """
 
