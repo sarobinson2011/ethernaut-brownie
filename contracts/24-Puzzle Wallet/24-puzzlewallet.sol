@@ -98,10 +98,3 @@ contract PuzzleWallet {
         }
     }
 }
-
-
-// (bool success, ) = address(this).delegatecall(data[i]);
-//                  =       |                   |
-//                          V                   V
-//                    target contract       
-//  

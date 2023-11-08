@@ -13,18 +13,20 @@ def proxy_balance():
     balance_eth = web3.fromWei(balance, "ether")
     print(f"\nbalance in wei = {balance}\nbalance in ether = {balance_eth}\n")
 
+
 """
+
     Function to print the following status message:
 
     ---------------- START -----------------
 
-    Admin address: address
-    Owner address: address
-    Address0 whitelisted: true/false        <-- what is addr0  ?
-    Address1 whitelisted: true/false        <-- what is addr1  ?
-    Address0 balance: uint
-    Address1 balance: uint
-    Total balance: uint
+    Admin address:    {address}     <-- get these addresses by viewing the storage slots
+    Owner address:    {address}     
+    Address0 WL:      {true/false}  <-- address0 - address that added 0.001 eth (whitelisted)
+    Address1 WL:      {true/false}  <-- address1 - player address (not initially whitelisted)
+    Address0 balance: {uint}
+    Address1 balance: {uint}
+    Total balance:    {uint}
     
     ----------------- END ------------------
     
