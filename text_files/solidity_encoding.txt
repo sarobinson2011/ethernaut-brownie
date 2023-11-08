@@ -1,0 +1,8 @@
+There are 3 ways to ABI encode data:
+
+    1. encodeWithSignature
+
+    2. encodeWithSelector
+
+    3. encodeCall
+

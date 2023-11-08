@@ -13,13 +13,29 @@ def proxy_balance():
     balance_eth = web3.fromWei(balance, "ether")
     print(f"\nbalance in wei = {balance}\nbalance in ether = {balance_eth}\n")
 
+"""
+    Function to print the following status message:
+
+    ---------------- START -----------------
+
+    Admin address: address
+    Owner address: address
+    Address0 whitelisted: true/false        <-- what is addr0  ?
+    Address1 whitelisted: true/false        <-- what is addr1  ?
+    Address0 balance: uint
+    Address1 balance: uint
+    Total balance: uint
+    
+    ----------------- END ------------------
+    
+"""
+
 
 def main():
     player = get_account()
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
     # attack = Attack24.deploy({"from": player})
     proxy_balance()
-   
 
 
 """
@@ -37,8 +53,47 @@ def main():
 
     5.  --> next we need to empty the contract balance to zero  <--- HARD bit !! 
 
-    6. set maxBalance {admin} to player address --> uint256(address(player))
+        5a. we need to: call execute(), with amount >= "0.001 ether" to drain the funds
+        5b. however: require(balances[msg.sender] >= value  means that the 0.001 eth needs to be ours
+        5c. see "Functionally" (below)
+        
+        5d. multicall:
 
+        You provide your encoded (encodeWithSelector) calldata, and then it performs the calls for you.
+
+        This section of code prevents us from simply calling deposit say 30 times, in one multicall:
+
+        if (selector == this.deposit.selector) {
+            require(!depositCalled, "Deposit can only be called once");
+            // Protect against reusing msg.value
+            depositCalled = true;
+        }
+
+        So, in effect from one invocation of multicall, we can directly call deposit() only once.
+
+        We can however perform indirect calls, so if we pass multicall a data array that contains 
+        calls to multicall.  So multicall will call multicall 30 times, and each individual call within
+        that will call deposit() once.  Thus we get 30 deposits in a single deposit() call.
+
+        This unbalances the contract accounting logic and we are able to drain the contract balance.
+        
+
+    6. set maxBalance {admin} to player address --> uint256(address(player)) to beat the level  ???
+
+    
+    ============================================
+    
+    Functionally:
+    You can't withdraw the total balance, using execute(), due to the combined hurdle of:
+     
+        1) the contract is pre-loaded with 0.001 ether
+        2) you can only withdraw what you put in (which is initially zero)
+    
+    We need to somehow assign some funds to our balance i.e. balances[msg.sender] such that they are 
+    added to our balance, but not the contract balance.  In other words we need to break the accounting
+    functionality of the contract (by hacking our balance to inflate it).
+
+    If we can perhaps re-enter deposit(), or call this multiple times for one deposit, we can do it.
 
 """
 
