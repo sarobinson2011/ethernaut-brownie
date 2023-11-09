@@ -59,8 +59,8 @@ contract PuzzleWallet {
     }
 
     function setMaxBalance(uint256 _maxBalance) external onlyWhitelisted {
-      require(address(this).balance == 0, "Contract balance is not 0");
-      maxBalance = _maxBalance;
+        require(address(this).balance == 0, "Contract balance is not 0");
+        maxBalance = _maxBalance;
     }
 
     function addToWhitelist(address addr) external {
@@ -69,8 +69,8 @@ contract PuzzleWallet {
     }
 
     function deposit() external payable onlyWhitelisted {
-      require(address(this).balance <= maxBalance, "Max balance reached");
-      balances[msg.sender] += msg.value;
+        require(address(this).balance <= maxBalance, "Max balance reached");
+        balances[msg.sender] += msg.value;
     }
 
     function execute(address to, uint256 value, bytes calldata data) external payable onlyWhitelisted {

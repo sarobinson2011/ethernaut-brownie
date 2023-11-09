@@ -2,37 +2,36 @@
     ************    ABI encoding of Solidity data - used to call a function    ************        
 
 
+
 There are 3 ways to ABI encode data:
 
 
-1. encodeWithSignature  --> typos are not checked - ("transfer(address, uint)")
+    1. encodeWithSignature  --> typos are not checked - ("transfer(address, uint)")
 
 
-        function encodeWithSignature(
-            address -to, uint256 _amount
-        ) external pure returns (bytes memory) {
-            return abi.encodeWithSignature("transfer(address,uint256)", to, amount);
-        }
+            function encodeWithSignature(
+                address -to, uint256 _amount
+            ) external pure returns (bytes memory) {
+                return abi.encodeWithSignature("transfer(address,uint256)", to, amount);
+            }
 
 
-
-2. encodeWithSelector   --> type is not checked - (IERC20.transfer.selector, to, amount)
-
-
-        function encodeWithSignature(
-            address -to, uint256 _amount
-        ) external pure returns (bytes memory) {
-            return abi.encodeWithSelector(IERC20.transfer.selector, to, amount);
-        }
-    
+    2. encodeWithSelector   --> type is not checked - (IERC20.transfer.selector, to, amount)
 
 
-3. encodeCall   --> Typo and type errors will not compile - best one
+            function encodeWithSignature(
+                address -to, uint256 _amount
+            ) external pure returns (bytes memory) {
+                return abi.encodeWithSelector(IERC20.transfer.selector, to, amount);
+            }
+        
+
+    3. encodeCall           --> Typo and type errors will not compile - best one
 
 
-        function encodeCall(address -to, uint256 _amount) external pure returns (bytes memory) {
-                return abi.encodeCall(IERC20.transfer, (to, amount));
-        }
+            function encodeCall(address -to, uint256 _amount) external pure returns (bytes memory) {
+                    return abi.encodeCall(IERC20.transfer, (to, amount));
+            }
 
 
 
