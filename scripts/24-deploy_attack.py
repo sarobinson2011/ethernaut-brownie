@@ -1,3 +1,4 @@
+from re import A
 from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24
 from eth_utils import keccak
@@ -14,7 +15,25 @@ def proxy_balance():
     print(f"\nbalance in wei = {balance}\nbalance in ether = {balance_eth}\n")
 
 
+def print_status():
+    # get the storage slot information
+    for i in range(5):
+        storage_slot = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, i)
+        storage_slot_hex = web3.toHex(storage_slot)
+        print(f"storage slot {i}:  {storage_slot_hex}")
+        if i == 0:
+            admin_address = storage_slot_hex
+        elif i == 1:
+            owner_address = storage_slot_hex
+    
+    print(f"pending admin = {owner_address}\nadmin = {admin_address}\n")
+    
+
+
+
 """
+        0x725595ba16e76ed1f6cc1e1b65a88365cc494824  <- admin address at start
+
 
     Function to print the following status message:
 
@@ -32,12 +51,12 @@ def proxy_balance():
     
 """
 
-
 def main():
     player = get_account()
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
     # attack = Attack24.deploy({"from": player})
-    proxy_balance()
+    # proxy_balance()
+    print_status()
 
 
 """
