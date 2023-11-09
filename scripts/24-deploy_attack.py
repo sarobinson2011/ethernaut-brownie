@@ -16,20 +16,20 @@ def proxy_balance():
 
 
 def print_status():
-    # get the storage slot information
-    for i in range(5):
+    print("\n---------------- START -----------------")
+    for i in range(2):
         storage_slot = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, i)
         storage_slot_hex = web3.toHex(storage_slot)
-        print(f"storage slot {i}:  {storage_slot_hex}")
-        if i == 0:
-            admin_address = storage_slot_hex
-        elif i == 1:
-            owner_address = storage_slot_hex
+        print(f"storage slot {i}:  {storage_slot_hex}")         # slot 0 / slot 1
+    slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)       # slot 2
+    slot_2_bool = bool(slot_2)
+    print(f"storage slot 2:  {slot_2_bool}")
+    slot_3 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 3)       # slot 3 
+    slot_3_unint = int.from_bytes(slot_3, "big", signed="False")
+    print(f"storage slot 3:  {slot_3_unint}")
+    print("----------------- END ------------------\n")
+   
     
-    print(f"pending admin = {owner_address}\nadmin = {admin_address}\n")
-    
-
-
 
 """
         0x725595ba16e76ed1f6cc1e1b65a88365cc494824  <- admin address at start
