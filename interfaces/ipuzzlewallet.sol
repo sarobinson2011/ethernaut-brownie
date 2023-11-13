@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 interface IPuzzleWallet {
+    // Puzzle Wallet
     function owner() external view;
     function maxBalance() external view;
     function init(uint256 _maxBalance) external;
@@ -11,10 +12,15 @@ interface IPuzzleWallet {
     function deposit() external payable;
     function execute(address to, uint256 value, bytes calldata data) external payable;
     function multicall(bytes[] calldata data) external payable;
+    // Puzzle Proxy
+    function proposeNewAdmin(address _newAdmin) external;  
 }
 
 
+/*
+
+    5:44:   explains you need to call proposeNewAdmin()
 
 
 
-
+*/

