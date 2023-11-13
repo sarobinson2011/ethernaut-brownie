@@ -3,10 +3,8 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x3658a8587DfC8f840a415C39099AEE91FB410c4E"
-
+ETHERNAUT_INSTANCE = "0xC0f70e469aA5E310d6566A11ECF4134998Fc1201"
 GAS_LIMIT = 12000000
-
 
 def contract_total_balance():
      # current balance of PuzzleProxy
@@ -64,20 +62,19 @@ def main():
     print(f"\nplayer address = {player}")
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
 
-    proxy_address = ETHERNAUT_INSTANCE
-    proxy = Contract.from_abi(PuzzleProxy._name, proxy_address, PuzzleProxy.abi)
-    print(f"Proxy address = {proxy_address}")
-    print(f"Proxy.admin() = {proxy.admin()}")
+    proxy = Contract.from_abi(PuzzleProxy._name, ETHERNAUT_INSTANCE, PuzzleProxy.abi)
+    print(f"PuzzleProxy.admin() = {proxy.admin()}")
+    print_status()
 
 
     # attack = Attack24.deploy({"from": player})
    
     # contract_total_balance()
-    print_status()
-    target.proposeNewAdmin(player, {"from": player})   
-    print_status()
-    target.addToWhitList(player, {"from": player})
-    print_status()
+    # print_status()
+    # target.proposeNewAdmin(player, {"from": player})   
+    # print_status()
+    # proxy.addToWhiteList(player, {"from": player})
+    # print_status()
 
 
 """
