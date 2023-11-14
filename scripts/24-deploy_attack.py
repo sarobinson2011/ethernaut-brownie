@@ -3,8 +3,8 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0xDad6848030a5EA9fAd321976cc63FCef8b709907"
-GAS_LIMIT = 12000000
+ETHERNAUT_INSTANCE = "0x4409D4abe3a58a2332B6D535d561024581F346b4"
+GAS_LIMIT = 6000000
 
 def contract_total_balance():
      # current balance of PuzzleProxy
@@ -64,14 +64,15 @@ def main():
     proxy = Contract.from_abi(PuzzleProxy._name, ETHERNAUT_INSTANCE, PuzzleProxy.abi)
     print(f"PuzzleProxy.admin() = {proxy.admin()}")
     # print(f"\n {PuzzleWallet.abi}")
-
+    # #print_status()
+    # #target.proposeNewAdmin(player, {"from": player})   
     print_status()
+    
 
+    # here  <-- 
     target.addToWhitelist(player, {"from": player})
     print_status()
 
-    # target.proposeNewAdmin(player, {"from": player})   
-    # print_status()
 
     # Solidity attack here ??
 
