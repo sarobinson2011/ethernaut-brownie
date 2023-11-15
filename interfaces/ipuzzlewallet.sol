@@ -14,6 +14,8 @@ interface IPuzzleWallet {
     function multicall(bytes[] calldata data) external payable;
     // Puzzle Proxy
     function proposeNewAdmin(address _newAdmin) external;  
+    
+    function whitelisted(address _addr) external view returns (bool);
 }
 
 
