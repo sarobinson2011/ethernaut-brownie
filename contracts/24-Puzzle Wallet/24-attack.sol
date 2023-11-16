@@ -5,13 +5,13 @@ pragma experimental ABIEncoderV2;
 import "./24-puzzlewallet.sol";
 
 contract Attack24 {
-    //
+    PuzzleWallet target;
 
-    constructor() {
-        // init
+    constructor(address _targetAddress) {
+        target = PuzzleWallet(_targetAddress);
     }
 
     function attack() public {
-        // stuff
+        // multicall attack
     }
 }

