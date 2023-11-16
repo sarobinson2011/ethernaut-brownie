@@ -75,6 +75,7 @@ def main():
     
     # deploy attack contract
     attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
+    attack.attack({"from": player})
     
 
 """
