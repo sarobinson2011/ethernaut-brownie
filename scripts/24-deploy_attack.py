@@ -70,16 +70,12 @@ def main():
     print(f"\nAdding player address to the whitelist\n")
     target.addToWhitelist(player, {"from": player})
     print_storage(player, target)
-
-
-# perform the multicall attack in Solidity 
-# via Attack24.sol
-
-
+        
+    # --> Now perform the multicall attack in Solidity
+    
     # deploy attack contract
     attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
-
-
+    
 
 """
     Notes:
