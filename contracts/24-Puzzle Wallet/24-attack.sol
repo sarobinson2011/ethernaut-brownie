@@ -26,7 +26,9 @@ contract Attack24 {
 
 // Make indirect calls to multicall:
 
-// pass multicall a bytes32, abi-encoded, data array containing calls to multicall i.e. itself.
+// pass multicall a bytes32, abi-encoded, data array containing a data array with 2 elements:
+//  
+// calls to multicall i.e. itself.
 // --> so multicall calls multicall 10 times, with each array element contains a call to deposit().  
 // ----> so we get 10 deposits in a single deposit() call, by batching them with multicall().
 

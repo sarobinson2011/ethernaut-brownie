@@ -111,12 +111,15 @@ def main():
         }
 
         So, in effect from one invocation of multicall, we can directly call deposit() only once.
+        
+        We can however perform indirect calls, so if we pass multicall a data array that contains:
+            
+            1. call deposit()
+            2. multicall
+                --> call deposit()
 
-        We can however perform indirect calls, so if we pass multicall a data array that contains 
-        calls to multicall.  So multicall will call multicall 30 times, and each individual call within
-        that will call deposit() once.  Thus we get 30 deposits in a single deposit() call.
-
-        This unbalances the contract accounting logic and we are able to drain the contract balance.
+        This alows us to deposit twice with one multicall, which in turn unbalances the contract accounting 
+        logic, and in turn we are able to drain the contract balance.
         
 
     6. set maxBalance {admin} to player address --> uint256(address(player)) to beat the level  ???
