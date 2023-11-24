@@ -6,9 +6,10 @@ import "./24-puzzlewallet.sol";
 contract Attack24 {
     PuzzleWallet public target;
     PuzzleProxy public proxy;
-    address public player;
+    address public owner;
 
     constructor(address payable _targetAddress) {
+        owner = msg.sender;
         target = PuzzleWallet(_targetAddress);        
         proxy = PuzzleProxy(_targetAddress);
     }
@@ -18,7 +19,9 @@ contract Attack24 {
         target.addToWhitelist(address(this));
      }
 
-    function withdraw() public {
+    function withdraw() public view {
+        require(owner == msg.sender, "not allowed, sorry");
+        // withdraw all funds using a call()
     }
 }
 
