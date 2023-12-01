@@ -73,7 +73,7 @@ contract PuzzleWallet {
     }
 
     function execute(address to, uint256 value, bytes calldata data) external payable onlyWhitelisted {
-        require(balances[msg.sender] >= value, "Insufficient balance");
+        require(balances[msg.sender] >= value, "Insufficient balance");  // <-- this assertion fails
         balances[msg.sender] -= value;
         (bool success, ) = to.call{ value: value }(data);
         require(success, "Execution failed");

