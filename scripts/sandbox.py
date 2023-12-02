@@ -39,7 +39,4 @@ contract LockDrop() {
 }
 
 
-
-
-
 """
