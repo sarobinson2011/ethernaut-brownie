@@ -10,25 +10,26 @@ Title:  LockDrop
 
 */
 
-contract LockDrop() {
+contract LockDrop {
     // state variables & events
-    // mapping - address -> uint256 // balance of each account
+    mapping (address => uint256) balanceOf; // balance of each account
     // mapping - address -> uint256 // countdown timer for each account (withdraw / airdrop)
 
-    constructor(uint256 _amount) public payable {
+    constructor(uint256 _amount) public {
         // initialise
     }
 
-    function deposit() external payable {
-        // functionality
+    function deposit(uint256 _amount) external payable {
+        // balanceOf(msg.sender) += msg.value;
     }
 
-    function withdraw() external {
-        // functionality
+    function withdraw(uint256 _amount) external {
+        // require(_amount <= balanceOf(msg.sender));
+        // (bool success, ) = call();
     }
 
     // need the functionality for the timer
     // 
-    // function timeLock()
-    
+    // function timeLock()   
 }
+

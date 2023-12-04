@@ -2,11 +2,11 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, Attack24, PuzzleWallet, PuzzleProxy, Contract
 from eth_utils import keccak
 
-ETHERNAUT_INSTANCE = "0x5725ef854cf053d6A449D0555DCaEA2FE523C8a2"
+ETHERNAUT_INSTANCE = "0x2F580FeD8ABe9B2b1965Bf38a3c344B96e0938eF"
 
 PLAYER = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
 GAS_LIMIT = 6000000
-VALUE = "0.001 ether"
+VALUE = "0.002 ether"
 
 def initialise(_player, _target):
     print(f"\nplayer address = {_player}")
@@ -64,8 +64,7 @@ def main():
     
     print_storage(player, target)
 
-    # 
-    
+
 """
     Notes:
 
