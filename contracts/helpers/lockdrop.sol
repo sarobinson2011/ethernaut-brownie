@@ -23,6 +23,8 @@ contract LockDrop {
         // balanceOf(msg.sender) += msg.value;
     }
 
+    //  
+
     function withdraw(uint256 _amount) external {
         // require(_amount <= balanceOf(msg.sender));
         // (bool success, ) = call();
@@ -32,4 +34,5 @@ contract LockDrop {
     // 
     // function timeLock()   
 }
+
 
