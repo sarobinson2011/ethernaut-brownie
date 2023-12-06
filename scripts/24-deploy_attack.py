@@ -66,7 +66,7 @@ def main():
 
 
 """
-from Github solution (MikeSpa):
+from Github solution 
 
 # method id for the first deposit() call
 deposit_hash = web3.keccak(text="deposit()")[:4].hex() 

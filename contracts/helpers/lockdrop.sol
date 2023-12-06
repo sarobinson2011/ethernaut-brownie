@@ -12,6 +12,7 @@ Title:  LockDrop
 
 contract LockDrop {
     // state variables & events
+    uint256 public owner;
     mapping (address => uint256) balanceOf; // balance of each account
     // mapping - address -> uint256 // countdown timer for each account (withdraw / airdrop)
 
