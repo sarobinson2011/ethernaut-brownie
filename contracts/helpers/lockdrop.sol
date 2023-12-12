@@ -12,27 +12,28 @@ Title:  LockDrop
 
 contract LockDrop {
     address public owner;
-    mapping (address => uint256) public balance; // balance of each account
+
+    mapping (address => timedDeposit) public balance;   // individual account balance
+
+    struct timedDeposit {
+        uint256 amount;
+        uint256 timestamp;
+    }
 
     constructor() {
         owner = msg.sender;
     }
 
     function deposit() external payable {
-        balance[msg.sender] += msg.value;
+        balance[msg.sender] = timedDeposit({
+            amount: msg.value, 
+            timestamp: block.timestamp
+        });
     } 
 
     function withdraw(uint256 _amount) external {
-        require(balance[msg.sender] >= _amount, "Insuffienct funds, sorry...");
-        balance[msg.sender] -= _amount;
-        payable(msg.sender).transfer(_amount);
+        // stuff
     }
-
-
-
-    // need the functionality for the timer
-    // 
-    // function timeLock()   
 }
 
 
