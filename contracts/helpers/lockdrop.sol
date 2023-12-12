@@ -11,25 +11,24 @@ Title:  LockDrop
 */
 
 contract LockDrop {
-    // state variables & events
-    uint256 public owner;
-    mapping (address => uint256) balanceOf; // balance of each account
-    // mapping - address -> uint256 // countdown timer for each account (withdraw / airdrop)
+    address public owner;
+    mapping (address => uint256) public balance; // balance of each account
 
-    constructor(uint256 _amount) public {
-        // initialise
+    constructor() {
+        owner = msg.sender;
     }
 
-    function deposit(uint256 _amount) external payable {
-        // balanceOf(msg.sender) += msg.value;
-    }
-
-    //  
+    function deposit() external payable {
+        balance[msg.sender] += msg.value;
+    } 
 
     function withdraw(uint256 _amount) external {
-        // require(_amount <= balanceOf(msg.sender));
-        // (bool success, ) = call();
+        require(balance[msg.sender] >= _amount, "Insuffienct funds, sorry...");
+        balance[msg.sender] -= _amount;
+        payable(msg.sender).transfer(_amount);
     }
+
+
 
     // need the functionality for the timer
     // 

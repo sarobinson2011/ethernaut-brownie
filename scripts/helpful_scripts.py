@@ -11,3 +11,6 @@ def get_account(index=None, id=None):
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         return accounts[0]
     return accounts.add(config["wallets"]["from_key"])
+
+
+# you actually do NEED to order some weed
